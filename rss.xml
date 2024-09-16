@@ -8,7 +8,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>bu44er</title>
-        <link>http://localhost:1313/</link>
+        <link>https://bu44er.top/</link>
         <description>MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</description>
         <generator>Hugo 0.134.2 https://gohugo.io/</generator>
         
@@ -23,15 +23,15 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Mon, 16 Sep 2024 20:57:38 &#43;0800</lastBuildDate>
+        <lastBuildDate>Mon, 16 Sep 2024 21:09:08 &#43;0800</lastBuildDate>
         
-            <atom:link rel="self" type="application/rss&#43;xml" href="http://localhost:1313/rss.xml" />
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
         
             <item>
                 <title>fakebook</title>
-                <link>http://localhost:1313/posts/fakebook/</link>
-                <guid isPermaLink="true">http://localhost:1313/posts/fakebook/</guid>
+                <link>https://bu44er.top/posts/fakebook/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/fakebook/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -217,6 +217,150 @@
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;file://&lt;/code&gt; 读取本地文件&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>GXYCTF2019---BabySQli</title>
+                <link>https://bu44er.top/posts/gxyctf2019---babysqli/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/gxyctf2019---babysqli/</guid>
+                <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
+                
+                    <author>391900788@qq.com (bu44er)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;#CTF #web #wp #sqli&lt;/p&gt;
+&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+&lt;p&gt;登录框
+&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;爆 wrong user
+&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;猜测要先通过用户名的检测，注释提示 `select * from user where username = &#39;$name&#39;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先 base32解密，再base64加密&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;尝试admin正确，爆 wrong password&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;sqli 正常开始用 &lt;code&gt;&#39; oRder by x&lt;/code&gt; 测试，发现是3列&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;大小写绕过对 order 的过滤&lt;/li&gt;
+&lt;li&gt;进一步发现括号也过滤了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;通过 &lt;code&gt;union&lt;/code&gt; 创建虚拟表&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过 union 需要添加一条数据：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;users&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;union&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;admin&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;diy password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;payload：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name=1&amp;#39; union select 1,&amp;#39;admin&amp;#39;,&amp;#39;234&amp;#39; %23&amp;amp;pw=234
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是查询发现表中数据经过 md5加密，所以 payload改为：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name=1&amp;#39; union select 1,&amp;#39;admin&amp;#39;,&amp;#39;234289dff07669d7a23de0ef88d2f7129e7&amp;#39; %23&amp;amp;pw=234
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;原理union-创建虚拟表&#34;&gt;原理：&lt;code&gt;union&lt;/code&gt; 创建虚拟表&lt;/h2&gt;
+&lt;p&gt;加上 union 关键字后会在表末生成我们自己定义好的数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟是指 union 产生的数据是临时的，在下次查询的时候就不存在了，因为它没有实际保存在数据库中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181534.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以通过往表中添加一条当前用户名和自定义密码的数据，通过对密码的检测。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>hugo图片插入结合obsidian的工作流</title>
+                <link>https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
+                <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
+                
+                    <author>391900788@qq.com (bu44er)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;hugo-添加图片&#34;&gt;hugo 添加图片&lt;/h2&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 保存本地图片的真实目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;static/img
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 自动生成的网页的图片目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;public/img
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 仅是为了便于在obsidian编辑文章时能够查看图片额外设置的目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;img
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;原理&#34;&gt;原理&lt;/h3&gt;
+&lt;p&gt;Hugo 在执行 &lt;code&gt;hugo&lt;/code&gt; 命令时，将根目录下的 static 文件夹中的内容直接复制到 public 文件夹。对于网页来说 public 就是根目录，所以我们在 static 中 创建一个 img 放图片，对应网页应该访问：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;![](/img/local.png)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在此基础上，由于 obsidian 在使用绝对路径时，生成的地址如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;![](img/local.png)
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;因为开头缺少一个 &lt;code&gt;/&lt;/code&gt; ，Hugo无法找到图片&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以决定改成相对路径，这样在原来 obsidian 的仓库中写的文章可以直接迁移到新的用于发博客的仓库，不用修改图片地址。&lt;/p&gt;
+&lt;p&gt;但是，由于本地图片实际位置是在 &lt;code&gt;static/img&lt;/code&gt;，所以为了能在发博客的（obsidian）仓库中也能正常预览图片，我们在博客仓库根目录也复制一个 img 文件夹，至此问题解决。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原仓库的附件也同一放在根目录的 img 文件夹，这样地址是天然正确的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从已经写好的仓库中迁移文章到博客仓库的工作流就是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bugo new posts/xxx.md&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;复制原仓库 img文件夹 到 博客仓库的 static/img 和 img 文件夹&lt;/li&gt;
+&lt;li&gt;直接复制文章&lt;/li&gt;
+&lt;li&gt;git 推上去&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;基本原理：&lt;a href=&#34;https://jincheng9.github.io/post/hugo-add-img/&#34;&gt;Hugo如何在markdown里引用本地图片 - Jincheng9&#39;s blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;相对路径可行：&lt;a href=&#34;https://www.yuweihung.com/posts/2021/hugo-blog-picture/&#34;&gt;Hugo 博客插入图片的方法 | Cassius&#39;s Blog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
                 
