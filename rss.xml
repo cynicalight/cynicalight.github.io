@@ -23,15 +23,74 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 17 Sep 2024 00:46:35 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 17 Sep 2024 02:37:55 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
         
             <item>
+                <title>GYCTF2020   Blacklist</title>
+                <link>https://bu44er.top/sec/gyctf2020---blacklist/</link>
+                <guid isPermaLink="true">https://bu44er.top/sec/gyctf2020---blacklist/</guid>
+                <pubDate>Tue, 17 Sep 2024 02:07:55 &#43;0800</pubDate>
+                
+                    <author>391900788@qq.com (bu44er)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+&lt;p&gt;一个输入：
+&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020558.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
+&lt;h3 id=&#34;看看数据库和表&#34;&gt;看看数据库和表&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1&amp;#39;;show databases;#
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;注意加分号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020645.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020652.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;handler--open&#34;&gt;HANDLER ... OPEN&lt;/h3&gt;
+&lt;p&gt;新姿势：&lt;code&gt;HANDLER ... OPEN&lt;/code&gt;语句打开一个表，使其可以使用后续&lt;code&gt;HANDLER ... READ&lt;/code&gt;语句访问，该表对象未被其他会话共享，并且在会话调用&lt;code&gt;HANDLER ... CLOSE&lt;/code&gt;或会话终止之前不会关闭&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1&amp;#39;;
+HANDLER FlagHere OPEN;
+HANDLER FlagHere READ FIRST;
+HANDLER FlagHere CLOSE;#
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;原理&#34;&gt;原理&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;HANDLER ... OPEN&lt;/code&gt;语句打开一个表，使其可以使用后续&lt;code&gt;HANDLER ... READ&lt;/code&gt;语句访问，该表对象未被其他会话共享，并且在会话调用&lt;code&gt;HANDLER ... CLOSE&lt;/code&gt;或会话终止之前不会关闭&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://bu44er.top/categories/cs/">CS</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://bu44er.top/categories/sec/">sec</category>
+                                
+                            
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+            <item>
                 <title>fakebook</title>
-                <link>https://bu44er.top/posts/sec/fakebook/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/sec/fakebook/</guid>
+                <link>https://bu44er.top/sec/fakebook/</link>
+                <guid isPermaLink="true">https://bu44er.top/sec/fakebook/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -228,6 +287,12 @@
                                 
                                 
                                 
+                                    <category domain="https://bu44er.top/categories/cs/">CS</category>
+                                
+                            
+                                
+                                
+                                
                                     <category domain="https://bu44er.top/categories/sec/">sec</category>
                                 
                             
@@ -240,8 +305,8 @@
         
             <item>
                 <title>GXYCTF2019---BabySQli</title>
-                <link>https://bu44er.top/posts/sec/gxyctf2019---babysqli/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/sec/gxyctf2019---babysqli/</guid>
+                <link>https://bu44er.top/sec/gxyctf2019---babysqli/</link>
+                <guid isPermaLink="true">https://bu44er.top/sec/gxyctf2019---babysqli/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -300,117 +365,15 @@
                                 
                                 
                                 
+                                    <category domain="https://bu44er.top/categories/cs/">CS</category>
+                                
+                            
+                                
+                                
+                                
                                     <category domain="https://bu44er.top/categories/sec/">sec</category>
                                 
                             
-                        
-                    
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>hugo图片插入 结合obsidian的工作流</title>
-                <link>https://bu44er.top/posts/others/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/others/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
-                <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
-                
-                    <author>391900788@qq.com (bu44er)</author>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;h2 id=&#34;hugo-添加图片&#34;&gt;hugo 添加图片&lt;/h2&gt;
-&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 保存本地图片的真实目录&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;static/img
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 自动生成的网页的图片目录&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;public/img
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 仅是为了便于在obsidian编辑文章时能够查看图片额外设置的目录&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;img
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;原理&#34;&gt;原理&lt;/h3&gt;
-&lt;p&gt;Hugo 在执行 &lt;code&gt;hugo&lt;/code&gt; 命令时，将根目录下的 static 文件夹中的内容直接复制到 public 文件夹。对于网页来说 public 就是根目录，所以我们在 static 中 创建一个 img 放图片，对应网页应该访问：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;![](/img/local.png)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在此基础上，由于 obsidian 在使用绝对路径时，生成的地址如下：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;![](img/local.png)
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;因为开头缺少一个 &lt;code&gt;/&lt;/code&gt; ，Hugo无法找到图片&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;所以决定改成相对路径，这样在原来 obsidian 的仓库中写的文章可以直接迁移到新的用于发博客的仓库，不用修改图片地址。&lt;/p&gt;
-&lt;p&gt;但是，由于本地图片实际位置是在 &lt;code&gt;static/img&lt;/code&gt;，所以为了能在发博客的（obsidian）仓库中也能正常预览图片，我们在博客仓库根目录也复制一个 img 文件夹，至此问题解决。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;原仓库的附件也同一放在根目录的 img 文件夹，这样地址是天然正确的&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从已经写好的仓库中迁移文章到博客仓库的工作流就是：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;bugo new posts/xxx.md&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;复制原仓库 img文件夹 到 博客仓库的 static/img 和 img 文件夹&lt;/li&gt;
-&lt;li&gt;直接复制文章&lt;/li&gt;
-&lt;li&gt;git 推上去&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;基本原理：&lt;a href=&#34;https://jincheng9.github.io/post/hugo-add-img/&#34;&gt;Hugo如何在markdown里引用本地图片 - Jincheng9&#39;s blog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;相对路径可行：&lt;a href=&#34;https://www.yuweihung.com/posts/2021/hugo-blog-picture/&#34;&gt;Hugo 博客插入图片的方法 | Cassius&#39;s Blog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://bu44er.top/categories/others/">others</category>
-                                
-                            
-                        
-                    
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>test</title>
-                <link>https://bu44er.top/posts/test/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/test/</guid>
-                <pubDate>Mon, 16 Sep 2024 16:53:21 &#43;0800</pubDate>
-                
-                    <author>391900788@qq.com (bu44er)</author>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;p&gt;test for hugo 20240916&lt;/p&gt;
-&lt;p&gt;一个输入：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916174546.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-</description>
-                
-                
-                
-                
-                
-                    
                         
                     
                         
