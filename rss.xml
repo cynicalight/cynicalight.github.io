@@ -8,7 +8,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>bu44er</title>
-        <link>http://localhost:1313/</link>
+        <link>https://bu44er.top/</link>
         <description>MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</description>
         <generator>Hugo 0.134.2 https://gohugo.io/</generator>
         
@@ -23,23 +23,22 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Mon, 16 Sep 2024 23:36:13 &#43;0800</lastBuildDate>
+        <lastBuildDate>Mon, 16 Sep 2024 23:47:05 &#43;0800</lastBuildDate>
         
-            <atom:link rel="self" type="application/rss&#43;xml" href="http://localhost:1313/rss.xml" />
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
         
             <item>
                 <title>fakebook</title>
-                <link>http://localhost:1313/posts/fakebook/</link>
-                <guid isPermaLink="true">http://localhost:1313/posts/fakebook/</guid>
+                <link>https://bu44er.top/posts/fakebook/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/fakebook/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
                 
                 <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
                 
-                    <description>&lt;p&gt;#CTF #web #wp #ssrf&lt;/p&gt;
-&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+                    <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;解法&#34;&gt;解法&lt;/h2&gt;
@@ -234,16 +233,15 @@
         
             <item>
                 <title>GXYCTF2019---BabySQli</title>
-                <link>http://localhost:1313/posts/gxyctf2019---babysqli/</link>
-                <guid isPermaLink="true">http://localhost:1313/posts/gxyctf2019---babysqli/</guid>
+                <link>https://bu44er.top/posts/gxyctf2019---babysqli/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/gxyctf2019---babysqli/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
                 
                 <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
                 
-                    <description>&lt;p&gt;#CTF #web #wp #sqli&lt;/p&gt;
-&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+                    <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;登录框
 &lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -299,8 +297,8 @@
         
             <item>
                 <title>hugo图片插入 结合obsidian的工作流</title>
-                <link>http://localhost:1313/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
-                <guid isPermaLink="true">http://localhost:1313/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
+                <link>https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -356,6 +354,33 @@
 &lt;li&gt;基本原理：&lt;a href=&#34;https://jincheng9.github.io/post/hugo-add-img/&#34;&gt;Hugo如何在markdown里引用本地图片 - Jincheng9&#39;s blog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;相对路径可行：&lt;a href=&#34;https://www.yuweihung.com/posts/2021/hugo-blog-picture/&#34;&gt;Hugo 博客插入图片的方法 | Cassius&#39;s Blog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>test</title>
+                <link>https://bu44er.top/posts/test/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/test/</guid>
+                <pubDate>Mon, 16 Sep 2024 16:53:21 &#43;0800</pubDate>
+                
+                    <author>391900788@qq.com (bu44er)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;test for hugo 20240916&lt;/p&gt;
+&lt;p&gt;一个输入：
+&lt;img src=&#34;../../../../img/Pasted%20image%2020240916174546.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 </description>
                 
                 

@@ -4,13 +4,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2024-09-16T23:36:13&#43;08:00</updated>
-    <id>http://localhost:1313/</id>
-    <link rel="alternate" type="text/html" href="http://localhost:1313/" />
-    <link rel="self" type="application/atom&#43;xml" href="http://localhost:1313/atom.xml" />
+    <updated>2024-09-16T23:47:05&#43;08:00</updated>
+    <id>https://bu44er.top/</id>
+    <link rel="alternate" type="text/html" href="https://bu44er.top/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
     <author>
             <name>bu44er</name>
-            <uri>http://localhost:1313/</uri>
+            <uri>https://bu44er.top/</uri>
             
                 <email>391900788@qq.com</email>
             </author>
@@ -18,17 +18,16 @@
     <generator uri="https://gohugo.io/" version="0.134.2">Hugo</generator>
         <entry>
             <title type="text">fakebook</title>
-            <link rel="alternate" type="text/html" href="http://localhost:1313/posts/fakebook/" />
-            <id>http://localhost:1313/posts/fakebook/</id>
-            <updated>2024-09-16T20:57:14&#43;08:00</updated>
+            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/fakebook/" />
+            <id>https://bu44er.top/posts/fakebook/</id>
+            <updated>2024-09-16T23:37:18&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;#CTF #web #wp #ssrf&lt;/p&gt;
-&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;解法&#34;&gt;解法&lt;/h2&gt;
@@ -42,8 +41,7 @@
 &lt;h4 id=&#34;dirmap-扫描后台&#34;&gt;dirmap 扫描后台&lt;/h4&gt;
 &lt;p&gt;用 dirmap 扫网站发现有 user.php.bak 文件&lt;/p&gt;……</summary>
             
-                <content type="html">&lt;p&gt;#CTF #web #wp #ssrf&lt;/p&gt;
-&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+                <content type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;解法&#34;&gt;解法&lt;/h2&gt;
@@ -238,17 +236,16 @@
     
         <entry>
             <title type="text">GXYCTF2019---BabySQli</title>
-            <link rel="alternate" type="text/html" href="http://localhost:1313/posts/gxyctf2019---babysqli/" />
-            <id>http://localhost:1313/posts/gxyctf2019---babysqli/</id>
-            <updated>2024-09-16T21:11:08&#43;08:00</updated>
+            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/gxyctf2019---babysqli/" />
+            <id>https://bu44er.top/posts/gxyctf2019---babysqli/</id>
+            <updated>2024-09-16T23:37:22&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;#CTF #web #wp #sqli&lt;/p&gt;
-&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;登录框
 &lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -263,8 +260,7 @@
 &lt;h3 id=&#34;尝试admin正确爆-wrong-password&#34;&gt;尝试admin正确，爆 wrong password&lt;/h3&gt;
 &lt;p&gt;sqli 正常开始用 &lt;code&gt;&#39; oRder by x&lt;/code&gt; 测试，发现是3列&lt;/p&gt;……</summary>
             
-                <content type="html">&lt;p&gt;#CTF #web #wp #sqli&lt;/p&gt;
-&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+                <content type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;登录框
 &lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -320,8 +316,8 @@
     
         <entry>
             <title type="text">hugo图片插入 结合obsidian的工作流</title>
-            <link rel="alternate" type="text/html" href="http://localhost:1313/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" />
-            <id>http://localhost:1313/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</id>
+            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" />
+            <id>https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</id>
             <updated>2024-09-16T21:40:51&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
@@ -405,6 +401,38 @@
 &lt;li&gt;基本原理：&lt;a href=&#34;https://jincheng9.github.io/post/hugo-add-img/&#34;&gt;Hugo如何在markdown里引用本地图片 - Jincheng9&#39;s blog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;相对路径可行：&lt;a href=&#34;https://www.yuweihung.com/posts/2021/hugo-blog-picture/&#34;&gt;Hugo 博客插入图片的方法 | Cassius&#39;s Blog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">test</title>
+            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/test/" />
+            <id>https://bu44er.top/posts/test/</id>
+            <updated>2024-09-16T23:37:35&#43;08:00</updated>
+            <published>2024-09-16T16:53:21&#43;08:00</published>
+            <author>
+                    <name>bu44er</name>
+                    <uri>https://bu44er.top/</uri>
+                    <email>391900788@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;test for hugo 20240916&lt;/p&gt;
+&lt;p&gt;一个输入：
+&lt;img src=&#34;../../../../img/Pasted%20image%2020240916174546.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</summary>
+            
+                <content type="html">&lt;p&gt;test for hugo 20240916&lt;/p&gt;
+&lt;p&gt;一个输入：
+&lt;img src=&#34;../../../../img/Pasted%20image%2020240916174546.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 </content>
             
             
