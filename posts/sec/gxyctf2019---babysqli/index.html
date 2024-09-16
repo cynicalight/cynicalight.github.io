@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
     <meta name="generator" content="Hugo 0.134.2"><meta name="theme-color" content="#fff" />
@@ -17,12 +17,12 @@
 
     <title>GXYCTF2019---BabySQli | bu44er</title>
 
-    <link rel="stylesheet" href="/css/meme.min.84ab63c6c165b61ffb8e4f9f1d142a81fac59cc934587a1a19f8cb47b3dd9808.css"/>
+    <link rel="stylesheet" href="/css/meme.min.96b86771f6c4e3b45d0b0efa6c202536caebbc09d4813ef3bed0568398bc5bd8.css"/>
 
     
     
         
-            <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js" defer></script><script src="/js/meme.min.157a74765e4a6f01ae0dacfcd0844ded95720efc40aae0d5bde994c38f18fe08.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js" defer></script><script src="/js/meme.min.15c1ebb8d31b4eec878f231c67d5dca6cd236e668190115c517b651ee33da5c1.js"></script>
 
         
     
@@ -44,16 +44,16 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="application-name" content="bu44er" />
-    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-starturl" content="../../../" />
     <meta name="msapplication-TileColor" content="#fff" />
-    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <meta name="msapplication-TileImage" content="../../../icons/mstile-150x150.png" />
     <link rel="manifest" href="/manifest.json" />
 
     
     
 
     
-        <link rel="canonical" href="http://localhost:1313/posts/gxyctf2019---babysqli/" />
+        <link rel="canonical" href="https://bu44er.top/posts/sec/gxyctf2019---babysqli/" />
     
 
 <script type="application/ld+json">
@@ -61,19 +61,19 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2024-09-16T18:03:22+08:00",
-        "dateModified": "2024-09-16T23:37:22+08:00",
-        "url": "http://localhost:1313/posts/gxyctf2019---babysqli/",
+        "dateModified": "2024-09-17T00:31:27+08:00",
+        "url": "https://bu44er.top/posts/sec/gxyctf2019---babysqli/",
         "headline": "GXYCTF2019---BabySQli",
         "description": "题目 登录框 分析 爆 wrong user 猜测要先通过用户名的检测，注释提示 `select * from user where username = '$name'\n先 base32解密，再base64加密 尝试admin正确，爆 wrong password sqli 正常开始用 ' oRder by x 测试，发现是3列\n……",
         "inLanguage" : "zh-CN",
         "articleSection": "posts",
         "wordCount":  298 ,
-        "image": ["http://localhost:1313/img/Pasted%20image%2020240916180547.png","http://localhost:1313/img/Pasted%20image%2020240916181350.png","http://localhost:1313/img/Pasted%20image%2020240916181354.png","http://localhost:1313/img/Pasted%20image%2020240916181534.png"],
+        "image": ["https://bu44er.top/img/Pasted%20image%2020240916180547.png","https://bu44er.top/img/Pasted%20image%2020240916181350.png","https://bu44er.top/img/Pasted%20image%2020240916181354.png","https://bu44er.top/img/Pasted%20image%2020240916181534.png"],
         "author": {
             "@type": "Person",
             "description": "Would you see then what I see now?",
             "email": "391900788@qq.com",
-            "image": "http://localhost:1313/icons/apple-touch-icon.png",
+            "image": "https://bu44er.top/icons/apple-touch-icon.png",
             "url": "https://bu44er.top/",
             "name": "bu44er"
         },
@@ -83,13 +83,13 @@
             "name": "bu44er",
             "logo": {
                 "@type": "ImageObject",
-                "url": "http://localhost:1313/icons/apple-touch-icon.png"
+                "url": "https://bu44er.top/icons/apple-touch-icon.png"
             },
-            "url": "http://localhost:1313/"
+            "url": "https://bu44er.top/"
         },
         "mainEntityOfPage": {
             "@type": "WebSite",
-            "@id": "http://localhost:1313/"
+            "@id": "https://bu44er.top/"
         }
     }
 </script>
@@ -109,12 +109,12 @@
 <meta property="og:description" content="题目 登录框 分析 爆 wrong user 猜测要先通过用户名的检测，注释提示 `select * from user where username = &#39;$name&#39;
 先 base32解密，再base64加密 尝试admin正确，爆 wrong password sqli 正常开始用 &#39; oRder by x 测试，发现是3列
 ……" />
-<meta property="og:url" content="http://localhost:1313/posts/gxyctf2019---babysqli/" />
+<meta property="og:url" content="https://bu44er.top/posts/sec/gxyctf2019---babysqli/" />
 <meta property="og:site_name" content="bu44er" />
-<meta property="og:locale" content="zh-cn" /><meta property="og:image" content="http://localhost:1313/img/Pasted%20image%2020240916180547.png" />
+<meta property="og:locale" content="zh-cn" /><meta property="og:image" content="https://bu44er.top/img/Pasted%20image%2020240916180547.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2024-09-16T18:03:22&#43;08:00" />
-    <meta property="article:modified_time" content="2024-09-16T23:37:22&#43;08:00" />
+    <meta property="article:modified_time" content="2024-09-17T00:31:27&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -246,13 +246,15 @@
     
     
         
-        <time datetime="2024-09-16T23:37:22&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2024.9.16</time>
+        <time datetime="2024-09-17T00:31:27&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2024.9.17</time>
     
     
     
         
         
         
+            
+                <span class="post-meta-item category"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>&nbsp;<a href="/categories/sec/" class="category-link p-category">sec</a></span>
             
         
     
@@ -264,6 +266,11 @@
         
         <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;1&nbsp;分钟</span>
     
+    
+        
+            
+            <span class="post-meta-item busuanzi-page-pv" id="busuanzi_container_page_pv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="busuanzi_value_page_pv"></span></span>
+        
     
     
 </div>
@@ -336,7 +343,7 @@
                 
                 
                 
-                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/posts/gxyctf2019---babysqli/" target="_blank" rel="noopener">http://localhost:1313/posts/gxyctf2019---babysqli/</a></li>
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/posts/sec/gxyctf2019---babysqli/" target="_blank" rel="noopener">https://bu44er.top/posts/sec/gxyctf2019---babysqli/</a></li>
             
             <li class="copyright-item license"><span class="copyright-item-text">许可</span>：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></li>
             
@@ -351,9 +358,9 @@
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2024-09-16 23:37:22 CST" style="cursor:help">
+        <span title="Updated @ 2024-09-17 00:31:27 CST" style="cursor:help">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2024-09-16</text><text x="915" y="140" textLength="650" transform="scale(.1)">2024-09-16</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2024-09-17</text><text x="915" y="140" textLength="650" transform="scale(.1)">2024-09-17</text></g></svg>
         </span></div>
 
 
@@ -366,6 +373,17 @@
 
         
     
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/posts/sec/fakebook/" class="related-link">fakebook</a>
+                    </li>
+                
+            </ul>
+        </div>
     
 
 
@@ -380,6 +398,10 @@
         
         
         
+            
+                <div class="post-category">
+                    <a href="/categories/sec/" class="post-category-link">sec</a>
+                </div>
             
         
     </footer>
@@ -400,12 +422,12 @@
         <ul class="post-nav">
             
                 <li class="post-nav-prev">
-                    <a href="/posts/fakebook/" rel="prev">&lt; fakebook</a>
+                    <a href="/posts/sec/fakebook/" rel="prev">&lt; fakebook</a>
                 </li>
             
             
                 <li class="post-nav-next">
-                    <a href="/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="next">hugo图片插入 结合obsidian的工作流 &gt;</a>
+                    <a href="/posts/others/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="next">hugo图片插入 结合obsidian的工作流 &gt;</a>
                 </li>
             
         </ul>
@@ -414,6 +436,26 @@
 
 
         
+    
+
+        
+
+        
+
+        
+
+        
+
+        
+            <div id="gitalk-container"></div>
+        
+
+        
+
+        
+
+    
+
 
 
     </div>
@@ -430,6 +472,9 @@
     <footer id="footer" class="footer">
         <div class="footer-inner">
             <div class="site-info">©&nbsp;1969–2024&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;bu44er</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+                <div class="busuanzi-site-uv-and-pv">
+                    <span id="busuanzi_container_site_uv">本站访客数&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon busuanzi-site-uv"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>&nbsp;<span id="busuanzi_value_site_uv"></span></span>&nbsp;|&nbsp;<span id="busuanzi_container_site_pv">本站访问量&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon busuanzi-site-pv"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                </div>
 
             
 
@@ -461,6 +506,90 @@
 
 
 
+    
+
+        
+
+        
+
+        
+
+        
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script>
+    function loadComments() {
+        if (!document.getElementById('gitalk-container')) {
+            return;
+        }
+        if (typeof Gitalk === 'undefined') {
+            const getScript = (options) => {
+                const script = document.createElement('script');
+                script.defer = true;
+                script.crossOrigin = 'anonymous';
+                Object.keys(options).forEach((key) => {
+                    script[key] = options[key];
+                });
+                document.body.appendChild(script);
+            };
+            getScript({
+                src: 'https:\/\/cdn.jsdelivr.net\/npm\/gitalk@1\/dist\/gitalk.min.js',
+                onload: () => {
+                    newGitalk();
+                }
+            });
+        } else {
+            newGitalk();
+        }
+    }
+    function newGitalk() {
+        const gitalk = new Gitalk({
+            clientID: "Ov23liPEu4AuKJ8pJngH",
+            clientSecret: "7d4d1885f291fa044647ca789920beb4fdae7fc4",
+            repo: "cynicalight.github.io",
+            owner: "cynicalight",
+            admin: ["cynicalight"],
+
+        
+            id: location.pathname,
+        
+
+            number:  -1 ,
+            labels: ["Gitalk"],
+
+        
+
+        
+
+        
+            language: "zh-CN",
+        
+
+            perPage:  10 ,
+            distractionFreeMode:  false ,
+            pagerDirection: "last",
+            createIssueManually:  false ,
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            flipMoveOptions: {
+                staggerDelayBy:  150 ,
+                appearAnimation: "accordionVertical",
+                enterAnimation: "accordionVertical",
+                leaveAnimation: "accordionVertical"
+            },
+            enableHotKey:  true 
+        })
+
+        gitalk.render('gitalk-container')
+    }
+</script>
+
+        
+
+        
+
+        
+
+    
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
@@ -481,6 +610,8 @@
 
 
 
+    
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
 

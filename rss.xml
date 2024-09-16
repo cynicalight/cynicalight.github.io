@@ -23,15 +23,15 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 17 Sep 2024 00:17:51 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 17 Sep 2024 00:32:16 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
         
             <item>
                 <title>fakebook</title>
-                <link>https://bu44er.top/posts/fakebook/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/fakebook/</guid>
+                <link>https://bu44er.top/posts/sec/fakebook/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/sec/fakebook/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -224,6 +224,14 @@
                 
                     
                         
+                            
+                                
+                                
+                                
+                                    <category domain="https://bu44er.top/categories/sec/">sec</category>
+                                
+                            
+                        
                     
                         
                     
@@ -232,8 +240,8 @@
         
             <item>
                 <title>GXYCTF2019---BabySQli</title>
-                <link>https://bu44er.top/posts/gxyctf2019---babysqli/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/gxyctf2019---babysqli/</guid>
+                <link>https://bu44er.top/posts/sec/gxyctf2019---babysqli/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/sec/gxyctf2019---babysqli/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -288,6 +296,14 @@
                 
                     
                         
+                            
+                                
+                                
+                                
+                                    <category domain="https://bu44er.top/categories/sec/">sec</category>
+                                
+                            
+                        
                     
                         
                     
@@ -296,8 +312,8 @@
         
             <item>
                 <title>hugo图片插入 结合obsidian的工作流</title>
-                <link>https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
-                <guid isPermaLink="true">https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
+                <link>https://bu44er.top/posts/others/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/others/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
                 <pubDate>Mon, 16 Sep 2024 18:03:22 &#43;0800</pubDate>
                 
                     <author>391900788@qq.com (bu44er)</author>
@@ -360,6 +376,14 @@
                 
                 
                     
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://bu44er.top/categories/others/">others</category>
+                                
+                            
                         
                     
                         
