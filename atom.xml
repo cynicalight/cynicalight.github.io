@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2024-09-16T23:47:05&#43;08:00</updated>
+    <updated>2024-09-16T23:52:21&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">fakebook</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/fakebook/" />
             <id>https://bu44er.top/posts/fakebook/</id>
-            <updated>2024-09-16T23:37:18&#43;08:00</updated>
+            <updated>2024-09-16T23:49:39&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -30,29 +30,27 @@
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;解法&#34;&gt;解法&lt;/h2&gt;
-&lt;h3 id=&#34;分析&#34;&gt;分析&lt;/h3&gt;
-&lt;h4 id=&#34;join页面提交blog-url&#34;&gt;join页面提交blog （URL）&lt;/h4&gt;
+&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
+&lt;h3 id=&#34;join页面提交blog-url&#34;&gt;join页面提交blog （URL）&lt;/h3&gt;
 &lt;p&gt;点进 join页面，发现是一个提交 blog的框&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180708.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对 blog 试了一些数字都提示 Blog is not valid.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;dirmap-扫描后台&#34;&gt;dirmap 扫描后台&lt;/h4&gt;
+&lt;h3 id=&#34;dirmap-扫描后台&#34;&gt;dirmap 扫描后台&lt;/h3&gt;
 &lt;p&gt;用 dirmap 扫网站发现有 user.php.bak 文件&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;解法&#34;&gt;解法&lt;/h2&gt;
-&lt;h3 id=&#34;分析&#34;&gt;分析&lt;/h3&gt;
-&lt;h4 id=&#34;join页面提交blog-url&#34;&gt;join页面提交blog （URL）&lt;/h4&gt;
+&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
+&lt;h3 id=&#34;join页面提交blog-url&#34;&gt;join页面提交blog （URL）&lt;/h3&gt;
 &lt;p&gt;点进 join页面，发现是一个提交 blog的框&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180708.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对 blog 试了一些数字都提示 Blog is not valid.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;dirmap-扫描后台&#34;&gt;dirmap 扫描后台&lt;/h4&gt;
+&lt;h3 id=&#34;dirmap-扫描后台&#34;&gt;dirmap 扫描后台&lt;/h3&gt;
 &lt;p&gt;用 dirmap 扫网站发现有 user.php.bak 文件&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;似乎可以扫出来有 flag.php，但是 dirmap 没扫出来&lt;/li&gt;
@@ -157,7 +155,7 @@
 &lt;ul&gt;
 &lt;li&gt;返回 Blog is not valid.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;sqli&#34;&gt;SQLi&lt;/h4&gt;
+&lt;h3 id=&#34;sqli&#34;&gt;SQLi&lt;/h3&gt;
 &lt;p&gt;再进入成功上传的页面，发现 no参数有 SQL注入漏洞&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;上传成功的规则见源码的正则表达式&lt;/li&gt;
@@ -182,7 +180,7 @@
 &lt;p&gt;爆data列&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?no=-1 union/**/select 1, group_concat(data),3,4 from users
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180808.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;从序列化字符串注入&#34;&gt;从序列化字符串注入&lt;/h4&gt;
+&lt;h3 id=&#34;从序列化字符串注入&#34;&gt;从序列化字符串注入&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;O:8:&amp;#34;UserInfo&amp;#34;:3:{s:4:&amp;#34;name&amp;#34;;s:2:&amp;#34;11&amp;#34;;s:3:&amp;#34;age&amp;#34;;i:11;s:4:&amp;#34;blog&amp;#34;;s:5:&amp;#34;sh.sh&amp;#34;;}
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从SQLi得到的序列化字符串可以猜测：&lt;/p&gt;
 &lt;ul&gt;
