@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2024-09-16T21:09:08&#43;08:00</updated>
+    <updated>2024-09-16T21:55:18&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -240,7 +240,7 @@
             <title type="text">GXYCTF2019---BabySQli</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/gxyctf2019---babysqli/" />
             <id>https://bu44er.top/posts/gxyctf2019---babysqli/</id>
-            <updated>2024-09-16T20:59:38&#43;08:00</updated>
+            <updated>2024-09-16T21:11:08&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -253,18 +253,14 @@
 &lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;爆 wrong user
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&#34;爆-wrong-user&#34;&gt;爆 wrong user&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;猜测要先通过用户名的检测，注释提示 `select * from user where username = &#39;$name&#39;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;先 base32解密，再base64加密&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;尝试admin正确，爆 wrong password&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&#34;尝试admin正确爆-wrong-password&#34;&gt;尝试admin正确，爆 wrong password&lt;/h3&gt;
 &lt;p&gt;sqli 正常开始用 &lt;code&gt;&#39; oRder by x&lt;/code&gt; 测试，发现是3列&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;p&gt;#CTF #web #wp #sqli&lt;/p&gt;
@@ -273,26 +269,20 @@
 &lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;爆 wrong user
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&#34;爆-wrong-user&#34;&gt;爆 wrong user&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;猜测要先通过用户名的检测，注释提示 `select * from user where username = &#39;$name&#39;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;先 base32解密，再base64加密&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;尝试admin正确，爆 wrong password&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&#34;尝试admin正确爆-wrong-password&#34;&gt;尝试admin正确，爆 wrong password&lt;/h3&gt;
 &lt;p&gt;sqli 正常开始用 &lt;code&gt;&#39; oRder by x&lt;/code&gt; 测试，发现是3列&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;大小写绕过对 order 的过滤&lt;/li&gt;
 &lt;li&gt;进一步发现括号也过滤了&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;通过 &lt;code&gt;union&lt;/code&gt; 创建虚拟表&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&#34;通过-union-创建虚拟表&#34;&gt;通过 &lt;code&gt;union&lt;/code&gt; 创建虚拟表&lt;/h3&gt;
 &lt;p&gt;通过 union 需要添加一条数据：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -329,10 +319,10 @@
         </entry>
     
         <entry>
-            <title type="text">hugo图片插入结合obsidian的工作流</title>
+            <title type="text">hugo图片插入 结合obsidian的工作流</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" />
             <id>https://bu44er.top/posts/hugo%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E7%BB%93%E5%90%88obsidian%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/</id>
-            <updated>2024-09-16T20:59:43&#43;08:00</updated>
+            <updated>2024-09-16T21:40:51&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
