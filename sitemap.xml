@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://bu44er.top/sec/beef-xss/</loc>
+    <lastmod>2024-09-17T23:47:42+08:00</lastmod>
+  </url><url>
     <loc>https://bu44er.top/</loc>
-    <lastmod>2024-09-17T23:44:05+08:00</lastmod>
+    <lastmod>2024-09-17T23:47:42+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/categories/cs/</loc>
-    <lastmod>2024-09-17T23:44:05+08:00</lastmod>
+    <lastmod>2024-09-17T23:47:42+08:00</lastmod>
   </url><url>
-    <loc>https://bu44er.top/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</loc>
-    <lastmod>2024-09-17T23:44:05+08:00</lastmod>
+    <loc>https://bu44er.top/sec/</loc>
+    <lastmod>2024-09-17T23:47:42+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/categories/sec/</loc>
+    <lastmod>2024-09-17T23:47:42+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</loc>
     <lastmod>2024-09-17T23:44:05+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/wp/</loc>
