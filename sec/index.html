@@ -58,8 +58,8 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "datePublished": "2024-10-04T01:45:39+08:00",
-        "dateModified": "2024-10-04T01:50:49+08:00",
+        "datePublished": "2024-10-13T15:27:04+08:00",
+        "dateModified": "2024-10-13T15:27:57+08:00",
         "url": "https://bu44er.top/sec/",
         "name": "sec",
         "description": "bu44er's blog",
@@ -209,6 +209,10 @@
                                 
                             
                                 
+                                    
+                                
+                            
+                                
                             
                                 
                             
@@ -278,6 +282,11 @@
                                 
                                 <h3 class="list-month">十月</h3>
                                 <ul class="list-part">
+        
+            <li class="list-item">
+                <a href="/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/" class="list-item-title">php一句话木马以及相关免杀</a>
+                <time datetime="2024-10-13T15:27:04&#43;08:00" class="list-item-time">10 月 13 日</time>
+            </li>
         
             <li class="list-item">
                 <a href="/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="list-item-title">php代码审计</a>
@@ -364,6 +373,88 @@
 
 
 
+
+    
+
+        
+
+        
+
+        
+
+        
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script>
+    function loadComments() {
+        if (!document.getElementById('gitalk-container')) {
+            return;
+        }
+        if (typeof Gitalk === 'undefined') {
+            const getScript = (options) => {
+                const script = document.createElement('script');
+                script.defer = true;
+                script.crossOrigin = 'anonymous';
+                Object.keys(options).forEach((key) => {
+                    script[key] = options[key];
+                });
+                document.body.appendChild(script);
+            };
+            getScript({
+                src: 'https:\/\/cdn.jsdelivr.net\/npm\/gitalk@1\/dist\/gitalk.min.js',
+                onload: () => {
+                    newGitalk();
+                }
+            });
+        } else {
+            newGitalk();
+        }
+    }
+    function newGitalk() {
+        const gitalk = new Gitalk({
+            clientID: "Ov23liPEu4AuKJ8pJngH",
+            clientSecret: "7d4d1885f291fa044647ca789920beb4fdae7fc4",
+            repo: "cynicalight.github.io",
+            owner: "cynicalight",
+            admin: ["cynicalight"],
+
+        
+            id: location.pathname,
+        
+
+            number:  -1 ,
+            labels: ["Gitalk"],
+
+        
+
+        
+
+        
+            language: "zh-CN",
+        
+
+            perPage:  10 ,
+            distractionFreeMode:  false ,
+            pagerDirection: "last",
+            createIssueManually:  false ,
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            flipMoveOptions: {
+                staggerDelayBy:  150 ,
+                appearAnimation: "accordionVertical",
+                enterAnimation: "accordionVertical",
+                leaveAnimation: "accordionVertical"
+            },
+            enableHotKey:  true 
+        })
+
+        gitalk.render('gitalk-container')
+    }
+</script>
+
+        
+
+        
+
+        
 
     
 

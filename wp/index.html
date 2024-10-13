@@ -203,6 +203,8 @@
                                 
                             
                                 
+                            
+                                
                                     
                                 
                             
@@ -357,88 +359,6 @@
 
 
 
-
-    
-
-        
-
-        
-
-        
-
-        
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script>
-    function loadComments() {
-        if (!document.getElementById('gitalk-container')) {
-            return;
-        }
-        if (typeof Gitalk === 'undefined') {
-            const getScript = (options) => {
-                const script = document.createElement('script');
-                script.defer = true;
-                script.crossOrigin = 'anonymous';
-                Object.keys(options).forEach((key) => {
-                    script[key] = options[key];
-                });
-                document.body.appendChild(script);
-            };
-            getScript({
-                src: 'https:\/\/cdn.jsdelivr.net\/npm\/gitalk@1\/dist\/gitalk.min.js',
-                onload: () => {
-                    newGitalk();
-                }
-            });
-        } else {
-            newGitalk();
-        }
-    }
-    function newGitalk() {
-        const gitalk = new Gitalk({
-            clientID: "Ov23liPEu4AuKJ8pJngH",
-            clientSecret: "7d4d1885f291fa044647ca789920beb4fdae7fc4",
-            repo: "cynicalight.github.io",
-            owner: "cynicalight",
-            admin: ["cynicalight"],
-
-        
-            id: location.pathname,
-        
-
-            number:  -1 ,
-            labels: ["Gitalk"],
-
-        
-
-        
-
-        
-            language: "zh-CN",
-        
-
-            perPage:  10 ,
-            distractionFreeMode:  false ,
-            pagerDirection: "last",
-            createIssueManually:  false ,
-            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
-            flipMoveOptions: {
-                staggerDelayBy:  150 ,
-                appearAnimation: "accordionVertical",
-                enterAnimation: "accordionVertical",
-                leaveAnimation: "accordionVertical"
-            },
-            enableHotKey:  true 
-        })
-
-        gitalk.render('gitalk-container')
-    }
-</script>
-
-        
-
-        
-
-        
 
     
 

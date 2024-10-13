@@ -58,24 +58,13 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
+        "@type": "WebPage",
         "datePublished": "2024-09-17T02:07:55+08:00",
         "dateModified": "2024-09-18T07:10:07+08:00",
         "url": "https://bu44er.top/wp/gyctf2020---blacklist/",
-        "headline": "GYCTF2020---Blacklist",
+        "name": "GYCTF2020---Blacklist",
         "description": "题目 一个输入： 分析 看看数据库和表 1';show databases;# 注意加分号 HANDLER ... OPEN 新姿势：HANDLER ... OPEN语句打开一个表，使其可以使用后续HANDLER ... READ语句访问，该表对象未被其他会话共享，并且在会话调用HANDLER ... CLOSE或会话终止之前不会关闭\n……",
-        "inLanguage" : "zh-CN",
-        "articleSection": "wp",
-        "wordCount":  215 ,
-        "image": ["https://bu44er.top/img/Pasted%20image%2020240917020558.png","https://bu44er.top/img/Pasted%20image%2020240917020645.png","https://bu44er.top/img/Pasted%20image%2020240917020652.png"],
-        "author": {
-            "@type": "Person",
-            "description": "Would you see then what I see now?",
-            "email": "391900788@qq.com",
-            "image": "https://bu44er.top/icons/apple-touch-icon.png",
-            "url": "https://bu44er.top/",
-            "name": "bu44er"
-        },
+        "image": "https://bu44er.top/icons/apple-touch-icon.png",
         "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
         "publisher": {
             "@type": "Organization",
@@ -95,8 +84,7 @@
 
     
 
-<meta name="twitter:card" content="summary_large_image" />
-
+<meta name="twitter:card" content="summary" />
 
 
     
@@ -108,13 +96,8 @@
 ……" />
 <meta property="og:url" content="https://bu44er.top/wp/gyctf2020---blacklist/" />
 <meta property="og:site_name" content="bu44er" />
-<meta property="og:locale" content="zh-cn" /><meta property="og:image" content="https://bu44er.top/img/Pasted%20image%2020240917020558.png" />
-<meta property="og:type" content="article" />
-    <meta property="article:published_time" content="2024-09-17T02:07:55&#43;08:00" />
-    <meta property="article:modified_time" content="2024-09-18T07:10:07&#43;08:00" />
-    
-    <meta property="article:section" content="wp" />
-
+<meta property="og:locale" content="zh-cn" /><meta property="og:image" content="https://bu44er.top/icons/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
 
 
     
@@ -351,11 +334,11 @@ HANDLER FlagHere CLOSE;#
                     </li>
                 
                     <li class="related-item">
-                        <a href="/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="related-link">php代码审计</a>
+                        <a href="/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/" class="related-link">php一句话木马以及相关免杀</a>
                     </li>
                 
                     <li class="related-item">
-                        <a href="/sec/ssti%E6%BC%8F%E6%B4%9E/" class="related-link">SSTI 漏洞</a>
+                        <a href="/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="related-link">php代码审计</a>
                     </li>
                 
             </ul>
@@ -370,66 +353,15 @@ HANDLER FlagHere CLOSE;#
 
 
         
-    <footer class="minimal-footer">
-        
-        
-        
-            
-                <div class="post-category">
-                    <a href="/categories/cs/" class="post-category-link">cs</a>/<a href="/categories/sec/" class="post-category-link">sec</a>/<a href="/categories/wp/" class="post-category-link">wp</a>
-                </div>
-            
-        
-    </footer>
-
 
 
         
 
 
         
-    
-        
-        
-    
-    
-    
-    
-        <ul class="post-nav">
-            
-                <li class="post-nav-prev">
-                    <a href="/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/" rel="prev">&lt; CTFHUB---SSRF-POST请求</a>
-                </li>
-            
-            
-                <li class="post-nav-next">
-                    <a href="/wp/fakebook/" rel="next">fakebook &gt;</a>
-                </li>
-            
-        </ul>
-    
-
 
 
         
-    
-
-        
-
-        
-
-        
-
-        
-
-        
-            <div id="gitalk-container"></div>
-        
-
-        
-
-        
-
     
 
 
@@ -482,88 +414,6 @@ HANDLER FlagHere CLOSE;#
 
 
 
-
-    
-
-        
-
-        
-
-        
-
-        
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script>
-    function loadComments() {
-        if (!document.getElementById('gitalk-container')) {
-            return;
-        }
-        if (typeof Gitalk === 'undefined') {
-            const getScript = (options) => {
-                const script = document.createElement('script');
-                script.defer = true;
-                script.crossOrigin = 'anonymous';
-                Object.keys(options).forEach((key) => {
-                    script[key] = options[key];
-                });
-                document.body.appendChild(script);
-            };
-            getScript({
-                src: 'https:\/\/cdn.jsdelivr.net\/npm\/gitalk@1\/dist\/gitalk.min.js',
-                onload: () => {
-                    newGitalk();
-                }
-            });
-        } else {
-            newGitalk();
-        }
-    }
-    function newGitalk() {
-        const gitalk = new Gitalk({
-            clientID: "Ov23liPEu4AuKJ8pJngH",
-            clientSecret: "7d4d1885f291fa044647ca789920beb4fdae7fc4",
-            repo: "cynicalight.github.io",
-            owner: "cynicalight",
-            admin: ["cynicalight"],
-
-        
-            id: location.pathname,
-        
-
-            number:  -1 ,
-            labels: ["Gitalk"],
-
-        
-
-        
-
-        
-            language: "zh-CN",
-        
-
-            perPage:  10 ,
-            distractionFreeMode:  false ,
-            pagerDirection: "last",
-            createIssueManually:  false ,
-            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
-            flipMoveOptions: {
-                staggerDelayBy:  150 ,
-                appearAnimation: "accordionVertical",
-                enterAnimation: "accordionVertical",
-                leaveAnimation: "accordionVertical"
-            },
-            enableHotKey:  true 
-        })
-
-        gitalk.render('gitalk-container')
-    }
-</script>
-
-        
-
-        
-
-        
 
     
 
