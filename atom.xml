@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">bu44er&#39;s blog</subtitle>
-    <updated>2024-11-14T03:01:28&#43;08:00</updated>
+    <updated>2024-11-14T14:52:21&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -515,9 +515,9 @@
     
         <entry>
             <title type="text">在 macOS m1 上使用 UTM 安装 WinXP 解决文件传输问题</title>
-            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/%E5%9C%A8-macos-m1-%E4%B8%8A%E5%AE%89%E8%A3%85-winxp-%E8%A7%A3%E5%86%B3%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E9%97%AE%E9%A2%98/" />
-            <id>https://bu44er.top/posts/cs/%E5%9C%A8-macos-m1-%E4%B8%8A%E5%AE%89%E8%A3%85-winxp-%E8%A7%A3%E5%86%B3%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E9%97%AE%E9%A2%98/</id>
-            <updated>2024-11-14T01:39:12&#43;08:00</updated>
+            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/cv5a6cp9/" />
+            <id>https://bu44er.top/posts/cs/cv5a6cp9/</id>
+            <updated>2024-11-14T14:51:44&#43;08:00</updated>
             <published>2024-10-14T22:25:31&#43;08:00</published>
             <author>
                     <name>bu44er</name>
