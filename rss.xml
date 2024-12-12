@@ -21,7 +21,7 @@
             <webMaster>391900788@qq.com (bu44er)</webMaster>
         
         
-        <lastBuildDate>Thu, 12 Dec 2024 19:36:50 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 12 Dec 2024 20:53:48 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
@@ -36,7 +36,10 @@
                 
                 
                 
-                    <description>&lt;h2 id=&#34;1-报告封面&#34;&gt;1 报告封面&lt;/h2&gt;
+                    <description>&lt;blockquote&gt;
+&lt;p&gt;不是word不会，就是喜欢obsidian写 =)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;1-优雅的报告封面&#34;&gt;1 优雅的报告封面&lt;/h2&gt;
 &lt;p&gt;用html仿照word的格式，熟练了还是很方便的。&lt;/p&gt;
 &lt;p&gt;常用html语法：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -65,20 +68,22 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;课 程 名 称   ：操作系统设计与实践
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;学 生 姓 名   ：张杰
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;学 生 姓 名   ：44
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;font-size: 22px; width: fit-content; margin: 0 auto; text-align: left; color: #111111; margin-bottom: 0px;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;二○二四年十二月&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;hr&gt;
+&lt;/div&gt;&lt;p&gt;封面效果：
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212205037.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
 &lt;h2 id=&#34;2-加上多级编号&#34;&gt;2 加上多级编号&lt;/h2&gt;
 &lt;p&gt;插件1 serial：
 &lt;img src=&#34;../../../../img/Pasted%20image%2020241212165438.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
 &lt;p&gt;插件2 number title：
 &lt;img src=&#34;../../../../img/Pasted%20image%2020241212165433.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
 &lt;p&gt;效果：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241212145859.png&#34; alt=&#34;200&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212205102.png&#34; alt=&#34;300&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;3-生成目录&#34;&gt;3 生成目录&lt;/h2&gt;
 &lt;p&gt;插件：table of content
@@ -91,7 +96,7 @@
 &lt;p&gt;插件： better pdf
 &lt;img src=&#34;../../../../img/Pasted%20image%2020241212164659.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;优点：插件导出pdf的目录能够点击跳转、可以加页脚&lt;/li&gt;
+&lt;li&gt;优点：pdf目录点击能够跳转，可以加页脚&lt;/li&gt;
 &lt;/ul&gt;
 </description>
                 
