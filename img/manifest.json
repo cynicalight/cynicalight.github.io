@@ -1,0 +1,11 @@
+{
+	"id": "image-size",
+	"name": "Image Size",
+	"version": "1.0.2",
+	"minAppVersion": "0.15.0",
+	"description": "Set the default size for pasted images.",
+	"author": "cynicalight",
+	"authorUrl": "https://bu44er.top/about",
+	"fundingUrl": "https://bu44er.top/about",
+	"isDesktopOnly": false
+}
