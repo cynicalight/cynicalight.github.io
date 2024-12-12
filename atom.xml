@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">bu44er&#39;s blog</subtitle>
-    <updated>2024-12-12T15:57:46&#43;08:00</updated>
+    <updated>2024-12-12T19:36:50&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -14,7 +14,7 @@
             
                 <email>391900788@qq.com</email>
             </author>
-    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
     <generator uri="https://gohugo.io/" version="0.134.2">Hugo</generator>
         <entry>
             <title type="text">如何用obsidian写一份word格式实验报告</title>
@@ -27,7 +27,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;1-报告封面&#34;&gt;1 报告封面&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;1-报告封面&#34;&gt;1 报告封面&lt;/h2&gt;
 &lt;p&gt;用html仿照word的格式，熟练了还是很方便的。&lt;/p&gt;
 &lt;p&gt;常用html语法：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -56,7 +56,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;课 程 名 称   ：操作系统设计与实践
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;学 生 姓 名   ：44444
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;学 生 姓 名   ：张杰
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;font-size: 22px; width: fit-content; margin: 0 auto; text-align: left; color: #111111; margin-bottom: 0px;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;二○二四年十二月&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -65,7 +65,7 @@
 &lt;/div&gt;&lt;hr&gt;
 &lt;h2 id=&#34;2-加上多级编号&#34;&gt;2 加上多级编号&lt;/h2&gt;
 &lt;p&gt;插件1 serial：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241212145527.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;……</summary>
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212165438.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h2 id=&#34;1-报告封面&#34;&gt;1 报告封面&lt;/h2&gt;
 &lt;p&gt;用html仿照word的格式，熟练了还是很方便的。&lt;/p&gt;
@@ -96,7 +96,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;课 程 名 称   ：操作系统设计与实践
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;学 生 姓 名   ：44444
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;学 生 姓 名   ：张杰
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;font-size: 22px; width: fit-content; margin: 0 auto; text-align: left; color: #111111; margin-bottom: 0px;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;二○二四年十二月&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -105,17 +105,24 @@
 &lt;/div&gt;&lt;hr&gt;
 &lt;h2 id=&#34;2-加上多级编号&#34;&gt;2 加上多级编号&lt;/h2&gt;
 &lt;p&gt;插件1 serial：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241212145527.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212165438.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
 &lt;p&gt;插件2 number title：
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241212145553.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212165433.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
 &lt;p&gt;效果：
 &lt;img src=&#34;../../../../img/Pasted%20image%2020241212145859.png&#34; alt=&#34;200&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;3-生成目录&#34;&gt;3 生成目录&lt;/h2&gt;
 &lt;p&gt;插件：table of content
-&lt;img src=&#34;../../../../img/Pasted%20image%2020241212145632.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212165425.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;注意：生成位置前面不能有任何标题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-导出pdf&#34;&gt;4 导出pdf&lt;/h2&gt;
+&lt;p&gt;插件： better pdf
+&lt;img src=&#34;../../../../img/Pasted%20image%2020241212164659.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：插件导出pdf的目录能够点击跳转、可以加页脚&lt;/li&gt;
 &lt;/ul&gt;
 </content>
             
@@ -160,7 +167,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;ul&gt;
+            <summary type="html">&lt;ul&gt;
 &lt;li&gt;github：&lt;a href=&#34;https://github.com/cynicalight/obsidian-image-size&#34;&gt;GitHub - cynicalight/obsidian-image-size: Set the default size for pasted images.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;参考：&lt;a href=&#34;https://docs.obsidian.md/Plugins/Getting+started/Build+a+plugin&#34;&gt;Build a plugin - Developer Documentation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -256,7 +263,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h1 id=&#34;基础&#34;&gt;基础&lt;/h1&gt;
+            <summary type="html">&lt;h1 id=&#34;基础&#34;&gt;基础&lt;/h1&gt;
 &lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -605,7 +612,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
 &lt;p&gt;配置文件：config.xoml&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;
@@ -1040,7 +1047,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;经过 gpt 的指点，发现问题在于文件系统挂载设置了 nosuid：
+            <summary type="html">&lt;p&gt;经过 gpt 的指点，发现问题在于文件系统挂载设置了 nosuid：
 &lt;img src=&#34;../../../img/Pasted%20image%2020241110234106.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;查看目标文件的文件系统挂载设置的命令：&lt;/p&gt;……</summary>
             
@@ -1102,7 +1109,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;安装系统&#34;&gt;安装系统&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;安装系统&#34;&gt;安装系统&lt;/h2&gt;
 &lt;p&gt;UTM 安装，选择模拟或者从 UTM 库中下载，xp 的 iso 要自己另外下载：
 &lt;img src=&#34;../../../../../img/Pasted%20image%2020241014221729.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -1167,7 +1174,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;?php @eval($_POST[&#39;shell&#39;]);?&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;@ 防止报错&lt;/li&gt;
@@ -1358,7 +1365,7 @@
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h1 id=&#34;常见函数&#34;&gt;常见函数&lt;/h1&gt;
+            <summary type="html">&lt;h1 id=&#34;常见函数&#34;&gt;常见函数&lt;/h1&gt;
 &lt;h2 id=&#34;is_numeric&#34;&gt;&lt;code&gt;is_numeric()&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;判断是否为数字&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2259,7 +2266,7 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;SSTI  （Server-Side Template Injection）服务器端模板注入&lt;/p&gt;
+            <summary type="html">&lt;p&gt;SSTI  （Server-Side Template Injection）服务器端模板注入&lt;/p&gt;
 &lt;p&gt;特征：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;网站能够返回用户的自定义内容，并以一种“模板”的形式&lt;/li&gt;
@@ -2809,7 +2816,7 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2918,7 +2925,7 @@ class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;空白页面 ：
 &lt;code&gt;http://challenge-27676ae19b3e5ec8.sandbox.ctfhub.com:10800/?url=_&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -3161,7 +3168,7 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;一个输入：
 &lt;img src=&#34;../../../../../img/Pasted%20image%2020240917020558.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -3248,7 +3255,7 @@ HANDLER FlagHere CLOSE;#
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180603.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
@@ -3490,7 +3497,7 @@ HANDLER FlagHere CLOSE;#
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+            <summary type="html">&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;登录框
 &lt;img src=&#34;../../../../../img/Pasted%20image%2020240916180547.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -3596,7 +3603,7 @@ HANDLER FlagHere CLOSE;#
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
+            <summary type="html">&lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
 &lt;p&gt;直接把ob的md文件复制到hugo会出现图片不显示的情况，原理很简单，md图片链接识别存在问题，以下希望用一种尽可能方便的方案解决这个问题。&lt;/p&gt;……</summary>
             
                 <content type="html">&lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
@@ -3696,7 +3703,7 @@ HANDLER FlagHere CLOSE;#
                     <uri>https://bu44er.top/</uri>
                     <email>391900788@qq.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;p&gt;test for hugo 20240916&lt;/p&gt;</summary>
+            <summary type="html">&lt;p&gt;test for hugo 20240916&lt;/p&gt;</summary>
             
                 <content type="html">&lt;p&gt;test for hugo 20240916&lt;/p&gt;
 </content>
