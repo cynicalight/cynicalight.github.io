@@ -3,13 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bu44er.top/</loc>
-    <lastmod>2024-12-22T16:58:25+08:00</lastmod>
+    <lastmod>2024-12-22T17:38:11+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/</loc>
-    <lastmod>2024-12-22T16:58:25+08:00</lastmod>
+    <lastmod>2024-12-22T17:38:11+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/tags/</loc>
+    <lastmod>2024-12-22T17:38:11+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/cs/36ed6bb6/</loc>
     <lastmod>2024-12-22T16:58:25+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/tags/web/</loc>
+    <lastmod>2024-12-22T16:58:25+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/tags/obsidian/</loc>
+    <lastmod>2024-12-22T17:35:26+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/cs/badabeac/</loc>
     <lastmod>2024-12-12T15:01:41+08:00</lastmod>
@@ -17,11 +26,20 @@
     <loc>https://bu44er.top/posts/cs/74665601/</loc>
     <lastmod>2024-12-09T14:15:03+08:00</lastmod>
   </url><url>
+    <loc>https://bu44er.top/tags/mac/</loc>
+    <lastmod>2024-12-22T17:29:41+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/tags/msf/</loc>
+    <lastmod>2024-11-26T14:49:12+08:00</lastmod>
+  </url><url>
     <loc>https://bu44er.top/posts/sec/841cdf13/</loc>
     <lastmod>2024-11-26T14:49:12+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/friends/</loc>
     <lastmod>2024-11-21T14:07:51+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/tags/hugo/</loc>
+    <lastmod>2024-12-22T17:35:26+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/cs/95df4091/</loc>
     <lastmod>2024-11-14T02:59:22+08:00</lastmod>
@@ -39,13 +57,16 @@
     <lastmod>2024-11-14T15:06:26+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/cs/cv5a6cp9/</loc>
-    <lastmod>2024-12-09T15:10:21+08:00</lastmod>
+    <lastmod>2024-12-22T17:29:41+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/</loc>
-    <lastmod>2024-11-14T15:06:26+08:00</lastmod>
+    <lastmod>2024-12-22T17:38:11+08:00</lastmod>
+  </url><url>
+    <loc>https://bu44er.top/tags/sec-web/</loc>
+    <lastmod>2024-12-22T17:38:11+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
-    <lastmod>2024-11-14T15:06:26+08:00</lastmod>
+    <lastmod>2024-12-22T17:37:08+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/</loc>
     <lastmod>2024-11-14T15:06:26+08:00</lastmod>
@@ -66,7 +87,7 @@
     <lastmod>2024-11-14T15:06:26+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/cs/7mb7cu38/</loc>
-    <lastmod>2024-12-12T15:51:53+08:00</lastmod>
+    <lastmod>2024-12-22T17:35:26+08:00</lastmod>
   </url><url>
     <loc>https://bu44er.top/posts/test/</loc>
     <lastmod>2024-11-14T01:00:11+08:00</lastmod>
@@ -77,6 +98,7 @@
     <loc>https://bu44er.top/categories/</loc>
     <lastmod>2024-11-14T02:12:16+08:00</lastmod>
   </url><url>
-    <loc>https://bu44er.top/tags/</loc>
+    <loc>https://bu44er.top/categories-copy/</loc>
+    <lastmod>2024-12-22T17:22:52+08:00</lastmod>
   </url>
 </urlset>

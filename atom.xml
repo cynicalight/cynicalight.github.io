@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">bu44er&#39;s blog</subtitle>
-    <updated>2024-12-22T17:03:01&#43;08:00</updated>
+    <updated>2024-12-22T17:38:13&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -88,6 +88,14 @@
             
             
                 
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/web/" term="web" label="web" />
+                            
+                        
                     
                 
             
@@ -694,6 +702,14 @@
             
                 
                     
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/obsidian/" term="obsidian" label="obsidian" />
+                            
+                        
+                    
                 
             
         </entry>
@@ -789,6 +805,14 @@
             
             
                 
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/obsidian/" term="obsidian" label="obsidian" />
+                            
+                        
                     
                 
             
@@ -1138,6 +1162,20 @@
             
             
                 
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/mac/" term="mac" label="mac" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/msf/" term="msf" label="msf" />
+                            
+                        
                     
                 
             
@@ -1574,6 +1612,14 @@
             
                 
                     
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/hugo/" term="hugo" label="hugo" />
+                            
+                        
+                    
                 
             
         </entry>
@@ -1644,7 +1690,7 @@
             <title type="text">在 macOS m1 上使用 UTM 安装 WinXP 解决文件传输问题</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/cv5a6cp9/" />
             <id>https://bu44er.top/posts/cs/cv5a6cp9/</id>
-            <updated>2024-12-09T15:10:21&#43;08:00</updated>
+            <updated>2024-12-22T17:29:41&#43;08:00</updated>
             <published>2024-10-14T22:25:31&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -1701,6 +1747,14 @@
             
                 
                     
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/mac/" term="mac" label="mac" />
+                            
+                        
+                    
                 
             
         </entry>
@@ -1709,7 +1763,7 @@
             <title type="text">php一句话木马以及相关免杀</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/" />
             <id>https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/</id>
-            <updated>2024-11-14T15:06:26&#43;08:00</updated>
+            <updated>2024-12-22T17:38:11&#43;08:00</updated>
             <published>2024-10-13T15:27:04&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -1892,6 +1946,14 @@
             
                 
                     
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/sec-web/" term="sec-web" label="sec-web" />
+                            
+                        
+                    
                 
             
         </entry>
@@ -1900,7 +1962,7 @@
             <title type="text">php代码审计</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" />
             <id>https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</id>
-            <updated>2024-11-14T15:06:26&#43;08:00</updated>
+            <updated>2024-12-22T17:37:08&#43;08:00</updated>
             <published>2024-10-04T01:45:39&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -2792,6 +2854,14 @@ string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
             
             
                 
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/sec-web/" term="sec-web" label="sec-web" />
+                            
+                        
                     
                 
             
@@ -4138,7 +4208,7 @@ HANDLER FlagHere CLOSE;#
             <title type="text">使用hugo和obsidian写博客：文章的图片问题</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/7mb7cu38/" />
             <id>https://bu44er.top/posts/cs/7mb7cu38/</id>
-            <updated>2024-12-12T15:51:53&#43;08:00</updated>
+            <updated>2024-12-22T17:35:26&#43;08:00</updated>
             <published>2024-09-16T18:03:22&#43;08:00</published>
             <author>
                     <name>bu44er</name>
@@ -4229,6 +4299,20 @@ HANDLER FlagHere CLOSE;#
             
             
                 
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/obsidian/" term="obsidian" label="obsidian" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://bu44er.top/tags/hugo/" term="hugo" label="hugo" />
+                            
+                        
                     
                 
             
