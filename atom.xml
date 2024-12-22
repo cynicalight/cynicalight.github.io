@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">bu44er</title>
     <subtitle type="html">bu44er&#39;s blog</subtitle>
-    <updated>2024-12-17T14:28:39&#43;08:00</updated>
+    <updated>2024-12-22T17:02:06&#43;08:00</updated>
     <id>https://bu44er.top/</id>
     <link rel="alternate" type="text/html" href="https://bu44er.top/" />
     <link rel="self" type="application/atom&#43;xml" href="https://bu44er.top/atom.xml" />
@@ -16,6 +16,83 @@
             </author>
     
     <generator uri="https://gohugo.io/" version="0.134.2">Hugo</generator>
+        <entry>
+            <title type="text">UDP 和 TCP 的本质区别</title>
+            <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/36ed6bb6/" />
+            <id>https://bu44er.top/posts/cs/36ed6bb6/</id>
+            <updated>2024-12-22T16:58:25&#43;08:00</updated>
+            <published>2024-12-22T16:58:25&#43;08:00</published>
+            <author>
+                    <name>bu44er</name>
+                    <uri>https://bu44er.top/</uri>
+                    <email>391900788@qq.com</email>
+                    </author>
+            <summary type="html">&lt;p&gt;分别从UDP和TCP这两个协议的同一视角：&lt;strong&gt;目标IP视角&lt;/strong&gt;来看，问题就很清晰了。&lt;/p&gt;
+&lt;h3 id=&#34;无连接传输-udp&#34;&gt;无连接传输 UDP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;User Datagram Protocol 用户数据报协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下图中，从==目标视角==来看，对于&lt;strong&gt;不同&lt;/strong&gt;源IP和port但是&lt;strong&gt;相同&lt;/strong&gt;目标IP和port的进程，他们在传输到目标时，向上走到是&lt;strong&gt;同一个socket&lt;/strong&gt;。&lt;/p&gt;……</summary>
+            
+                <content type="html">&lt;p&gt;分别从UDP和TCP这两个协议的同一视角：&lt;strong&gt;目标IP视角&lt;/strong&gt;来看，问题就很清晰了。&lt;/p&gt;
+&lt;h3 id=&#34;无连接传输-udp&#34;&gt;无连接传输 UDP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;User Datagram Protocol 用户数据报协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下图中，从==目标视角==来看，对于&lt;strong&gt;不同&lt;/strong&gt;源IP和port但是&lt;strong&gt;相同&lt;/strong&gt;目标IP和port的进程，他们在传输到目标时，向上走到是&lt;strong&gt;同一个socket&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;反过来，从==源视角==来看是很自然的，&lt;strong&gt;相同&lt;/strong&gt;源IP和port的进程从同一个socket向下出发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020241222155712.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;transport上面的黄色框表示一个socket&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tcp&#34;&gt;TCP&lt;/h3&gt;
+&lt;p&gt;和上面的UDP图有明显的不同：
+还是同样从==目标视角==来看，对于&lt;strong&gt;不同&lt;/strong&gt;源IP和port但是&lt;strong&gt;相同&lt;/strong&gt;目标IP和port的进程，他们在传输到目标时，向上走到是&lt;strong&gt;不同socket&lt;/strong&gt;，这就是TCP和UDP最本质的区别。&lt;/p&gt;
+&lt;p&gt;但是为什么会有这个区别呢？&lt;/p&gt;
+&lt;p&gt;本质原因在于&lt;strong&gt;连接&lt;/strong&gt;，TCP在传输层的socket是&lt;strong&gt;四元组&lt;/strong&gt;，而四元组相比二元组最大的区别就是产生了连接。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从这两个小节的两次“目标视角”的区别就可以很直观的理解这句话了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020241222155755.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;中科大计网ppt&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.bilibili.com/video/BV1JV411t7ow?spm_id_from=333.788.videopod.episodes&amp;amp;vd_source=7f5cf2ae748c813cc5d4d6f55495312c&amp;amp;p=24&#34;&gt;3.2 多路复用和解复用_哔哩哔哩_bilibili&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+            
+            
+            
+                
+                
+                
+                    
+                    
+                    
+                        
+                            <category scheme="https://bu44er.top/posts/" term="posts" label="posts" />
+                        
+                    
+                
+                    
+                    
+                    
+                        
+                            <category scheme="https://bu44er.top/posts/cs/" term="cs" label="cs" />
+                        
+                    
+                
+            
+            
+            
+                
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">如何用obsidian优雅地写一份实验报告/论文</title>
             <link rel="alternate" type="text/html" href="https://bu44er.top/posts/cs/badabeac/" />

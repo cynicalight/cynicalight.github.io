@@ -21,10 +21,79 @@
             <webMaster>391900788@qq.com (bu44er)</webMaster>
         
         
-        <lastBuildDate>Tue, 17 Dec 2024 14:28:39 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 22 Dec 2024 17:02:06 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
+        
+            <item>
+                <title>UDP 和 TCP 的本质区别</title>
+                <link>https://bu44er.top/posts/cs/36ed6bb6/</link>
+                <guid isPermaLink="true">https://bu44er.top/posts/cs/36ed6bb6/</guid>
+                <pubDate>Sun, 22 Dec 2024 16:58:25 &#43;0800</pubDate>
+                
+                    <author>391900788@qq.com (bu44er)</author>
+                
+                
+                
+                    <description>&lt;p&gt;分别从UDP和TCP这两个协议的同一视角：&lt;strong&gt;目标IP视角&lt;/strong&gt;来看，问题就很清晰了。&lt;/p&gt;
+&lt;h3 id=&#34;无连接传输-udp&#34;&gt;无连接传输 UDP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;User Datagram Protocol 用户数据报协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下图中，从==目标视角==来看，对于&lt;strong&gt;不同&lt;/strong&gt;源IP和port但是&lt;strong&gt;相同&lt;/strong&gt;目标IP和port的进程，他们在传输到目标时，向上走到是&lt;strong&gt;同一个socket&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;反过来，从==源视角==来看是很自然的，&lt;strong&gt;相同&lt;/strong&gt;源IP和port的进程从同一个socket向下出发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020241222155712.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;transport上面的黄色框表示一个socket&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tcp&#34;&gt;TCP&lt;/h3&gt;
+&lt;p&gt;和上面的UDP图有明显的不同：
+还是同样从==目标视角==来看，对于&lt;strong&gt;不同&lt;/strong&gt;源IP和port但是&lt;strong&gt;相同&lt;/strong&gt;目标IP和port的进程，他们在传输到目标时，向上走到是&lt;strong&gt;不同socket&lt;/strong&gt;，这就是TCP和UDP最本质的区别。&lt;/p&gt;
+&lt;p&gt;但是为什么会有这个区别呢？&lt;/p&gt;
+&lt;p&gt;本质原因在于&lt;strong&gt;连接&lt;/strong&gt;，TCP在传输层的socket是&lt;strong&gt;四元组&lt;/strong&gt;，而四元组相比二元组最大的区别就是产生了连接。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从这两个小节的两次“目标视角”的区别就可以很直观的理解这句话了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/Pasted%20image%2020241222155755.png&#34; alt=&#34;500&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;参考&#34;&gt;参考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;中科大计网ppt&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.bilibili.com/video/BV1JV411t7ow?spm_id_from=333.788.videopod.episodes&amp;amp;vd_source=7f5cf2ae748c813cc5d4d6f55495312c&amp;amp;p=24&#34;&gt;3.2 多路复用和解复用_哔哩哔哩_bilibili&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                
+                
+                
+                    
+                    
+                    
+                        
+                        
+                        
+                            
+                                <category domain="https://bu44er.top/posts/">posts</category>
+                            
+                        
+                    
+                        
+                        
+                        
+                            
+                                <category domain="https://bu44er.top/posts/cs/">cs</category>
+                            
+                        
+                    
+                
+                
+                
+                    
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>如何用obsidian优雅地写一份实验报告/论文</title>
