@@ -10,7 +10,7 @@
         <title>bu44er</title>
         <link>https://bu44er.top/</link>
         <description>bu44er&#39;s blog</description>
-        <generator>Hugo 0.134.2 https://gohugo.io/</generator>
+        <generator>Hugo 0.140.1 https://gohugo.io/</generator>
         
             <language>zh-CN</language>
         
@@ -21,7 +21,7 @@
             <webMaster>391900788@qq.com (bu44er)</webMaster>
         
         
-        <lastBuildDate>Sun, 22 Dec 2024 17:38:13 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 29 Dec 2024 14:03:08 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
@@ -2239,30 +2239,30 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;字符串&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;MD5 值&lt;/th&gt;
+          &lt;th&gt;字符串&lt;/th&gt;
+          &lt;th&gt;MD5 值&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;QNKCDZO&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0e830400451993494058024219903391&lt;/td&gt;
+          &lt;td&gt;QNKCDZO&lt;/td&gt;
+          &lt;td&gt;0e830400451993494058024219903391&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;s878926199a&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0e545993274517709034328855841020&lt;/td&gt;
+          &lt;td&gt;s878926199a&lt;/td&gt;
+          &lt;td&gt;0e545993274517709034328855841020&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;s155964671a&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0e342768416822451524974117254469&lt;/td&gt;
+          &lt;td&gt;s155964671a&lt;/td&gt;
+          &lt;td&gt;0e342768416822451524974117254469&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;s214587387a&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0e342768416822451524974117254469&lt;/td&gt;
+          &lt;td&gt;s214587387a&lt;/td&gt;
+          &lt;td&gt;0e342768416822451524974117254469&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0e215962017&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;0e291242476940776845150308577824&lt;/td&gt;
+          &lt;td&gt;0e215962017&lt;/td&gt;
+          &lt;td&gt;0e291242476940776845150308577824&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -2321,26 +2321,26 @@ TEXTCOLLBYfGiJUETHQ4hEcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;USER INPUT&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;DECODED&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;PHP VARIABLE NAME&lt;/th&gt;
+          &lt;th&gt;USER INPUT&lt;/th&gt;
+          &lt;th&gt;DECODED&lt;/th&gt;
+          &lt;th&gt;PHP VARIABLE NAME&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;%20foo_bar%00&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo_bar&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo_bar&lt;/td&gt;
+          &lt;td&gt;%20foo_bar%00&lt;/td&gt;
+          &lt;td&gt;foo_bar&lt;/td&gt;
+          &lt;td&gt;foo_bar&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo%20bar%00&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo bar&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo_bar&lt;/td&gt;
+          &lt;td&gt;foo%20bar%00&lt;/td&gt;
+          &lt;td&gt;foo bar&lt;/td&gt;
+          &lt;td&gt;foo_bar&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo%5bbar&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo[bar&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;foo_bar&lt;/td&gt;
+          &lt;td&gt;foo%5bbar&lt;/td&gt;
+          &lt;td&gt;foo[bar&lt;/td&gt;
+          &lt;td&gt;foo_bar&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -4080,7 +4080,26 @@ HANDLER FlagHere CLOSE;#
                 
                 
                     <description>&lt;p&gt;test for hugo 20240916&lt;/p&gt;
-</description>
+&lt;p&gt;加密解密&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;经过初始置换后，64位的数据块分为两个32位的组，L0和R0。&lt;/li&gt;
+&lt;li&gt;将Ri-1从32位扩展到48位，计算出48位的结果值与这一轮子密钥Ki的异或值
+&lt;ul&gt;
+&lt;li&gt;$ R_{int}=E(R_i-1) \oplus K_i $&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\begin{vmatrix}a &amp;amp; b\\
+c &amp;amp; d
+\end{vmatrix}=ad-bc
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每一轮，Rint 需要通过8个单独的S盒执行8次替换操作，得到8*4=32位&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&#34;text/javascript&#34;
+  src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML\_HTMLorMML&#34;&gt;
+&lt;/script&gt;</description>
                 
                 
                 
