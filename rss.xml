@@ -21,7 +21,7 @@
             <webMaster>391900788@qq.com (bu44er)</webMaster>
         
         
-        <lastBuildDate>Sun, 29 Dec 2024 14:03:08 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 29 Dec 2024 14:58:39 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://bu44er.top/rss.xml" />
         
@@ -2488,7 +2488,7 @@ __set()       类中的属性私有或不存在触发
 &lt;h3 id=&#34;escapeshellarg&#34;&gt;escapeshellarg&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.leavesongs.com/PENETRATION/escapeshellarg-and-parameter-injection.html#0x02-escapeshellarg&#34;&gt;0x02 escapeshellarg为什么没有奏效？&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.mi1k7ea.com/2019/07/04/%E6%B5%85%E8%B0%88escapeshellarg%E4%B8%8E%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/&#34;&gt;浅谈escapeshellarg逃逸与参数注入 [ Mi1k7ea ]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.mi1k7ea.com/2019/07/04/%E6%B5%85%E8%B0%88escapeshellarg%E4%B8%8E%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/&#34;&gt;浅谈escapeshellarg逃逸与参数注入 \[ Mi1k7ea \]&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;escapeshellarg 会给没有单引号的字符串加上单引号；对于有单引号的字符串，会先对单引号转义，再以单引号为分割，对各部分的字符串加上单引号。&lt;/p&gt;
 &lt;p&gt;测试功能：&lt;/p&gt;
@@ -4079,22 +4079,26 @@ HANDLER FlagHere CLOSE;#
                 
                 
                 
-                    <description>&lt;p&gt;test for hugo 20240916&lt;/p&gt;
+                    <description>&lt;h2 id=&#34;latex-math-test&#34;&gt;latex math test&lt;/h2&gt;
 &lt;p&gt;加密解密&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;经过初始置换后，64位的数据块分为两个32位的组，L0和R0。&lt;/li&gt;
 &lt;li&gt;将Ri-1从32位扩展到48位，计算出48位的结果值与这一轮子密钥Ki的异或值
 &lt;ul&gt;
-&lt;li&gt;$ R_{int}=E(R_i-1) \oplus K_i $&lt;/li&gt;
+&lt;li&gt;$$ R_{int}=E(R_i-1) \oplus K_i $$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;$$
-\begin{vmatrix}a &amp;amp; b\\
-c &amp;amp; d
+$$\underbrace{ a+b+\cdots+z }_{26}$$$$
+\begin{vmatrix}a &amp; b\\
+c &amp; d
 \end{vmatrix}=ad-bc
-$$&lt;/p&gt;
-&lt;ul&gt;
+$$\[
+\begin{aligned}
+KL(\hat{y} || y) &amp;= \sum_{c=1}^{M}\hat{y}_c \log{\frac{\hat{y}_c}{y_c}} \\
+JS(\hat{y} || y) &amp;= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y+\hat{y}}{2}))
+\end{aligned}
+\]&lt;ul&gt;
 &lt;li&gt;每一轮，Rint 需要通过8个单独的S盒执行8次替换操作，得到8*4=32位&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&#34;text/javascript&#34;
