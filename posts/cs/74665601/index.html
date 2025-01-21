@@ -678,11 +678,7 @@
 
 
 
-  
 
-
-
-  
 
 
 
@@ -715,52 +711,6 @@
   </span>
 
 </span>
-</span><span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
-        
-        
-      
-      
-    
-  
-  <span id="likes_posts/cs/自制obsidian插件:设置默认粘贴图片的尺寸.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full mt-[-2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="likes">loading</span>
-  <span class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
-  </span>
-
-</span>
-</span><span class="px-2 text-primary-500">&middot;</span><span>
-    <button id="button_likes"
-        class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
-        onclick="process_article()">
-        <span id="button_likes_heart" style="display:none" class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
-  </span>
-
- </span>
-        <span id="button_likes_emtpty_heart" class="inline-block align-text-bottom">
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg>
-  </span>
-
-</span>
-        <span id="button_likes_text">&nbsp;Like</span>
-    </button>
 </span>
   
 
@@ -916,19 +866,19 @@
 <ol>
 <li>阻止系统的默认粘贴：</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// 阻止默认粘贴行为
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="kr">type</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&#34;image/&#34;</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">evt</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#6272a4">// 阻止默认粘贴行为
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">if</span> (items) {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> items.length; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">const</span> item <span style="color:#ff79c6">=</span> items[i];
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">if</span> (item.<span style="color:#ff79c6">type</span>.startsWith(<span style="color:#f1fa8c">&#34;image/&#34;</span>)) {
+</span></span><span style="display:flex;"><span>			evt.preventDefault();
 </span></span></code></pre></div><ol start="2">
 <li>调用obsidian的editor自己插入一个图片（md语句）：</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// 插入 Markdown 图片链接
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">getCursor</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">markdownImage</span> <span class="o">=</span> <span class="sb">`![</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">imageSize</span><span class="si">}</span><span class="sb">](</span><span class="si">${</span><span class="nx">imageNameMd</span><span class="si">}</span><span class="sb">)`</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">editor</span><span class="p">.</span><span class="nx">replaceRange</span><span class="p">(</span><span class="nx">markdownImage</span><span class="p">,</span> <span class="nx">cursor</span><span class="p">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#6272a4">// 插入 Markdown 图片链接
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> cursor <span style="color:#ff79c6">=</span> editor.getCursor();
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> markdownImage <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`![</span><span style="color:#f1fa8c">${</span><span style="color:#ff79c6">this</span>.settings.imageSize<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">](</span><span style="color:#f1fa8c">${</span>imageNameMd<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">)`</span>;
+</span></span><span style="display:flex;"><span>editor.replaceRange(markdownImage, cursor);
 </span></span></code></pre></div><ul>
 <li>由于阻止了默认的粘贴，所以我需要再写一个保存图片文件到设置的附件文件夹的操作，这里就不展示了。</li>
 </ul>
