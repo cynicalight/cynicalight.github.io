@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: zj_img
+created: 2024-10-03T01:50:29+08:00

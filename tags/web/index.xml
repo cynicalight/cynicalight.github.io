@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WEB on bu44er</title>
+    <link>https://bu44er.top/tags/web/</link>
+    <description>Recent content in WEB on bu44er</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 bu44er</copyright>
+    <lastBuildDate>Sun, 22 Dec 2024 16:58:25 +0800</lastBuildDate><atom:link href="https://bu44er.top/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>UDP 和 TCP 的本质区别</title>
+      <link>https://bu44er.top/posts/cs/36ed6bb6/</link>
+      <pubDate>Sun, 22 Dec 2024 16:58:25 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/36ed6bb6/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SSTI 漏洞</title>
+      <link>https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Sat, 21 Sep 2024 19:17:14 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

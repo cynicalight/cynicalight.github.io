@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Liunx on bu44er</title>
+    <link>https://bu44er.top/tags/liunx/</link>
+    <description>Recent content in Liunx on bu44er</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 bu44er</copyright>
+    <lastBuildDate>Mon, 11 Nov 2024 11:50:27 +0800</lastBuildDate><atom:link href="https://bu44er.top/tags/liunx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>kali linux上suid失效</title>
+      <link>https://bu44er.top/posts/sec/030785fb/</link>
+      <pubDate>Mon, 11 Nov 2024 11:50:27 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/030785fb/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

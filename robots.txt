@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bu44er.top/sitemap.xml

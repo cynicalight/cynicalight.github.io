@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bu44er</title>
+    <link>https://bu44er.top/</link>
+    <description>Recent content on bu44er</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 bu44er</copyright>
+    <lastBuildDate>Mon, 20 Jan 2025 23:05:36 +0800</lastBuildDate><atom:link href="https://bu44er.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>JMX 利用：调用 MLet 注册恶意 MBean 致 RCE</title>
+      <link>https://bu44er.top/posts/sec/java/16ec5728/</link>
+      <pubDate>Mon, 20 Jan 2025 23:05:36 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/java/16ec5728/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>深入浅出 Java反射</title>
+      <link>https://bu44er.top/posts/sec/java/bf4eabfe/</link>
+      <pubDate>Mon, 20 Jan 2025 23:02:08 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/java/bf4eabfe/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>UDP 和 TCP 的本质区别</title>
+      <link>https://bu44er.top/posts/cs/36ed6bb6/</link>
+      <pubDate>Sun, 22 Dec 2024 16:58:25 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/36ed6bb6/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>如何用obsidian优雅地写一份实验报告/论文</title>
+      <link>https://bu44er.top/posts/cs/badabeac/</link>
+      <pubDate>Thu, 12 Dec 2024 15:01:41 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/badabeac/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>自制obsidian插件 Image Size: 设置默认粘贴图片的尺寸</title>
+      <link>https://bu44er.top/posts/cs/74665601/</link>
+      <pubDate>Mon, 09 Dec 2024 14:15:03 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/74665601/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>基于MacOS的metasploit不完全指南</title>
+      <link>https://bu44er.top/posts/sec/841cdf13/</link>
+      <pubDate>Tue, 26 Nov 2024 14:49:12 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/841cdf13/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>hugo&#43;meme博客建站不完全指南</title>
+      <link>https://bu44er.top/posts/cs/95df4091/</link>
+      <pubDate>Thu, 14 Nov 2024 02:59:22 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/95df4091/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>kali linux上suid失效</title>
+      <link>https://bu44er.top/posts/sec/030785fb/</link>
+      <pubDate>Mon, 11 Nov 2024 11:50:27 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/030785fb/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>在 macOS m1 上使用 UTM 安装 WinXP 解决文件传输问题</title>
+      <link>https://bu44er.top/posts/cs/cv5a6cp9/</link>
+      <pubDate>Mon, 14 Oct 2024 22:25:31 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/cv5a6cp9/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>php一句话木马以及相关免杀</title>
+      <link>https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/</link>
+      <pubDate>Sun, 13 Oct 2024 15:27:04 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/php%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%85%8D%E6%9D%80/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>php代码审计</title>
+      <link>https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</link>
+      <pubDate>Fri, 04 Oct 2024 01:45:39 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>SSTI 漏洞</title>
+      <link>https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Sat, 21 Sep 2024 19:17:14 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/ssti%E6%BC%8F%E6%B4%9E/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>beef xss</title>
+      <link>https://bu44er.top/posts/sec/beef-xss/</link>
+      <pubDate>Tue, 17 Sep 2024 23:47:23 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/beef-xss/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>CTFHUB---SSRF-POST请求</title>
+      <link>https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</link>
+      <pubDate>Tue, 17 Sep 2024 23:43:11 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>GYCTF2020---Blacklist</title>
+      <link>https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/</link>
+      <pubDate>Tue, 17 Sep 2024 02:07:55 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>fakebook</title>
+      <link>https://bu44er.top/posts/sec/wp/fakebook/</link>
+      <pubDate>Mon, 16 Sep 2024 18:03:22 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/wp/fakebook/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>GXYCTF2019---BabySQli</title>
+      <link>https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/</link>
+      <pubDate>Mon, 16 Sep 2024 18:03:22 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>使用hugo和obsidian写博客：文章的图片问题</title>
+      <link>https://bu44er.top/posts/cs/7mb7cu38/</link>
+      <pubDate>Mon, 16 Sep 2024 18:03:22 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/7mb7cu38/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>https://bu44er.top/posts/test/</link>
+      <pubDate>Mon, 16 Sep 2024 16:53:21 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/test/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
