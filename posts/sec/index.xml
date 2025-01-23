@@ -10,6 +10,16 @@
     <lastBuildDate>Thu, 14 Nov 2024 02:23:56 +0800</lastBuildDate><atom:link href="https://bu44er.top/posts/sec/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Java的URLDNS利用链</title>
+      <link>https://bu44er.top/posts/sec/315c5592/</link>
+      <pubDate>Thu, 23 Jan 2025 23:15:28 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/315c5592/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Docker未授权致RCE</title>
       <link>https://bu44er.top/posts/sec/c767958d/</link>
       <pubDate>Wed, 22 Jan 2025 23:20:26 +0800</pubDate>

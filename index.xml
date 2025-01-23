@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 bu44er</copyright>
-    <lastBuildDate>Wed, 22 Jan 2025 23:20:26 +0800</lastBuildDate><atom:link href="https://bu44er.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Jan 2025 23:16:31 +0800</lastBuildDate><atom:link href="https://bu44er.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>VSCode 调试 Java 项目</title>
+      <link>https://bu44er.top/posts/cs/8286daf7/</link>
+      <pubDate>Thu, 23 Jan 2025 23:16:31 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/cs/8286daf7/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Java的URLDNS利用链</title>
+      <link>https://bu44er.top/posts/sec/315c5592/</link>
+      <pubDate>Thu, 23 Jan 2025 23:15:28 +0800</pubDate>
+      
+      <guid>https://bu44er.top/posts/sec/315c5592/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>Docker未授权致RCE</title>
