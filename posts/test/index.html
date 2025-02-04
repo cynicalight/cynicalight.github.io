@@ -107,7 +107,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "44"
+    "wordCount": "42"
   }]
   </script>
 
@@ -181,6 +181,19 @@
   
   
 
+  
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+    MathJax = {
+        tex: {
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+            inlineMath: [['\\(', '\\)']]                  
+        },
+        loader: {
+            load: ['ui/safe']
+        },
+    };
+</script>
   
 
 </head>
@@ -674,7 +687,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-09-16T16:53:21&#43;08:00">16 September 2024</time><span class="px-2 text-primary-500">&middot;</span><span>44 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+  <time datetime="2024-09-16T16:53:21&#43;08:00">16 September 2024</time><span class="px-2 text-primary-500">&middot;</span><span>42 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -907,19 +920,16 @@
 </ul>
 </li>
 </ul>
-<p>$$\underbrace{ a+b+\cdots+z }_{26}$$</p>
-<p>$$
-\begin{vmatrix}a &amp; b\
-c &amp; d
+$$\underbrace{ a+b+\cdots+z }_{26}$$$$
+\begin{vmatrix}a & b\\
+c & d
 \end{vmatrix}=ad-bc
-$$</p>
-<p>[
+$$\[
 \begin{aligned}
-KL(\hat{y} || y) &amp;= \sum_{c=1}^{M}\hat{y}_c \log{\frac{\hat{y}_c}{y_c}} \
-JS(\hat{y} || y) &amp;= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y+\hat{y}}{2}))
+KL(\hat{y} || y) &= \sum_{c=1}^{M}\hat{y}_c \log{\frac{\hat{y}_c}{y_c}} \\
+JS(\hat{y} || y) &= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y+\hat{y}}{2}))
 \end{aligned}
-]</p>
-<ul>
+\]<ul>
 <li>每一轮，Rint 需要通过8个单独的S盒执行8次替换操作，得到8*4=32位</li>
 </ul>
 <script type="text/javascript"

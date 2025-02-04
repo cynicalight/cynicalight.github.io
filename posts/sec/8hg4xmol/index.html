@@ -183,6 +183,19 @@
   
 
   
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+    MathJax = {
+        tex: {
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+            inlineMath: [['\\(', '\\)']]                  
+        },
+        loader: {
+            load: ['ui/safe']
+        },
+    };
+</script>
+  
 
 </head>
 <body
@@ -2033,7 +2046,7 @@ __set()       类中的属性私有或不存在触发
 </h3>
 <ul>
 <li><a href="https://www.leavesongs.com/PENETRATION/escapeshellarg-and-parameter-injection.html#0x02-escapeshellarg" target="_blank">0x02 escapeshellarg为什么没有奏效？</a></li>
-<li><a href="http://www.mi1k7ea.com/2019/07/04/%E6%B5%85%E8%B0%88escapeshellarg%E4%B8%8E%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/" target="_blank">浅谈escapeshellarg逃逸与参数注入 [ Mi1k7ea ]</a></li>
+<li><a href="http://www.mi1k7ea.com/2019/07/04/%E6%B5%85%E8%B0%88escapeshellarg%E4%B8%8E%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/" target="_blank">浅谈escapeshellarg逃逸与参数注入 \[ Mi1k7ea \]</a></li>
 </ul>
 <p>escapeshellarg 会给没有单引号的字符串加上单引号；对于有单引号的字符串，会先对单引号转义，再以单引号为分割，对各部分的字符串加上单引号。</p>
 <p>测试功能：</p>
