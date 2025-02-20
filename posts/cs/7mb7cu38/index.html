@@ -992,15 +992,15 @@
     
 </h3>
 <p>Hugo 在执行 <code>hugo</code> 命令时，将根目录下的 static 文件夹中的内容直接复制到 public 文件夹。对于网页来说 public 就是根目录，所以我们在 static 中 创建一个 img 放图片，对应网页应该访问：</p>
-<pre tabindex="0"><code>![](/img/local.png)
-</code></pre><p>在此基础上，由于 obsidian 在使用绝对路径时，生成的地址如下：</p>
-<pre tabindex="0"><code>![](img/local.png)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>![](/img/local.png)
+</span></span></code></pre></div><p>在此基础上，由于 obsidian 在使用绝对路径时，生成的地址如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>![](img/local.png)
+</span></span></code></pre></div><ul>
 <li>因为开头缺少一个 <code>/</code> ，Hugo无法找到图片</li>
 </ul>
 <p>所以决定改成相对路径：</p>
-<pre tabindex="0"><code>![](../../../../../img/local.png)
-</code></pre><p>根据目录穿越的原理，<code>../../../../</code>数量<strong>足够多</strong>就能保证一定能穿越到根目录找到image文件夹，而且多写几个<code>../</code>也没什么坏处。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>![](../../../../../img/local.png)
+</span></span></code></pre></div><p>根据目录穿越的原理，<code>../../../../</code>数量<strong>足够多</strong>就能保证一定能穿越到根目录找到image文件夹，而且多写几个<code>../</code>也没什么坏处。</p>
 <ul>
 <li>安利自己写的小插件，本意是调整默认粘贴图片大小，为了自己使用方便，我也在粘贴图片的同时假如了足够多的<code>..</code>返回，确保直接迁移ob文章时，仍能够找到根目录的附件文件夹：https://github.com/cynicalight/obsidian-image-size</li>
 </ul>

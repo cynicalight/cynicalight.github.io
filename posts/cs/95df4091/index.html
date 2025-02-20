@@ -1160,10 +1160,10 @@
     
 </h3>
 <p>Hugo 在执行 <code>hugo</code> 命令时，将根目录下的 static 文件夹中的内容直接复制到 public 文件夹。对于网页来说 public 就是根目录，所以我们在 static 中 创建一个 img 放图片，对应网页应该访问：</p>
-<pre tabindex="0"><code>![](/img/local.png)
-</code></pre><p>在此基础上，由于 obsidian 在使用绝对路径时，生成的地址如下：</p>
-<pre tabindex="0"><code>![](img/local.png)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>![](/img/local.png)
+</span></span></code></pre></div><p>在此基础上，由于 obsidian 在使用绝对路径时，生成的地址如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>![](img/local.png)
+</span></span></code></pre></div><ul>
 <li>因为开头缺少一个 <code>/</code> ，Hugo无法找到图片</li>
 </ul>
 <p>所以决定改成相对路径，这样在原来 obsidian 的仓库中写的文章可以直接迁移到新的用于发博客的仓库，不用修改图片地址。</p>
@@ -1360,11 +1360,11 @@
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">slug</span>: {{ substr (md5 (printf &#34;%s%s&#34; .Date (replace .TranslationBaseName &#34;-&#34; &#34; &#34; | title))) 4 8 }}
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><p>config.toml 中加入：</p>
-<pre tabindex="0"><code># URL 结构
-[permalinks]
-	# 其他
-    posts = &#34;/posts/:slug&#34;
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># URL 结构
+</span></span><span style="display:flex;"><span>[permalinks]
+</span></span><span style="display:flex;"><span>	# 其他
+</span></span><span style="display:flex;"><span>    posts = &#34;/posts/:slug&#34;
+</span></span></code></pre></div><hr>
 
 
 <h2 class="relative group">用 sections 分区 作为categories 

