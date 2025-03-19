@@ -152,28 +152,4 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
-  <url>
-    <loc>https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</loc>
-    <lastmod>2023-09-17T23:43:11+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/</loc>
-    <lastmod>2023-09-17T02:07:55+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://bu44er.top/posts/sec/wp/fakebook/</loc>
-    <lastmod>2023-09-16T18:03:22+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/</loc>
-    <lastmod>2023-09-16T18:03:22+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
 </urlset>

@@ -9,45 +9,5 @@
     <copyright>© 2025 bu44er</copyright>
     <lastBuildDate>Thu, 14 Nov 2024 02:24:32 +0800</lastBuildDate><atom:link href="https://bu44er.top/posts/sec/wp/index.xml" rel="self" type="application/rss+xml" />
     
-    <item>
-      <title>CTFHUB---SSRF-POST请求</title>
-      <link>https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</link>
-      <pubDate>Sun, 17 Sep 2023 23:43:11 +0800</pubDate>
-      
-      <guid>https://bu44er.top/posts/sec/wp/ctfhub---ssrf-post%E8%AF%B7%E6%B1%82/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>GYCTF2020---Blacklist</title>
-      <link>https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/</link>
-      <pubDate>Sun, 17 Sep 2023 02:07:55 +0800</pubDate>
-      
-      <guid>https://bu44er.top/posts/sec/wp/gyctf2020---blacklist/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>fakebook</title>
-      <link>https://bu44er.top/posts/sec/wp/fakebook/</link>
-      <pubDate>Sat, 16 Sep 2023 18:03:22 +0800</pubDate>
-      
-      <guid>https://bu44er.top/posts/sec/wp/fakebook/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>GXYCTF2019---BabySQli</title>
-      <link>https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/</link>
-      <pubDate>Sat, 16 Sep 2023 18:03:22 +0800</pubDate>
-      
-      <guid>https://bu44er.top/posts/sec/wp/gxyctf2019---babysqli/</guid>
-      <description></description>
-      
-    </item>
-    
   </channel>
 </rss>
