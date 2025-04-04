@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on BU44ER's BLOG</title><link>https://bu44er.ink/tags/java/</link><description>Recent content in Java on BU44ER's BLOG</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 23 Jan 2025 23:15:28 +0800</lastBuildDate><atom:link href="https://bu44er.ink/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Java的URLDNS利用链</title><link>https://bu44er.ink/p/315c5592/</link><pubDate>Thu, 23 Jan 2025 23:15:28 +0800</pubDate><guid>https://bu44er.ink/p/315c5592/</guid><description>&lt;h2 id="利用链">利用链
+&lt;/h2>&lt;ul>
+&lt;li>Java 反序列化漏洞的难点不在于发现，而在于如何利用&lt;/li>
+&lt;/ul>
+&lt;p>为了完成最终的危险操作，实战中的反序列化攻击往往需要结合很多 serialize 接口，形成复杂的调用链，这一过程非常繁琐。&lt;/p>
+&lt;p>著名 Java 反序列化利用工具 ysoserial 集成了很多利用链，可以直接使用。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">java -jar ysoserial-all.jar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="ysoserial-的-payloads">ysoserial 的 payloads
+&lt;/h3>&lt;p>稍微解释一下 ysoserial 源码中的 payloads 文件夹，之后分析利用链会用到。&lt;/p>
+&lt;p>payloads 文件夹中每个文件就是一个 payload （一个公共类），每个 payload 类中都会定义一个&lt;code>getObject&lt;/code> 方法，这个方法会返回一个&lt;strong>对应 payload 的对象&lt;/strong>，该对象会在之后被 ysoserial 工具进一步处理，最终生成&lt;strong>序列化的字节流&lt;/strong>。&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123194017.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>另外，每个 payload 文件（比如后文调试了 URLDNS.java ），都会写一个 main：&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123194916.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>其中这个 &lt;code>PayloadRunner.run&lt;/code> 会干3件事：&lt;/p>
+&lt;ol>
+&lt;li>调用 &lt;code>getObject&lt;/code>&lt;/li>
+&lt;li>生成序列化数据作为输出的 payload&lt;/li>
+&lt;li>本地反序列化测试生成的 payload 是否有效&lt;/li>
+&lt;/ol>
+&lt;p>所以，可以单独调试一个 payload.java 文件，来看这个 payload 实际反序列触发利用的过程。&lt;/p>
+&lt;hr>
+&lt;h2 id="urldns-链">URLDNS 链
+&lt;/h2>&lt;p>参数是一个 URL，结果是触发⼀次 DNS 请求。&lt;/p>
+&lt;p>优点：&lt;/p>
+&lt;ul>
+&lt;li>使⽤ Java 内置的类构造，对第三⽅库&lt;strong>没有依赖&lt;/strong>&lt;/li>
+&lt;li>在⽬标没有回显的时候，能够通过 DNS 请求得知是否存在反序列化漏洞&lt;/li>
+&lt;/ul>
+&lt;h3 id="调用链">调用链
+&lt;/h3>&lt;p>从第一个 readObject 的反序列化进入，顺着函数中其他方法找下去，最终找到一个可能造成危害的函数进行注入利用。（建议直接看源码分析）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HashMap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">readObject&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HashMap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">putVal&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HashMap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">hash&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">hashCode&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="源码分析">源码分析
+&lt;/h3>&lt;p>从 ysoserial payloads 中的 &lt;code>URLDNS.java&lt;/code> 一步步调试分析。&lt;/p>
+&lt;p>反序列化的入口点是 &lt;code>HashMap.readObject()&lt;/code>，直接去看这个函数，其中 &lt;code>hash&lt;/code>函数是关键的利用点，先打个断点，开始调试：&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123175832.png"
+loading="lazy"
+>&lt;/p>
+&lt;ul>
+&lt;li>注意，之前讲到 payload 文件主函数的 &lt;code>PayloadRunner&lt;/code> 会干三件事，这边断点拦截到的是第三件事：反序列化，反序列化一定会触发 &lt;code>readObject&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>步入 &lt;code>hash&lt;/code> ：&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123175916.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>步入 &lt;code>hashCode&lt;/code>:&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123180030.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>步入 &lt;code>handler.hashCode&lt;/code>：&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123180129.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>步入 &lt;code>getHostAddress&lt;/code>：&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123180225.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>最终找到 &lt;code>InetAddress.getByName(host)&lt;/code> ，这个方法进行了 DNS 查询操作。&lt;/p>
+&lt;p>单步执行之后可以在反连平台看到 DNS 查询：&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020250123180534.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>URL 类的 hashCode 很简单。如果 hashcode 不为 -1，则返回 hashcode。在序列化构造 payload 的时候，需要设置 hashcode 为 -1 的原因，就是防止进入到 &lt;code>hashcode&lt;/code> 方法中，进而发送 DNS 请求，影响判断。&lt;/p></description></item></channel></rss>

